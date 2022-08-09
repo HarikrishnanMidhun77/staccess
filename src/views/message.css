@@ -1,0 +1,49 @@
+.js-widget-overlay {
+  z-index: 10001;
+  position: fixed;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  opacity: 0.8;
+  background-color: #000;
+}
+.js-widget-dialog {
+  position: fixed;
+  z-index: 10002;
+  background: #fff;
+  left: 50%;
+  top: 30%;
+  margin: 0 0 0 -120px;
+  width: 200px;
+  padding: 10px 20px;
+  border: solid 1px #333;
+}
+.float__access {
+  position: fixed;
+  width: 80px;
+  height: 80px;
+  bottom: 40px;
+  right: 40px;
+  background-color: #0c9;
+  color: #fff;
+  border-radius: 50px;
+  text-align: center;
+  border: none;
+  box-shadow: 2px 2px 3px #999;
+  /* @media all and (max-width: 30em) {
+    button {
+      width: 60px;
+      height: 60px;
+    }
+  } */
+  @media only screen and (max-width: 768px) {
+    div.float__access {
+      width: 80px;
+      height: 80px;
+    }
+  }
+}
+.my-float {
+  /* margin-top: 22px; */
+}
