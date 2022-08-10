@@ -43,7 +43,7 @@ export function setColor(color) {
   }
   var s = document.createElement("script");
   s.type = "text/javascript";
-  s.src = "http://localhost:8080/fd5d99e879e03ffd8765.js"; //"../functions/fontFunctions.js";
+  s.src = "/fontFunctions.js"; //"http://localhost:8080/fd5d99e879e03ffd8765.js"; //"../functions/fontFunctions.js";
   document.body.appendChild(s);
   document.getElementsByClassName("float__access")[0].style.backgroundColor =
     color;

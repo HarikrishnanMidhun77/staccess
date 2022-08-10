@@ -63,4 +63,14 @@ function removeFont() {
   document.cookie = "staccess__dyslexiaFont=false;  path=/";
   document.getElementById("staccess__dyslexiaFont__btn").style.background =
     primary__;
+
+  var css = "button.tile__:hover{ background-color:" + hover__ + " }";
+  var style = document.createElement("style");
+  if (style.styleSheet) {
+    style.styleSheet.cssText = css;
+  } else {
+    style.appendChild(document.createTextNode(css));
+  }
+
+  document.getElementsByTagName("head")[0].appendChild(style);
 }
