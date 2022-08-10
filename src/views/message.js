@@ -49,7 +49,7 @@ export function setColor(color) {
     color;
   document.getElementById("access__btn").addEventListener("click", openSidebar);
 
-  applyAllFunctions();
+  //  applyAllFunctions();
 }
 export function close() {
   while (elements.length > 0) {
@@ -88,6 +88,6 @@ export function openSidebar() {
 
 /* on refreshing the page, 
  all the activated functionalities should be reactivated checking the cookies */
-function applyAllFunctions() {
-  dyslexiaFontSwitch();
-}
+// function applyAllFunctions() {
+//   dyslexiaFontSwitch();
+// }
