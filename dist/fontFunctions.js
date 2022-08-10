@@ -29,9 +29,8 @@ function dyslexiaFontSwitch() {
   }
 }
 function applyDyslexicFont() {
-  var dyslexicRegular = new URL("fonts/dyslexic-regular.otf", document.baseURI)
-    .href;
-  var dyslexicMono = new URL("fonts/dyslexic-mono.otf", document.baseURI).href;
+  var dyslexicRegular = "dyslexic-regular.otf"; //new URL("fonts/dyslexic-regular.otf", document.baseURI).href;
+  var dyslexicMono = "dyslexic-mono.otf"; //new URL("fonts/dyslexic-mono.otf", document.baseURI).href;
   var style1 = document.createElement("style");
   style1.id = "staccess-widget-font";
   style1.innerHTML =
