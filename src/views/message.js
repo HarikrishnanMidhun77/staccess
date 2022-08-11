@@ -2,7 +2,7 @@ import html from "./message.html";
 import "./message.css";
 import "./sidebar.css";
 import "./tile.css";
-import { cdnLink } from "../consts";
+import { cdnLink } from "../consts.js";
 
 let elements = [];
 let body;
