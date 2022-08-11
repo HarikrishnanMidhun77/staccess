@@ -4,6 +4,7 @@
 const primary__ = "#1564bf";
 const hover__ = "#5e91f2";
 const selected__ = "#003b8e";
+import { cdnLink } from "../consts";
 
 function getCookie(cname) {
   let name = cname + "=";
@@ -29,8 +30,8 @@ function dyslexiaFontSwitch() {
   }
 }
 function applyDyslexicFont() {
-  var dyslexicRegular = "dyslexic-regular.otf"; //new URL("fonts/dyslexic-regular.otf", document.baseURI).href;
-  var dyslexicMono = "dyslexic-mono.otf"; //new URL("fonts/dyslexic-mono.otf", document.baseURI).href;
+  var dyslexicRegular = cdnLink + "src/fonts/dyslexic-regular.otf"; //new URL("fonts/dyslexic-regular.otf", document.baseURI).href;
+  var dyslexicMono = cdnLink + "src/fonts/dyslexic-mono.otf"; //new URL("fonts/dyslexic-mono.otf", document.baseURI).href;
   var style1 = document.createElement("style");
   style1.id = "staccess-widget-font";
   style1.innerHTML =
