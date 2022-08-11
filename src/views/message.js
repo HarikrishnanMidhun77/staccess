@@ -2,6 +2,7 @@ import html from "./message.html";
 import "./message.css";
 import "./sidebar.css";
 import "./tile.css";
+import { cdnLink } from "../consts";
 
 let elements = [];
 let body;
@@ -43,7 +44,7 @@ export function setColor(color) {
   }
   var s = document.createElement("script");
   s.type = "text/javascript";
-  s.src = "fontFunctions.js"; //"http://localhost:8080/fd5d99e879e03ffd8765.js"; //"../functions/fontFunctions.js";
+  s.src = cdnLink + "fontFunctions.js"; //"http://localhost:8080/fd5d99e879e03ffd8765.js"; //"../functions/fontFunctions.js";
   document.body.appendChild(s);
   document.getElementsByClassName("float__access")[0].style.backgroundColor =
     color;
