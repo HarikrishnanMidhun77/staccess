@@ -24,7 +24,7 @@ function getCookie(cname) {
   return "";
 }
 
-export function dyslexiaFontSwitch() {
+function dyslexiaFontSwitch() {
   if (getCookie("staccess__dyslexiaFont") == "true") {
     removeFont();
   } else {
