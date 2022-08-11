@@ -4,9 +4,9 @@
 const primary__ = "#1564bf";
 const hover__ = "#5e91f2";
 const selected__ = "#003b8e";
-// import { cdnLink } from "../consts.js";
-const cdnLink =
-  "https://cdn.jsdelivr.net/gh/HarikrishnanMidhun77/staccess@663e8edb480e5967ed17a667355d4f11629b40c0/";
+import { cdnLink } from "../consts.js";
+// const cdnLink =
+//   "https://cdn.jsdelivr.net/gh/HarikrishnanMidhun77/staccess@663e8edb480e5967ed17a667355d4f11629b40c0/";
 
 function getCookie(cname) {
   let name = cname + "=";
