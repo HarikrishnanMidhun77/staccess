@@ -8,7 +8,7 @@ const selected__ = "#003b8e";
 const cdnLink =
   "https://cdn.jsdelivr.net/gh/HarikrishnanMidhun77/staccess@e8cd984fbe5e6c777a8afd9cc4b5e76bf9cf1f9d/";
 
-const staccess__dyslexiaFont__flag = false;
+var staccess__dyslexiaFont__flag = false;
 function getCookie(cname) {
   let name = cname + "=";
   let decodedCookie = decodeURIComponent(document.cookie);
