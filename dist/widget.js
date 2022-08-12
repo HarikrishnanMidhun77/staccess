@@ -16,7 +16,7 @@
   \***********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"cdnLink\": () => (/* binding */ cdnLink)\n/* harmony export */ });\nvar cdnLink = \"https://cdn.jsdelivr.net/gh/HarikrishnanMidhun77/staccess@bb0dc98bbeead93508498497aa1be33695b9b789/\";\n\n//# sourceURL=webpack://js-widget/./src/consts.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"cdnLink\": () => (/* binding */ cdnLink)\n/* harmony export */ });\nvar cdnLink = \"https://cdn.jsdelivr.net/gh/HarikrishnanMidhun77/staccess@56048eee0bc6af38a01c08b53683ed17397ccec8/\";\n\n//# sourceURL=webpack://js-widget/./src/consts.js?");
 
 /***/ }),
 
