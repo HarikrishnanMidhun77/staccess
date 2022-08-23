@@ -83,3 +83,35 @@ function removeFont() {
 
   document.getElementsByTagName("head")[0].appendChild(style);
 }
+function changeFontSize() {
+  let items = document.querySelectorAll("*");
+  var tagsToRemove = ["IMG", "SCRIPT", "STYLE", "IFRAME"];
+  items.forEach((item, key) => {
+    if (!tagsToRemove.includes(item.tagName) && item.innerText != "") {
+      let itemFont = window
+        .getComputedStyle(item)
+        .getPropertyValue("font-size");
+      item.style.setProperty(
+        "font-size",
+        `${parseFloat(itemFont) + 10}px`,
+        "important"
+      );
+    }
+  });
+}
+function DecreaseFontSize() {
+  let items = document.querySelectorAll("*");
+  var tagsToRemove = ["IMG", "SCRIPT", "STYLE", "IFRAME"];
+  items.forEach((item, key) => {
+    if (!tagsToRemove.includes(item.tagName) && item.innerText != "") {
+      let itemFont = window
+        .getComputedStyle(item)
+        .getPropertyValue("font-size");
+      item.style.setProperty(
+        "font-size",
+        `${parseFloat(itemFont) - 1}px`,
+        "important"
+      );
+    }
+  });
+}

@@ -4,6 +4,11 @@
   --selected__: #003b8e;
 }
 
+img {
+  /* svg on an img tag */
+  -webkit-filter: invert(1); /* safari 6.0 - 9.0 */
+  filter: invert(1);
+}
 /* button.tile__:after {
   position: absolute;
   top: 0;
@@ -45,12 +50,21 @@ button :hover {
 button.tile__overlay__:hover {
   background: var(--hover__);
 }
-#staccess__dyslexiaFont__btn:hover {
+
+button.tile__:hover {
   background: var(--hover__);
+}
+.tile__ img {
+  width: 35px;
+  height: 35px;
+}
+.float__access img {
+  width: 35px;
+  height: 35px;
 }
 .tile__ p {
   font-size: 20px;
-  padding-top: 10px;
+  padding-top: 5px;
 }
 .tile__ i {
   padding-top: 30px;

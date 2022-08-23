@@ -1,10 +1,10 @@
 <!-- <div class="js-widget-overlay"></div>
 <div class="js-widget-dialog"></div> -->
-
-<link
+<script src="https://kit.fontawesome.com/8a8f1a6777.js" crossorigin="anonymous"></script>
+<!-- <link
   rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
-/>
+  href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+/> -->
 <meta content="width=device-width, initial-scale=1" name="viewport" />
 <div>
   <div class="sidebar">
@@ -21,18 +21,42 @@
         type="button"
         onclick="dyslexiaFontSwitch()"
       >
-        <i class="fa-solid fa-glasses fa-2xl"></i>
+      <img src = "../icons/dyslexia.svg" alt="Accessibility Widget Icon"/>
+    
+        <!-- <i class="fa-solid fa-glasses fa-2xl"></i> -->
        <p>Dyslexic Font</p> 
         <!-- <i class="fa-solid fa-glasses"></i> -->
       </button>
-      <button class="tile__" type="button">button1</button>
-      <button class="tile__" type="button">button1</button>
-      <button class="tile__" type="button">button1</button>
+
+      <button  id="staccess__fontsize__btn"
+      class="tile__"
+      type="button"
+      onclick="changeFontSize()">
+      <img src = "../icons/font-size.svg" alt="Accessibility Widget Icon"/>
+      <p>Font Size</p>
+    </button>
+
+    <button  id="staccess__letterspacing__btn"
+    class="tile__"
+    type="button"
+    onclick="changeLetterSpacing()">
+    <img src = "../icons/letter-spacing.svg" alt="Accessibility Widget Icon"/>
+    <p>Letter Spacing</p>
+  </button>
+
+  <button  id="staccess__lineheight__btn"
+  class="tile__"
+  type="button"
+  onclick="changeLineHeight()">
+  <i class="fa-solid fa-line-height fa-2xl"></i>
+  <img src = "../icons/line-height.svg" alt="Accessibility Widget Icon"/>
+  <p>Line Height</p>
+</button>
     </div>
   </div>
   <button id="access__btn" class="float__access">
     <!-- <i class="fa fa-low-vision" aria-hidden="true"></i> -->
-    <i class="fa-brands fa-accessible-icon fa-2xl"></i>
+    <img src = "../icons/accessibility.svg" alt="Accessibility Widget Icon"/>
 
     <!-- <i class="fa fa-wheelchair-alt" aria-hidden="true"></i> -->
   </button>
