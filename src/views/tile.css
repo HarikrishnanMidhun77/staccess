@@ -35,6 +35,10 @@ img {
   padding: 0;
   border: 0;
   background: var(--primary__);
+  /* background: linear-gradient(0deg, var(--selected__) 25%, var(--primary__) 25%)
+    no-repeat; */
+  /* background-size: calc(100%) calc(100%); */
+  background-position: top;
   color: white;
   min-width: 50px;
   min-height: 150px;
