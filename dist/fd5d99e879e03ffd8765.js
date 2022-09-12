@@ -731,3 +731,195 @@ function applyDyslexiaRuler() {
     }
   }
 }
+function applyReadText() {
+  let style = document.createElement("style");
+  style.innerHTML = `
+  .ta-a11y-widget-text-reader-hlight{background-color:#ffcc00;}
+  `;
+
+  let shadowDiv = document.createElement("div");
+  shadowDiv.id = "ta-a11y-works-widget-shadow-root";
+  let shadowRoot = shadowDiv.attachShadow({ mode: "open" });
+  let shadowChild = document.createElement("div");
+  shadowChild.classList.add("ta-a11y-works-widget-shadow-content");
+  let script = document.createElement("script");
+  script.textContent = `
+  var utterance = new SpeechSynthesisUtterance();
+var wordIndex = 0;
+var global_words = [];
+utterance.lang = 'en-UK';
+utterance.rate = 1;
+
+var comp   = document.querySelector("p");
+var text    = document.querySelector("p").innerHTML;
+var words   = text.trim().split(" ");
+console.log("words",words)
+ words=words.filter(item => item.length !== 0) 
+ console.log("words2",words)
+global_words = words;
+// Draw the text in a div
+drawTextInPanel(comp,words);
+spokenTextArray = words;
+utterance.text = text;
+speechSynthesis.speak(utterance);
+
+utterance.onboundary = function(event){
+  //var e = document.querySelector("p").innerHTML;
+  var word = getWordAt(comp.innerHTML,event.charIndex);
+  // Show Speaking word : x
+ // document.getElementById("word").innerHTML = word;
+  //Increase index of span to highlight
+  console.info(global_words[wordIndex]);
+  
+  try{
+    document.getElementById("word_span_"+wordIndex).style.background = "#ffcc00";
+  }catch(e){}
+  
+  wordIndex++;
+};
+
+function getWordAt(str, pos) {
+  // Perform type conversions.
+  str = String(str);
+  pos = Number(pos) >>> 0;
+
+  // Search for the word's beginning and end.
+  var left = str.slice(0, pos + 1).search(/\S+$/),
+      right = str.slice(pos).search(/\s/);
+
+  // The last word in the string is a special case.
+  if (right < 0) {
+      return str.slice(left);
+  }
+  // Return the word, using the located bounds to extract it from the string.
+  return str.slice(left, right + pos);
+}
+
+function drawTextInPanel(elem,words_array){
+  
+console.log("words array",words_array);
+ // var panel = document.getElementById("panel");
+ elem.innerHTML ='';
+  for(var i = 0;i < words_array.length;i++){
+    var html = '<span id="word_span_'+i+'">'+words_array[i]+'</span>&nbsp;';
+    elem.innerHTML += html;
+  }
+}
+
+function clearSpace(arr){
+  for (var key in arr) {
+      if (arr[key] == "") {
+          arr.splice(key, 1)
+          clearSpace(arr)
+      }
+  }
+}
+  `;
+
+  let readText = document.createElement("div");
+  readText.id = "ta-a11y-works-widget-read-text-div";
+
+  // let topDiv = document.createElement("div");
+  // topDiv.id = "ta-a11y-widget-read-text-top";
+  let middleDiv = document.createElement("div");
+  middleDiv.id = "ta-a11y-widget-read-text-middle";
+  let bottomDiv = document.createElement("div");
+  bottomDiv.id = "ta-a11y-widget-read-text-bottom";
+
+  // readText.appendChild(topDiv);
+  readText.appendChild(middleDiv);
+  readText.appendChild(bottomDiv);
+
+  let wrapperDiv = document.createElement("div");
+  wrapperDiv.id = "ta-a11y-works-widget-read-text-wrapper";
+  wrapperDiv.appendChild(script);
+  wrapperDiv.appendChild(style);
+  wrapperDiv.appendChild(readText);
+  shadowChild.appendChild(wrapperDiv);
+  shadowRoot.appendChild(shadowChild);
+
+  if (document.querySelector("#ta-a11y-works-widget-shadow-root")) {
+    document
+      .querySelector("#ta-a11y-works-widget-shadow-root")
+      .shadowRoot.appendChild(wrapperDiv);
+  } else {
+    document.body.appendChild(shadowDiv);
+  }
+}
+
+// let speech = new SpeechSynthesisUtterance();
+// speech.lang = "en";
+
+// var inputs = document.querySelectorAll('p');
+
+// inputs.forEach(function(input) {
+//   input.addEventListener('mouseover', function hover() {
+//     input.classList.add('ta-a11y-widget-text-reader-hlight')
+//   });
+
+//   input.addEventListener('mouseleave', function leave() {
+//     input.classList.remove('ta-a11y-widget-text-reader-hlight')
+
+//   });
+// });
+
+// speech.text = document.querySelector("p").textContent;
+// window.speechSynthesis.speak(speech);
+
+// var utterance = new SpeechSynthesisUtterance();
+//   utterance.lang = 'en-UK';
+//   utterance.rate = 1;
+//   var text = document.querySelector("textarea").value;
+
+//   utterance = new SpeechSynthesisUtterance();
+//   utterance.onboundary = onboundaryHandler;
+//   utterance.text = text;
+//   speechSynthesis.speak(utterance);
+
+//   function onboundaryHandler(event){
+//     var textarea =document.querySelector("textarea");
+//     var value = textarea.value;
+//     var index = event.charIndex;
+//     // console.log("value",value);
+//     console.log("index",index);
+//     var word = getWordAt(value, index);
+//     console.log("word",word);
+//     var anchorPosition = getWordStart(value, index);
+//     var activePosition = anchorPosition + word.length;
+// console.log("anchorPosition",anchorPosition)
+// console.log("activePosition",activePosition)
+
+//     textarea.focus();
+//     textarea.setSelectionRange(anchorPosition, activePosition);
+//     if (textarea.setSelectionRange) {
+//        textarea.setSelectionRange(anchorPosition, activePosition);
+//     }
+//     else {
+//        var range = textarea.createTextRange();
+//        range.collapse(true);
+//        range.moveEnd('character', activePosition);
+//        range.moveStart('character', anchorPosition);
+//        range.select();
+//     }
+// };
+
+// function getWordAt(str, pos) {
+//   str = String(str);
+//   pos = Number(pos) >>> 0;
+
+//   var left = str.slice(0, pos + 1).search(/\S+$/),
+//       right = str.slice(pos).search(/\s/);
+
+//   if (right < 0) {
+//       return str.slice(left);
+//   }
+//   return str.slice(left, right + pos);
+// }
+
+// function getWordStart(str, pos) {
+//   str = String(str);
+//   pos = Number(pos) >>> 0;
+
+//   var start = str.slice(0, pos + 1).search(/\S+$/);
+//   return start;
+// }
