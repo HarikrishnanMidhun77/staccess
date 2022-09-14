@@ -3,8 +3,7 @@
   --hover__: #5e91f2;
   --selected__: #003b8e;
 }
-
-img {
+.whitify {
   /* svg on an img tag */
   -webkit-filter: invert(1); /* safari 6.0 - 9.0 */
   filter: invert(1);
@@ -19,8 +18,23 @@ img {
   z-index: 999;
   content: "";
 } */
+.scroller {
+  overflow: auto;
+  height: 100px;
+}
+.backbtn__ {
+  margin: 5px;
+  margin-top: 15px;
+  min-width: 20px;
+  min-width: 10px;
+  border: none;
+  outline: none;
+  background: none;
+  cursor: pointer;
+}
 .tile__ {
   position: relative;
+  cursor: pointer;
 }
 
 .grid__ {
@@ -29,6 +43,9 @@ img {
   max-width: 306px;
   grid-template-columns: minmax(min-content, 150px) minmax(min-content, 150px);
   margin: 40px;
+  margin-top: 50px;
+  overflow: auto;
+  height: fit-content;
 }
 
 .tile__ {
@@ -47,6 +64,7 @@ img {
 }
 button :hover {
   background: var(--hover__);
+  cursor: pointer;
 }
 .sidebar button :hover {
   background: var(--hover__);
@@ -65,6 +83,9 @@ button.tile__:hover {
 .float__access img {
   width: 35px;
   height: 35px;
+}
+.float__access {
+  cursor: pointer;
 }
 .tile__ p {
   font-size: 20px;

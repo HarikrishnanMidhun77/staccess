@@ -64,6 +64,8 @@ export function openSidebar() {
     document.getElementsByClassName("sidebar")[0].style.visibility == "visible"
   ) {
     document.getElementsByClassName("sidebar")[0].style.visibility = "hidden";
+    document.getElementById("staccess__readtext_stop__btn").style.visibility =
+      "hidden";
   } else {
     document.getElementsByClassName("sidebar")[0].style.visibility = "visible";
   }

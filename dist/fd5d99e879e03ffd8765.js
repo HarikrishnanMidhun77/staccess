@@ -22,6 +22,30 @@ var white_cursor_flag = false;
 var bluelight_filter_flag = false;
 var screen_overlay_flag = false;
 var dyslexia_ruler_flag = false;
+var read_text_flag = 0;
+
+const mediaQuery = window.matchMedia("(max-width: 641px)");
+
+function handleTabletChange(e) {
+  // Check if the media query is true
+  if (e.matches) {
+    // Then log the following message to the console
+    console.log("Media Query Matched!");
+    document.getElementById("staccess__linefocus__btn").style.display = "none";
+    document.getElementById("staccess__dyslexiaruler__btn").style.display =
+      "none";
+    document.getElementById("staccess__readingruler__btn").style.display =
+      "none";
+    document.getElementById("staccess__whitecursor__btn").style.display =
+      "none";
+  }
+}
+
+// Register event listener
+mediaQuery.addListener(handleTabletChange);
+
+// Initial check
+handleTabletChange(mediaQuery);
 
 function getCookie(cname) {
   let name = cname + "=";
@@ -732,18 +756,28 @@ function applyDyslexiaRuler() {
   }
 }
 function applyReadText() {
-  let style = document.createElement("style");
-  style.innerHTML = `
+  if (read_text_flag == 0) {
+    document.getElementById("staccess__readtext__btn").style.background =
+      selected__;
+    document.getElementById("staccess__readtext_stop__btn").style.visibility =
+      "visible";
+    read_text_flag = 1;
+    document.getElementById("staccess__readtext__img").src =
+      cdnLink + "src/icons/pause.svg";
+    // "../icons/pause.svg";
+    console.log("state", "start");
+    let style = document.createElement("style");
+    style.innerHTML = `
   .ta-a11y-widget-text-reader-hlight{background-color:#ffcc00;}
   `;
 
-  let shadowDiv = document.createElement("div");
-  shadowDiv.id = "ta-a11y-works-widget-shadow-root";
-  let shadowRoot = shadowDiv.attachShadow({ mode: "open" });
-  let shadowChild = document.createElement("div");
-  shadowChild.classList.add("ta-a11y-works-widget-shadow-content");
-  let script = document.createElement("script");
-  script.textContent = `
+    let shadowDiv = document.createElement("div");
+    shadowDiv.id = "ta-a11y-works-widget-shadow-root";
+    let shadowRoot = shadowDiv.attachShadow({ mode: "open" });
+    let shadowChild = document.createElement("div");
+    shadowChild.classList.add("ta-a11y-works-widget-shadow-content");
+    let script = document.createElement("script");
+    script.textContent = `
   var utterance = new SpeechSynthesisUtterance();
 var wordIndex = 0;
 var global_words = [];
@@ -773,9 +807,12 @@ utterance.onboundary = function(event){
   
   try{
     document.getElementById("word_span_"+wordIndex).style.background = "#ffcc00";
+    document.getElementById("word_span_"+(wordIndex-1)).style.background = "";
+   
   }catch(e){}
   
   wordIndex++;
+  document.getElementById("word_span_"+(words.length-1)).style.background = "";
 };
 
 function getWordAt(str, pos) {
@@ -816,37 +853,78 @@ function clearSpace(arr){
 }
   `;
 
-  let readText = document.createElement("div");
-  readText.id = "ta-a11y-works-widget-read-text-div";
+    let readText = document.createElement("div");
+    readText.id = "ta-a11y-works-widget-read-text-div";
 
-  // let topDiv = document.createElement("div");
-  // topDiv.id = "ta-a11y-widget-read-text-top";
-  let middleDiv = document.createElement("div");
-  middleDiv.id = "ta-a11y-widget-read-text-middle";
-  let bottomDiv = document.createElement("div");
-  bottomDiv.id = "ta-a11y-widget-read-text-bottom";
+    // let topDiv = document.createElement("div");
+    // topDiv.id = "ta-a11y-widget-read-text-top";
+    let middleDiv = document.createElement("div");
+    middleDiv.id = "ta-a11y-widget-read-text-middle";
+    let bottomDiv = document.createElement("div");
+    bottomDiv.id = "ta-a11y-widget-read-text-bottom";
 
-  // readText.appendChild(topDiv);
-  readText.appendChild(middleDiv);
-  readText.appendChild(bottomDiv);
+    // readText.appendChild(topDiv);
+    readText.appendChild(middleDiv);
+    readText.appendChild(bottomDiv);
 
-  let wrapperDiv = document.createElement("div");
-  wrapperDiv.id = "ta-a11y-works-widget-read-text-wrapper";
-  wrapperDiv.appendChild(script);
-  wrapperDiv.appendChild(style);
-  wrapperDiv.appendChild(readText);
-  shadowChild.appendChild(wrapperDiv);
-  shadowRoot.appendChild(shadowChild);
+    let wrapperDiv = document.createElement("div");
+    wrapperDiv.id = "ta-a11y-works-widget-read-text-wrapper";
+    wrapperDiv.appendChild(style);
+    wrapperDiv.appendChild(script);
 
-  if (document.querySelector("#ta-a11y-works-widget-shadow-root")) {
-    document
-      .querySelector("#ta-a11y-works-widget-shadow-root")
-      .shadowRoot.appendChild(wrapperDiv);
-  } else {
-    document.body.appendChild(shadowDiv);
+    wrapperDiv.appendChild(readText);
+    shadowChild.appendChild(wrapperDiv);
+    shadowRoot.appendChild(shadowChild);
+
+    if (document.querySelector("#ta-a11y-works-widget-shadow-root")) {
+      document
+        .querySelector("#ta-a11y-works-widget-shadow-root")
+        .shadowRoot.appendChild(wrapperDiv);
+    } else {
+      document.body.appendChild(shadowDiv);
+    }
+  } else if (read_text_flag == 1) {
+    document.getElementById("staccess__readtext__btn").style.background =
+      primary__;
+    document.getElementById("staccess__readtext__img").src =
+      cdnLink + "src/icons/play.svg";
+    read_text_flag = 2;
+    if (speechSynthesis) {
+      speechSynthesis.pause();
+    }
+    console.log("state", "pause");
+  } else if (read_text_flag == 2) {
+    if (speechSynthesis) {
+      speechSynthesis.resume();
+    }
+    console.log("state", "resume");
+    read_text_flag = 1;
   }
 }
 
+function applyReadTextStop() {
+  if (speechSynthesis) {
+    speechSynthesis.cancel();
+  }
+  read_text_flag = 0;
+  document.getElementById("staccess__readtext_stop__btn").style.visibility =
+    "hidden";
+  document.getElementById("staccess__readtext__img").src =
+    cdnLink + "src/icons/audio.svg";
+}
+
+function openSidebar() {
+  console.log("button clicked");
+  if (
+    document.getElementsByClassName("sidebar")[0].style.visibility == "visible"
+  ) {
+    document.getElementsByClassName("sidebar")[0].style.visibility = "hidden";
+    document.getElementById("staccess__readtext_stop__btn").style.visibility =
+      "hidden";
+  } else {
+    document.getElementsByClassName("sidebar")[0].style.visibility = "visible";
+  }
+}
 // let speech = new SpeechSynthesisUtterance();
 // speech.lang = "en";
 
