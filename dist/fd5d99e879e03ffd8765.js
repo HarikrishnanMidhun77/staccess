@@ -777,22 +777,55 @@ function applyReadText() {
     let shadowChild = document.createElement("div");
     shadowChild.classList.add("ta-a11y-works-widget-shadow-content");
     let script = document.createElement("script");
+
+    //TODO : Query selector has to be updated for getting all the text in the page
+
     script.textContent = `
+
+    
   var utterance = new SpeechSynthesisUtterance();
 var wordIndex = 0;
 var global_words = [];
 utterance.lang = 'en-UK';
 utterance.rate = 1;
 
-var comp   = document.querySelector("p");
-var text    = document.querySelector("p").innerHTML;
+var ix90=0;
+var text="";
+var compText="";
+var compWords=[]
+var compTextArr=[]
+var comp   = document.querySelectorAll("p,h1, h2, h3, h4, h5, h6,li,blockquote,dd,dl,dt,figcaption,figure,hr,menu,ol,ul,pre");
+console.log("comp",comp)
+
+for(ix90=0;ix90<comp.length;ix90++){
+  
+  console.log("ix90",comp[ix90].innerHTML)
+  try{
+    if( !comp[ix90].classList.contains("staccess")){
+      text+= comp[ix90].innerHTML;
+
+      compText=comp[ix90].innerHTML;
+      compTextArr=compText.trim().split(" ");
+      compTextArr=compTextArr.filter(item => item.length !== 0) 
+      compWords[ix90]=compTextArr;
+      compText='';
+      compTextArr=[]
+      // drawTextInPanel(comp[ix90],compText.trim().split(" "));
+      }
+  }
+ catch(e){
+
+ }
+}
+console.log("text",text)
 var words   = text.trim().split(" ");
 console.log("words",words)
  words=words.filter(item => item.length !== 0) 
  console.log("words2",words)
 global_words = words;
 // Draw the text in a div
-drawTextInPanel(comp,words);
+drawTextInPanel(comp,compWords);
+
 spokenTextArray = words;
 utterance.text = text;
 speechSynthesis.speak(utterance);
@@ -804,7 +837,7 @@ utterance.onboundary = function(event){
  // document.getElementById("word").innerHTML = word;
   //Increase index of span to highlight
   console.info(global_words[wordIndex]);
-  
+  console.log("wordIndex",wordIndex)
   try{
     document.getElementById("word_span_"+wordIndex).style.background = "#ffcc00";
     document.getElementById("word_span_"+(wordIndex-1)).style.background = "";
@@ -832,15 +865,22 @@ function getWordAt(str, pos) {
   return str.slice(left, right + pos);
 }
 
-function drawTextInPanel(elem,words_array){
-  
-console.log("words array",words_array);
- // var panel = document.getElementById("panel");
- elem.innerHTML ='';
-  for(var i = 0;i < words_array.length;i++){
-    var html = '<span id="word_span_'+i+'">'+words_array[i]+'</span>&nbsp;';
-    elem.innerHTML += html;
+function drawTextInPanel(comp,words_array){
+var c=-1;
+  for(var jx90=0;jx90<comp.length;jx90++){
+    if( !comp[jx90].classList.contains("staccess")){
+      console.log("words array "+[jx90],words_array[jx90]);
+      // var panel = document.getElementById("panel");
+      comp[jx90].innerHTML ='';
+       for(var i = 0;i < words_array[jx90].length;i++){
+         var html = '<span id="word_span_'+c+'">'+words_array[jx90][i]+'</span>&nbsp;';
+         comp[jx90].innerHTML += html;
+         console.log("comp["+jx90+"].innerHTML",comp[jx90].innerHTML)
+         c++;
+       }
   }
+}
+
 }
 
 function clearSpace(arr){
