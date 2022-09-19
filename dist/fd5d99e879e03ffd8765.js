@@ -23,6 +23,7 @@ var bluelight_filter_flag = false;
 var screen_overlay_flag = false;
 var dyslexia_ruler_flag = false;
 var read_text_flag = 0;
+var read_click_text_flag = false;
 
 const mediaQuery = window.matchMedia("(max-width: 641px)");
 
@@ -758,6 +759,7 @@ function applyDyslexiaRuler() {
   }
 }
 function applyReadText() {
+  document.getElementById("staccess__clickandread__btn").style.display = "none";
   if (read_text_flag == 0) {
     document.getElementById("staccess__readtext__btn").style.background =
       selected__;
@@ -799,12 +801,12 @@ console.log("comp",comp)
 
 for(ix90=0;ix90<comp.length;ix90++){
   
-  console.log("ix90",comp[ix90].innerHTML)
+  //console.log("ix90",comp[ix90].innerHTML)
   try{
     if( !comp[ix90].classList.contains("staccess")){
-      text+= comp[ix90].innerHTML;
+      text+= comp[ix90].innerText;
 
-      compText=comp[ix90].innerHTML;
+      compText=comp[ix90].innerText;
       compTextArr=compText.trim().split(" ");
       compTextArr=compTextArr.filter(item => item.length !== 0) 
       compWords[ix90]=compTextArr;
@@ -831,10 +833,10 @@ utterance.text = text;
 speechSynthesis.speak(utterance);
 
 utterance.onboundary = function(event){
-  //var e = document.querySelector("p").innerHTML;
-  var word = getWordAt(comp.innerHTML,event.charIndex);
+  //var e = document.querySelector("p").innerText;
+  var word = getWordAt(comp.innerText,event.charIndex);
   // Show Speaking word : x
- // document.getElementById("word").innerHTML = word;
+ // document.getElementById("word").innerText = word;
   //Increase index of span to highlight
   console.info(global_words[wordIndex]);
   console.log("wordIndex",wordIndex)
@@ -876,11 +878,11 @@ var c=-1;
     if( !comp[jx90].classList.contains("staccess")){
       console.log("words array "+[jx90],words_array[jx90]);
       // var panel = document.getElementById("panel");
-      comp[jx90].innerHTML ='';
+      comp[jx90].innerText ='';
        for(var i = 0;i < words_array[jx90].length;i++){
          var html = '<span class="sta__span__" id="word_span_'+c+'">'+words_array[jx90][i]+'</span>&nbsp;';
          comp[jx90].innerHTML += html;
-         console.log("comp["+jx90+"].innerHTML",comp[jx90].innerHTML)
+         console.log("comp["+jx90+"].innerText",comp[jx90].innerText)
          c++;
        }
   }
@@ -952,8 +954,8 @@ function applyReadTextStop() {
     speechSynthesis.cancel();
   }
   read_text_flag = 0;
-  document.getElementById("staccess__readtext_stop__btn").style.visibility =
-    "hidden";
+  // document.getElementById("staccess__readtext_stop__btn").style.visibility =
+  //   "hidden";
   document.getElementById("staccess__readtext__img").src =
     cdnLink + "src/icons/audio.svg";
   const spans = document.querySelectorAll(".sta__span__");
@@ -965,14 +967,20 @@ function applyReadTextStop() {
 }
 function applyClickAndRead() {
   openSidebar();
-  let shadowDiv = document.createElement("div");
-  shadowDiv.id = "ta-a11y-works-widget-shadow-root";
-  let shadowRoot = shadowDiv.attachShadow({ mode: "open" });
-  let shadowChild = document.createElement("div");
-  shadowChild.classList.add("ta-a11y-works-widget-shadow-content");
-  let script = document.createElement("script");
+  if (!read_click_text_flag) {
+    read_click_text_flag = true;
+    document.getElementById("staccess__clickandread__img").src =
+      cdnLink + "src/icons/stop.svg";
 
-  script.textContent = `
+    document.getElementById("staccess__readtext__btn").style.display = "none";
+    let shadowDiv = document.createElement("div");
+    shadowDiv.id = "ta-a11y-works-widget-shadow-root";
+    let shadowRoot = shadowDiv.attachShadow({ mode: "open" });
+    let shadowChild = document.createElement("div");
+    shadowChild.classList.add("ta-a11y-works-widget-shadow-content");
+    let script = document.createElement("script");
+
+    script.textContent = `
   var utterance = new SpeechSynthesisUtterance();
   var wordIndex = 0;
   var global_words = [];
@@ -1073,35 +1081,39 @@ function clickReader(e){
         return str.slice(left, right + pos);
       }
     `;
-  let readText = document.createElement("div");
-  readText.id = "ta-a11y-works-widget-read-text-div";
+    let readText = document.createElement("div");
+    readText.id = "ta-a11y-works-widget-read-text-div";
 
-  // let topDiv = document.createElement("div");
-  // topDiv.id = "ta-a11y-widget-read-text-top";
-  let middleDiv = document.createElement("div");
-  middleDiv.id = "ta-a11y-widget-read-text-middle";
-  let bottomDiv = document.createElement("div");
-  bottomDiv.id = "ta-a11y-widget-read-text-bottom";
+    // let topDiv = document.createElement("div");
+    // topDiv.id = "ta-a11y-widget-read-text-top";
+    let middleDiv = document.createElement("div");
+    middleDiv.id = "ta-a11y-widget-read-text-middle";
+    let bottomDiv = document.createElement("div");
+    bottomDiv.id = "ta-a11y-widget-read-text-bottom";
 
-  // readText.appendChild(topDiv);
-  readText.appendChild(middleDiv);
-  readText.appendChild(bottomDiv);
+    // readText.appendChild(topDiv);
+    readText.appendChild(middleDiv);
+    readText.appendChild(bottomDiv);
 
-  let wrapperDiv = document.createElement("div");
-  wrapperDiv.id = "ta-a11y-works-widget-read-text-wrapper";
+    let wrapperDiv = document.createElement("div");
+    wrapperDiv.id = "ta-a11y-works-widget-read-text-wrapper";
 
-  wrapperDiv.appendChild(script);
+    wrapperDiv.appendChild(script);
 
-  wrapperDiv.appendChild(readText);
-  shadowChild.appendChild(wrapperDiv);
-  shadowRoot.appendChild(shadowChild);
+    wrapperDiv.appendChild(readText);
+    shadowChild.appendChild(wrapperDiv);
+    shadowRoot.appendChild(shadowChild);
 
-  if (document.querySelector("#ta-a11y-works-widget-shadow-root")) {
-    document
-      .querySelector("#ta-a11y-works-widget-shadow-root")
-      .shadowRoot.appendChild(wrapperDiv);
+    if (document.querySelector("#ta-a11y-works-widget-shadow-root")) {
+      document
+        .querySelector("#ta-a11y-works-widget-shadow-root")
+        .shadowRoot.appendChild(wrapperDiv);
+    } else {
+      document.body.appendChild(shadowDiv);
+    }
   } else {
-    document.body.appendChild(shadowDiv);
+    read_click_text_flag = false;
+    location.reload();
   }
 }
 function openSidebar() {
@@ -1110,8 +1122,8 @@ function openSidebar() {
     document.getElementsByClassName("sidebar")[0].style.visibility == "visible"
   ) {
     document.getElementsByClassName("sidebar")[0].style.visibility = "hidden";
-    document.getElementById("staccess__readtext_stop__btn").style.visibility =
-      "hidden";
+    // document.getElementById("staccess__readtext_stop__btn").style.visibility =
+    //   "hidden";
   } else {
     document.getElementsByClassName("sidebar")[0].style.visibility = "visible";
   }
