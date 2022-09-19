@@ -25,6 +25,33 @@ var dyslexia_ruler_flag = false;
 var read_text_flag = 0;
 var read_click_text_flag = false;
 
+function hasTouch() {
+  return (
+    "ontouchstart" in document.documentElement ||
+    navigator.maxTouchPoints > 0 ||
+    navigator.msMaxTouchPoints > 0
+  );
+}
+
+if (hasTouch()) {
+  // remove all the :hover stylesheets
+  try {
+    // prevent exception on browsers not supporting DOM styleSheets properly
+    for (var si in document.styleSheets) {
+      var styleSheet = document.styleSheets[si];
+      if (!styleSheet.rules) continue;
+
+      for (var ri = styleSheet.rules.length - 1; ri >= 0; ri--) {
+        if (!styleSheet.rules[ri].selectorText) continue;
+
+        if (styleSheet.rules[ri].selectorText.match(":hover")) {
+          styleSheet.deleteRule(ri);
+        }
+      }
+    }
+  } catch (ex) {}
+}
+
 const mediaQuery = window.matchMedia("(max-width: 641px)");
 
 function handleTabletChange(e) {
@@ -32,17 +59,20 @@ function handleTabletChange(e) {
   if (e.matches) {
     // Then log the following message to the console
     console.log("Media Query Matched!");
-    document.getElementById("staccess__linefocus__btn").style.display = "none";
-    document.getElementById("staccess__dyslexiaruler__btn").style.display =
-      "none";
-    document.getElementById("staccess__readingruler__btn").style.display =
-      "none";
-    document.getElementById("staccess__whitecursor__btn").style.display =
-      "none";
-    document.getElementById("staccess__clickandread__btn").style.display =
-      "none";
+    document.getElementById("st__button_grid__").scrollIntoView();
+    // document.getElementById("staccess__linefocus__btn").style.display = "none";
+    // document.getElementById("staccess__dyslexiaruler__btn").style.display =
+    //   "none";
+    // document.getElementById("staccess__readingruler__btn").style.display =
+    //   "none";
+    // document.getElementById("staccess__whitecursor__btn").style.display =
+    //   "none";
+    // document.getElementById("staccess__clickandread__btn").style.display =
+    //   "none";
   }
 }
+
+document.addEventListener("touchstart", function () {}, true);
 
 // Register event listener
 mediaQuery.addListener(handleTabletChange);

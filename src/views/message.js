@@ -50,6 +50,8 @@ export function setColor(color) {
     color;
   document.getElementById("access__btn").addEventListener("click", openSidebar);
 
+  // TODO: split color param with : and add color and position
+
   //  applyAllFunctions();
 }
 export function close() {

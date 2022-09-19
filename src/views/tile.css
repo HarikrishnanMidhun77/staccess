@@ -46,6 +46,8 @@
   margin-top: 50px;
   overflow: auto;
   height: fit-content;
+  padding-top: 10px;
+  padding-bottom: 50px;
 }
 
 .tile__ {
@@ -108,7 +110,39 @@ button.tile__:hover {
   height: 100%;
   background-color: #1565c0;
 }
+#st__button_grid__ {
+  overflow-y: auto;
+  /* max-height: 800px; */
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
 
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+
+::-webkit-scrollbar:vertical {
+  width: 12px;
+}
+
+::-webkit-scrollbar:horizontal {
+  height: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  border: 2px solid #ffffff;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: #ffffff;
+}
+-webkit-scrollbar,
+-webkit-scrollbar-track {
+  display: block !important;
+}
 /* button.tile__:after {
   position: absolute;
   top: 0;
