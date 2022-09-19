@@ -38,6 +38,8 @@ function handleTabletChange(e) {
       "none";
     document.getElementById("staccess__whitecursor__btn").style.display =
       "none";
+    document.getElementById("staccess__clickandread__btn").style.display =
+      "none";
   }
 }
 
@@ -759,8 +761,8 @@ function applyReadText() {
   if (read_text_flag == 0) {
     document.getElementById("staccess__readtext__btn").style.background =
       selected__;
-    document.getElementById("staccess__readtext_stop__btn").style.visibility =
-      "visible";
+    document.getElementById("staccess__readtext_stop__btn").style.display =
+      "inline";
     read_text_flag = 1;
     document.getElementById("staccess__readtext__img").src =
       cdnLink + "src/icons/pause.svg";
@@ -777,8 +779,6 @@ function applyReadText() {
     let shadowChild = document.createElement("div");
     shadowChild.classList.add("ta-a11y-works-widget-shadow-content");
     let script = document.createElement("script");
-
-    //TODO : Query selector has to be updated for getting all the text in the page
 
     script.textContent = `
 
@@ -848,6 +848,11 @@ utterance.onboundary = function(event){
   document.getElementById("word_span_"+(words.length-1)).style.background = "";
 };
 
+utterance.onend = function(event){
+location.reload()
+  }
+
+
 function getWordAt(str, pos) {
   // Perform type conversions.
   str = String(str);
@@ -873,7 +878,7 @@ var c=-1;
       // var panel = document.getElementById("panel");
       comp[jx90].innerHTML ='';
        for(var i = 0;i < words_array[jx90].length;i++){
-         var html = '<span id="word_span_'+c+'">'+words_array[jx90][i]+'</span>&nbsp;';
+         var html = '<span class="sta__span__" id="word_span_'+c+'">'+words_array[jx90][i]+'</span>&nbsp;';
          comp[jx90].innerHTML += html;
          console.log("comp["+jx90+"].innerHTML",comp[jx90].innerHTML)
          c++;
@@ -951,8 +956,154 @@ function applyReadTextStop() {
     "hidden";
   document.getElementById("staccess__readtext__img").src =
     cdnLink + "src/icons/audio.svg";
+  const spans = document.querySelectorAll(".sta__span__");
+
+  spans.forEach((span1) => {
+    span1.remove();
+  });
+  location.reload();
+}
+function applyClickAndRead() {
+  openSidebar();
+  let shadowDiv = document.createElement("div");
+  shadowDiv.id = "ta-a11y-works-widget-shadow-root";
+  let shadowRoot = shadowDiv.attachShadow({ mode: "open" });
+  let shadowChild = document.createElement("div");
+  shadowChild.classList.add("ta-a11y-works-widget-shadow-content");
+  let script = document.createElement("script");
+
+  script.textContent = `
+  var utterance = new SpeechSynthesisUtterance();
+  var wordIndex = 0;
+  var global_words = [];
+  utterance.lang = 'en-UK';
+  utterance.rate = 1;
+  var click_count=0;
+  var current_comp=[];
+  var endCount=0;
+
+
+
+function clickReader(e){
+  click_count++;
+  var wordIndex = 0;
+  e = e || window.event;
+  var target = e.target || e.srcElement,
+      text = target.textContent || target.innerText;   
+  current_comp.push(target);
+  current_comp.sort(function(a, b){
+
+    return b.innerText.length - a.innerText.length;
+  });
+ endCount=current_comp.length-1;
+
+      target.style.background = "#ffcc00";
+     
+
+      // var words   = text.trim().split(" ");
+      // words=words.filter(item => item.length !== 0) 
+      // if(click_count<=1){
+      //   drawTextInPanel(target,words)
+      // }
+      
+      utterance.text = text;
+      speechSynthesis.speak(utterance);
 }
 
+    var comp   = document.querySelectorAll("p,h1, h2, h3, h4, h5, h6,li,blockquote,dd,dl,dt,figcaption,figure,hr,menu,ol,ul,pre");
+    for(var i = 0;i < comp.length;i++){
+      if( !comp[i].classList.contains("sta__span__")){
+      comp[i].addEventListener('click', clickReader,false);
+      comp[i].style.cursor = "pointer";
+      }
+     
+    }
+
+    function drawTextInPanel(comp,words_array){
+        var c=0;
+          comp.innerHTML ='';
+          for(var i = 0;i < words_array.length;i++){
+              var html = '<span class="sta__span__" id="word_span_'+c+'">'+words_array[i]+'</span>&nbsp;';
+              comp.innerHTML += html;
+              c++;
+          }
+          wordIndex=0;
+      }
+      utterance.onend = function(event){
+        console.log(current_comp,endCount)
+       
+          current_comp[endCount].style.background = "";
+          endCount--;
+          // if(endCount==0){
+          //   current_comp[0].style.background = "";
+          // }
+        
+      }
+
+      // utterance.onboundary = function(event){
+      //   console.log(event.charIndex)
+      //   var text = current_comp.textContent || current_comp.innerText; 
+      //   var newLetter='I';
+      //   var position=event.charIndex
+      //   var newText=[text.slice(0, position), newLetter, text.slice(position)].join('');  
+      //   current_comp.innerText=newText
+
+      // }
+
+      // utterance.onboundary = function(event){
+      //   var word = getWordAt(comp.innerHTML,event.charIndex);
+      //   try{
+      //     document.getElementById("word_span_"+wordIndex).style.background = "#ffcc00";
+      //     document.getElementById("word_span_"+(wordIndex-1)).style.background = "";
+      //   }catch(e){}
+      //   wordIndex++;
+      //   document.getElementById("word_span_"+(words.length-1)).style.background = "";
+      // };
+
+      function getWordAt(str, pos) {
+        str = String(str);
+        pos = Number(pos) >>> 0;
+      
+        var left = str.slice(0, pos + 1).search(/\S+$/),
+            right = str.slice(pos).search(/\s/);
+      
+        if (right < 0) {
+            return str.slice(left);
+        }
+        return str.slice(left, right + pos);
+      }
+    `;
+  let readText = document.createElement("div");
+  readText.id = "ta-a11y-works-widget-read-text-div";
+
+  // let topDiv = document.createElement("div");
+  // topDiv.id = "ta-a11y-widget-read-text-top";
+  let middleDiv = document.createElement("div");
+  middleDiv.id = "ta-a11y-widget-read-text-middle";
+  let bottomDiv = document.createElement("div");
+  bottomDiv.id = "ta-a11y-widget-read-text-bottom";
+
+  // readText.appendChild(topDiv);
+  readText.appendChild(middleDiv);
+  readText.appendChild(bottomDiv);
+
+  let wrapperDiv = document.createElement("div");
+  wrapperDiv.id = "ta-a11y-works-widget-read-text-wrapper";
+
+  wrapperDiv.appendChild(script);
+
+  wrapperDiv.appendChild(readText);
+  shadowChild.appendChild(wrapperDiv);
+  shadowRoot.appendChild(shadowChild);
+
+  if (document.querySelector("#ta-a11y-works-widget-shadow-root")) {
+    document
+      .querySelector("#ta-a11y-works-widget-shadow-root")
+      .shadowRoot.appendChild(wrapperDiv);
+  } else {
+    document.body.appendChild(shadowDiv);
+  }
+}
 function openSidebar() {
   console.log("button clicked");
   if (
@@ -965,6 +1116,7 @@ function openSidebar() {
     document.getElementsByClassName("sidebar")[0].style.visibility = "visible";
   }
 }
+
 // let speech = new SpeechSynthesisUtterance();
 // speech.lang = "en";
 

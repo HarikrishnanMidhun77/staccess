@@ -74,6 +74,21 @@
     </button>
     <div class="grid__">
       <button
+        id="staccess__clickandread__btn"
+        class="tile__"
+        type="button"
+        onclick="applyClickAndRead()"
+      >
+        <i class="fa-solid fa-line-height fa-2xl"></i>
+        <img
+          class="whitify"
+          id="staccess__clickandread__img"
+          src="../icons/audio.svg"
+          alt="Activate Click and Raed"
+        />
+        <p class="staccess">Click & Read</p>
+      </button>
+      <button
         id="staccess__readtext__btn"
         class="tile__"
         type="button"
@@ -84,7 +99,7 @@
           class="whitify"
           id="staccess__readtext__img"
           src="../icons/audio.svg"
-          alt="Activate Line Focus"
+          alt="Activate Read Text"
         />
         <p class="staccess">Read Text</p>
       </button>
@@ -92,7 +107,7 @@
         id="staccess__readtext_stop__btn"
         class="tile__"
         type="button"
-        style="visibility: hidden"
+        style="display: none"
         onclick="applyReadTextStop()"
       >
         <i class="fa-solid fa-line-height fa-2xl whitify"></i>
@@ -100,7 +115,7 @@
           class="whitify"
           id="staccess__readtext__img"
           src="../icons/stop.svg"
-          alt="Activate Line Focus"
+          alt="Stop Reading Text"
         />
         <p class="staccess">Stop Reading</p>
       </button>
@@ -187,7 +202,7 @@
         <img
           class="whitify"
           src="../icons/ruler.svg"
-          alt="Activate Line Focus"
+          alt="Activate Reading Ruler"
         />
         <p class="staccess">Reading Ruler</p>
       </button>
@@ -201,7 +216,7 @@
         <img
           class="whitify"
           src="../icons/cursor-icon.svg"
-          alt="Activate Line Focus"
+          alt="Activate White Cursor"
         />
         <p class="staccess">White Cursor</p>
       </button>
@@ -215,7 +230,7 @@
         <img
           class="whitify"
           src="../icons/moon.svg"
-          alt="Activate Line Focus"
+          alt="Activate Bluelight Filter"
         />
         <p class="staccess">Bluelight Filter</p>
       </button>
@@ -229,7 +244,7 @@
         <img
           class="whitify"
           src="../icons/moon2.svg"
-          alt="Activate Line Focus"
+          alt="Activate Screen Overlay"
         />
         <p class="staccess">Screen Overlay</p>
       </button>
@@ -243,7 +258,7 @@
         <img
           class="whitify"
           src="../icons/dyslexia-ruler.svg"
-          alt="Activate Line Focus"
+          alt="Activate Dyslexia Ruler"
         />
         <p class="staccess">Dyslexia Ruler</p>
       </button>
