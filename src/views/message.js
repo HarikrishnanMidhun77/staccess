@@ -29,7 +29,7 @@ export function show(text) {
   // body.addEventListener("click", close);
   // console.log("event added");
 }
-export function setColor(color) {
+export function setParams(params) {
   console.log("in color");
   let temporary = document.createElement("div");
   temporary.innerHTML = html;
@@ -46,8 +46,34 @@ export function setColor(color) {
   s.type = "application/javascript";
   s.src = "http://localhost:8080/fd5d99e879e03ffd8765.js"; //cdnLink + "src/functions/fontFunctions.js"; //"http://localhost:8080/fd5d99e879e03ffd8765.js"; //"../functions/fontFunctions.js";
   document.body.appendChild(s);
+
+  const paramArr = params.split("::");
   document.getElementsByClassName("float__access")[0].style.backgroundColor =
-    color;
+    paramArr[0];
+
+  switch (paramArr[1]) {
+    case "0":
+      // right bottom
+      break;
+    case "1":
+      //left bottom
+
+      document.getElementsByClassName("float__access")[0].style.left = "40px";
+      document.getElementsByClassName("float__access")[0].style.right = "0px";
+      break;
+    case "2":
+      //left top
+      document.getElementsByClassName("float__access")[0].style.bottom = "0px";
+      document.getElementsByClassName("float__access")[0].style.top = "40px";
+      document.getElementsByClassName("float__access")[0].style.left = "40px";
+      document.getElementsByClassName("float__access")[0].style.right = "0px";
+      break;
+    case "3":
+      // right top
+      document.getElementsByClassName("float__access")[0].style.bottom = "0px";
+      document.getElementsByClassName("float__access")[0].style.top = "40px";
+      break;
+  }
   document.getElementById("access__btn").addEventListener("click", openSidebar);
 
   // TODO: split color param with : and add color and position

@@ -1,7 +1,7 @@
 import { ping } from "./services";
-import { show, setColor } from "./views/message";
+import { show, setParams } from "./views/message";
 
-const supportedAPI = ["init", "message1", "color1"]; // enlist all methods supported by API (e.g. `mw('event', 'user-login');`)
+const supportedAPI = ["init", "message1", "custom_params"]; // enlist all methods supported by API (e.g. `mw('event', 'user-login');`)
 
 /**
     The main entry of the application
@@ -50,8 +50,8 @@ function apiHandler(api, params) {
     case "message1":
       show(params);
       break;
-    case "color1":
-      setColor(params);
+    case "custom_params":
+      setParams(params);
       break;
     default:
       console.warn(`No handler defined for ${api}`);
