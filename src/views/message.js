@@ -89,13 +89,16 @@ export function close() {
 export function openSidebar() {
   console.log("button clicked");
   if (
-    document.getElementsByClassName("sidebar")[0].style.visibility == "visible"
+    document.getElementsByClassName("st_sidebar__")[0].style.visibility ==
+    "visible"
   ) {
-    document.getElementsByClassName("sidebar")[0].style.visibility = "hidden";
+    document.getElementsByClassName("st_sidebar__")[0].style.visibility =
+      "hidden";
     document.getElementById("staccess__readtext_stop__btn").style.visibility =
       "hidden";
   } else {
-    document.getElementsByClassName("sidebar")[0].style.visibility = "visible";
+    document.getElementsByClassName("st_sidebar__")[0].style.visibility =
+      "visible";
   }
 }
 // export function openSidebar() {
@@ -106,7 +109,7 @@ export function openSidebar() {
 //   console.log("d", document.getElementById("access__btn").innerHTML);
 //   let temporary = document.createElement("div");
 //   temporary.innerHTML = html;
-//   document.getElementsByClassName("sidebar")[0].style.visibility = "visible";
+//   document.getElementsByClassName("st_sidebar__")[0].style.visibility = "visible";
 
 //   body = document.getElementsByTagName("body")[0];
 //   while (temporary.children.length > 0) {

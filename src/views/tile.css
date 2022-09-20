@@ -69,16 +69,16 @@
    background: var(--hover__); 
   cursor: pointer;
 } */
-/* .sidebar button :hover {
+/* .st_sidebar__ button :hover {
   background: var(--hover__);
 }
 button.tile__overlay__:hover {
   background: var(--hover__);
 } */
 
-/* button.tile__:hover {
+button.tile__:hover {
   background: var(--hover__);
-} */
+}
 .tile__ img {
   width: 35px;
   height: 35px;

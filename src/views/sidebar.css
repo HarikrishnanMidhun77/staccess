@@ -1,4 +1,4 @@
-.sidebar {
+.st_sidebar__ {
   margin: 0;
   padding: 0;
   width: 400px;
@@ -11,14 +11,13 @@
   z-index: 2147483647;
 }
 @media screen and (max-width: 700px) {
-  .sidebar {
+  .st_sidebar__ {
     width: 100%;
     height: 100%;
-    /* position: relative; */
     top: 0;
     z-index: 2147483647;
   }
-  .sidebar a {
+  .st_sidebar__ a {
     float: left;
   }
   div.content {
@@ -27,25 +26,25 @@
 }
 
 /* @media screen and (max-width: 400px) {
-  .sidebar a {
+  .st_sidebar__ a {
     text-align: center;
     float: none;
     top: 0;
   }
 }
-.sidebar a {
+.st_sidebar__ a {
   display: block;
   color: black;
   padding: 16px;
   text-decoration: none;
 }
 
-.sidebar a.active {
+.st_sidebar__ a.active {
   background-color: #04aa6d;
   color: white;
 }
 
-.sidebar a:hover:not(.active) {
+.st_sidebar__ a:hover:not(.active) {
   background-color: #555;
   color: white;
 } */
