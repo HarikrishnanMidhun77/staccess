@@ -68,12 +68,12 @@ button :hover {
   background: var(--hover__);
   cursor: pointer;
 }
-.sidebar button :hover {
+/* .sidebar button :hover {
   background: var(--hover__);
 }
 button.tile__overlay__:hover {
   background: var(--hover__);
-}
+} */
 
 button.tile__:hover {
   background: var(--hover__);
@@ -142,6 +142,24 @@ button.tile__:hover {
 -webkit-scrollbar,
 -webkit-scrollbar-track {
   display: block !important;
+}
+
+@media screen and (max-width: 700px) {
+  #staccess__linefocus__btn {
+    display: none;
+  }
+  #staccess__dyslexiaruler__btn {
+    display: none;
+  }
+  #staccess__readingruler__btn {
+    display: none;
+  }
+  #staccess__whitecursor__btn {
+    display: none;
+  }
+  #staccess__clickandread__btn {
+    display: none;
+  }
 }
 /* button.tile__:after {
   position: absolute;

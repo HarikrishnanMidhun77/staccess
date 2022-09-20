@@ -60,15 +60,15 @@ function handleTabletChange(e) {
     // Then log the following message to the console
     console.log("Media Query Matched!");
     document.getElementById("st__button_grid__").scrollIntoView();
-    document.getElementById("staccess__linefocus__btn").style.display = "none";
-    document.getElementById("staccess__dyslexiaruler__btn").style.display =
-      "none";
-    document.getElementById("staccess__readingruler__btn").style.display =
-      "none";
-    document.getElementById("staccess__whitecursor__btn").style.display =
-      "none";
-    document.getElementById("staccess__clickandread__btn").style.display =
-      "none";
+    // document.getElementById("staccess__linefocus__btn").style.display = "none";
+    // document.getElementById("staccess__dyslexiaruler__btn").style.display =
+    //   "none";
+    // document.getElementById("staccess__readingruler__btn").style.display =
+    //   "none";
+    // document.getElementById("staccess__whitecursor__btn").style.display =
+    //   "none";
+    // document.getElementById("staccess__clickandread__btn").style.display =
+    //   "none";
   }
 }
 
