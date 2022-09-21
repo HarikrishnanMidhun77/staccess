@@ -7,7 +7,7 @@ const hover__ = "#5e91f2";
 const selected__ = "#003b8e";
 //import { cdnLink } from "../consts.js";
 const cdnLink =
-  "https://cdn.jsdelivr.net/gh/HarikrishnanMidhun77/staccess@3fb26da51b5d8d9cd8c6a0e4b0645b8877705ce2/";
+  "https://cdn.jsdelivr.net/gh/HarikrishnanMidhun77/staccess@cedb48c524b4745229bc5ca29046fb758948ff97/";
 
 var staccess__dyslexiaFont__flag = false;
 var font_size_count = 0,
