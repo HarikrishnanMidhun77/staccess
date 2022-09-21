@@ -1,0 +1,176 @@
+/* monochrome / grayscale */
+
+html.ta-a11y-works-widget-grayscale {
+  filter: grayscale(1);
+}
+
+/* high contrast */
+
+html.ta-a11y-works-widget-soft-contrast {
+  /* FIX -- font distortion  */
+  filter: contrast(1.7);
+}
+
+/* invert color */
+
+html.ta-a11y-works-widget-soft-invert-contrast {
+  background-color: #fff !important;
+  color: #000 !important;
+  filter: invert(100%) !important;
+}
+
+/* Highlight Links */
+
+body.ta-a11y-works-widget-link-highlight a {
+  text-decoration: underline !important;
+  border: 2px red !important;
+  border-style: dotted double !important;
+}
+body.ta-a11y-works-widget-link-highlight a > :first-child {
+  text-decoration: underline !important;
+  border: 3px red !important;
+  border-style: dotted double !important;
+
+}
+/* Highlight Headings */
+
+body.ta-a11y-works-widget-heading-highlight h1,
+body.ta-a11y-works-widget-heading-highlight h2,
+body.ta-a11y-works-widget-heading-highlight h3,
+body.ta-a11y-works-widget-heading-highlight h4,
+body.ta-a11y-works-widget-heading-highlight h5,
+body.ta-a11y-works-widget-heading-highlight h6 {
+  text-decoration: underline !important;
+  color: #000 !important;
+  background-color: orange !important;
+  outline-color: #ffd816 !important;
+  outline-style: dashed !important;
+  outline-width: 2px !important;
+}
+body.ta-a11y-works-widget-heading-highlight h1 font,
+body.ta-a11y-works-widget-heading-highlight h2 font,
+body.ta-a11y-works-widget-heading-highlight h3 font,
+body.ta-a11y-works-widget-heading-highlight h4 font,
+body.ta-a11y-works-widget-heading-highlight h5 font,
+body.ta-a11y-works-widget-heading-highlight h6 font {
+  color: black;
+}
+/* readable text */
+
+body.ta-a11y-works-widget-readable-text *:not(i):not(.fa) {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif !important;
+}
+
+/* screen zoom */
+
+html.ta-a11y-works-widget-screen-zoom {
+  transform-origin: 0 0 !important;
+  overflow: auto !important;
+}
+
+/* keyboard navigation */
+/* 
+body.ta-a11y-works-widget-keyboard-navigation a:focus,
+body.ta-a11y-works-widget-keyboard-navigation button:focus,
+body.ta-a11y-works-widget-keyboard-navigation h1:focus,
+body.ta-a11y-works-widget-keyboard-navigation h2:focus,
+body.ta-a11y-works-widget-keyboard-navigation h3:focus,
+body.ta-a11y-works-widget-keyboard-navigation h4:focus,
+body.ta-a11y-works-widget-keyboard-navigation h5:focus,
+body.ta-a11y-works-widget-keyboard-navigation h6:focus,
+body.ta-a11y-works-widget-keyboard-navigation p:focus,
+body.ta-a11y-works-widget-keyboard-navigation input:focus,
+body.ta-a11y-works-widget-keyboard-navigation li:focus,
+body.ta-a11y-works-widget-keyboard-navigation select:focus,
+body.ta-a11y-works-widget-keyboard-navigation textarea:focus,
+body.ta-a11y-works-widget-keyboard-navigation span:focus,
+body.ta-a11y-works-widget-keyboard-navigation *:focus,
+body.ta-a11y-works-widget-keyboard-navigation div[role="button"]:focus { */
+  body.ta-a11y-works-widget-keyboard-navigation a[href]:focus,
+  body.ta-a11y-works-widget-keyboard-navigation button:focus,
+  body.ta-a11y-works-widget-keyboard-navigation input:focus,
+  body.ta-a11y-works-widget-keyboard-navigation select:focus,
+  body.ta-a11y-works-widget-keyboard-navigation textarea:focus,
+  body.ta-a11y-works-widget-keyboard-navigation option:focus,
+  body.ta-a11y-works-widget-keyboard-navigation summary:focus,
+  body.ta-a11y-works-widget-keyboard-navigation details:focus,
+  body.ta-a11y-works-widget-keyboard-navigation dialog:focus,
+  body.ta-a11y-works-widget-keyboard-navigation menu:focus,
+  body.ta-a11y-works-widget-keyboard-navigation command:focus,
+  body.ta-a11y-works-widget-keyboard-navigation menuitem:focus,
+  body.ta-a11y-works-widget-keyboard-navigation *[tabindex]:focus{
+
+  background: yellow !important;
+  color: #000 !important;
+  outline-color: red !important;
+  outline-style: dashed !important;
+  outline-width: 2px !important;
+  margin: 2px !important;
+}
+
+/* image alt */
+
+body.ta-a11y-works-img-alt-display span.ta-a11y-works-img-alt-display-span {
+  display: block !important;
+  font-size: 20px !important;
+  max-width: 180px !important;
+  line-height: 1 !important;
+  margin: 0 auto !important;
+  font-weight: normal !important;
+  text-align: center !important;
+  background: #ffffe0 !important;
+  color: black !important;
+  box-shadow: none !important;
+  padding: 10px !important;
+  border: solid 1px darkred !important;
+  border-radius: 0 !important;
+  position: relative !important;
+  z-index: 999999 !important;
+}
+
+/* // DISABLE ANIMATIONS */
+
+body.ta-a11y-works-disable-animations * {
+  transition-property: none !important;
+  animation: none !important;
+  animation-name: none !important;
+}
+
+/* webspot */
+div#ta-ws-block {
+  position: absolute;
+  left: -999px;
+  width: 1px;
+  height: 1px;
+  top: auto;
+}
+div#ta-ws-block:focus-within {
+  color: gray;
+  display: inline-block;
+  height: auto;
+  width: auto;
+  position: static;
+  margin: auto;
+}
+
+div#ta-ws-block a {
+  padding: 5px 10px;
+  margin: 5px;
+  background: white;
+  color: black !important;
+}
+
+/* Bluelight filter  background-color: #73c6b6 !important;*/
+
+#ta_bluelight {
+  opacity: 0.2 !important;
+  background-color: #ffffbf !important;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 9999 !important;
+  top: 0 !important;
+  left: 0 !important;
+  position: fixed !important;
+  pointer-events: none !important;
+}

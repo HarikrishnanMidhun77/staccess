@@ -2,6 +2,7 @@ import html from "./message.html";
 import "./message.css";
 import "./sidebar.css";
 import "./tile.css";
+import "./widgetInject.css";
 import { cdnLink } from "../consts.js";
 
 let elements = [];
@@ -44,7 +45,7 @@ export function setParams(params) {
   }
   var s = document.createElement("script");
   s.type = "application/javascript";
-  s.src = cdnLink + "dist/fd5d99e879e03ffd8765.js"; //cdnLink + "src/functions/fontFunctions.js"; //"http://localhost:8080/fd5d99e879e03ffd8765.js"; //"../functions/fontFunctions.js";
+  s.src = cdnLink + "dist/fd5d99e879e03ffd8765.js"; // cdnLink + "dist/fd5d99e879e03ffd8765.js"; //cdnLink + "src/functions/fontFunctions.js"; //"http://localhost:8080/fd5d99e879e03ffd8765.js"; //"../functions/fontFunctions.js";
   document.body.appendChild(s);
 
   const paramArr = params.split("::");

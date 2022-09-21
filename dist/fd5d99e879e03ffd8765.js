@@ -24,33 +24,10 @@ var screen_overlay_flag = false;
 var dyslexia_ruler_flag = false;
 var read_text_flag = 0;
 var read_click_text_flag = false;
-
-function hasTouch() {
-  return (
-    "ontouchstart" in document.documentElement ||
-    navigator.maxTouchPoints > 0 ||
-    navigator.msMaxTouchPoints > 0
-  );
-}
-
-if (hasTouch()) {
-  // remove all the :hover stylesheets
-  try {
-    // prevent exception on browsers not supporting DOM styleSheets properly
-    for (var si in document.styleSheets) {
-      var styleSheet = document.styleSheets[si];
-      if (!styleSheet.rules) continue;
-
-      for (var ri = styleSheet.rules.length - 1; ri >= 0; ri--) {
-        if (!styleSheet.rules[ri].selectorText) continue;
-
-        if (styleSheet.rules[ri].selectorText.match(":hover")) {
-          styleSheet.deleteRule(ri);
-        }
-      }
-    }
-  } catch (ex) {}
-}
+var monochrome_flag = false;
+var link_highlight_flag = false;
+var heading_highlight_flag = false;
+var disable_animations_flag = false;
 
 const mediaQuery = window.matchMedia("(max-width: 641px)");
 
@@ -72,7 +49,78 @@ function handleTabletChange(e) {
   }
 }
 
-document.addEventListener("touchstart", function () {}, true);
+document.addEventListener("DOMContentLoaded", function () {
+  st__loadStyles__();
+});
+
+function st__loadStyles__() {
+  let style = document.createElement("style");
+  style.innerHTML = `
+    body.ta-a11y-works-widget-link-highlight a {
+      text-decoration: underline !important;
+      border: 2px red !important;
+      border-style: dotted double !important;
+    }
+    body.ta-a11y-works-widget-link-highlight a > :first-child {
+      text-decoration: underline !important;
+      border: 3px red !important;
+      border-style: dotted double !important;
+    }
+    `;
+  style.id = "ta-a11y-works-widget-linkhighlight";
+  document.head.appendChild(style);
+
+  var style2 = document.createElement("style");
+  style2.innerHTML = `
+  
+    body.ta-a11y-works-widget-grayscale {
+      filter: grayscale(1);
+    }
+  `;
+  style2.id = "ta-a11y-works-widget-monochrome";
+  document.head.appendChild(style2);
+
+  var style3 = document.createElement("style");
+  style3.innerHTML = `
+  
+  body.ta-a11y-works-widget-heading-highlight h1,
+body.ta-a11y-works-widget-heading-highlight h2,
+body.ta-a11y-works-widget-heading-highlight h3,
+body.ta-a11y-works-widget-heading-highlight h4,
+body.ta-a11y-works-widget-heading-highlight h5,
+body.ta-a11y-works-widget-heading-highlight h6 {
+  text-decoration: underline !important;
+  color: #000 !important;
+  background-color: orange !important;
+  outline-color: #ffd816 !important;
+  outline-style: dashed !important;
+  outline-width: 2px !important;
+}
+body.ta-a11y-works-widget-heading-highlight h1 font,
+body.ta-a11y-works-widget-heading-highlight h2 font,
+body.ta-a11y-works-widget-heading-highlight h3 font,
+body.ta-a11y-works-widget-heading-highlight h4 font,
+body.ta-a11y-works-widget-heading-highlight h5 font,
+body.ta-a11y-works-widget-heading-highlight h6 font {
+  color: black;
+}
+  `;
+  style3.id = "ta-a11y-works-widget-heading-highlight";
+  document.head.appendChild(style3);
+
+  var style4 = document.createElement("style");
+  style4.innerHTML = `
+  
+  body.ta-a11y-works-disable-animations * {
+    transition-property: none !important;
+    animation: none !important;
+    animation-name: none !important;
+  }
+  
+  `;
+  style4.id = "ta-a11y-works-widget-disable-animations";
+  document.head.appendChild(style4);
+}
 
 // Register event listener
 mediaQuery.addListener(handleTabletChange);
@@ -1146,6 +1194,65 @@ function clickReader(e){
     location.reload();
   }
 }
+
+function applyMonochrome() {
+  if (!monochrome_flag) {
+    document.getElementById("staccess__monochrome__btn").style.background =
+      selected__;
+    monochrome_flag = true;
+    document.body.classList.add("ta-a11y-works-widget-monochrome");
+  } else {
+    document.getElementById("staccess__monochrome__btn").style.background =
+      primary__;
+    monochrome_flag = false;
+    document.body.classList.remove("ta-a11y-works-widget-monochrome");
+  }
+}
+
+function applyLinkHighlight() {
+  if (!link_highlight_flag) {
+    document.getElementById("staccess__linkhighlight__btn").style.background =
+      selected__;
+    link_highlight_flag = true;
+    document.body.classList.add("ta-a11y-works-widget-link-highlight");
+  } else {
+    document.getElementById("staccess__linkhighlight__btn").style.background =
+      primary__;
+    link_highlight_flag = false;
+    document.body.classList.remove("ta-a11y-works-widget-link-highlight");
+  }
+}
+function applyHeadingHighlight() {
+  if (!heading_highlight_flag) {
+    document.getElementById(
+      "staccess__headinghighlight__btn"
+    ).style.background = selected__;
+    heading_highlight_flag = true;
+    document.body.classList.add("ta-a11y-works-widget-heading-highlight");
+  } else {
+    document.getElementById(
+      "staccess__headinghighlight__btn"
+    ).style.background = primary__;
+    heading_highlight_flag = false;
+    document.body.classList.remove("ta-a11y-works-widget-heading-highlight");
+  }
+}
+function applyDisableAnimations() {
+  if (!disable_animations_flag) {
+    document.getElementById(
+      "staccess__disableanimations__btn"
+    ).style.background = selected__;
+    disable_animations_flag = true;
+    document.body.classList.add("ta-a11y-works-widget-disable-animations");
+  } else {
+    document.getElementById(
+      "staccess__disableanimations__btn"
+    ).style.background = primary__;
+    disable_animations_flag = false;
+    document.body.classList.remove("ta-a11y-works-widget-disable-animations");
+  }
+}
+
 function openSidebar() {
   console.log("button clicked");
   if (
