@@ -6,7 +6,7 @@ const hover__ = "#5e91f2";
 const selected__ = "#003b8e";
 //import { cdnLink } from "../consts.js";
 const cdnLink =
-  "https://cdn.jsdelivr.net/gh/HarikrishnanMidhun77/staccess@b1baad67c87aa5ebda47bc1e11d6c3ac07ee13e3/";
+  "https://cdn.jsdelivr.net/gh/HarikrishnanMidhun77/staccess@7ba2d6fb9d939025c77d1f7bb74435088a1a390f/";
 
 var staccess__dyslexiaFont__flag = false;
 function getCookie(cname) {

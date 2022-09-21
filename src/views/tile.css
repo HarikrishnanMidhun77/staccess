@@ -82,6 +82,7 @@ button.tile__:hover {
 .tile__ img {
   width: 35px;
   height: 35px;
+  display: inline;
 }
 .float__access img {
   width: 35px;
@@ -161,6 +162,9 @@ button.tile__:hover {
     display: none;
   }
   #staccess__clickandread__btn {
+    display: none;
+  }
+  #staccess__readtext__btn {
     display: none;
   }
 }
