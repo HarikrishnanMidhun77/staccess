@@ -35,7 +35,7 @@ function handleTabletChange(e) {
   // Check if the media query is true
   if (e.matches) {
     // Then log the following message to the console
-    console.log("Media Query Matched!");
+    //console.log("Media Query Matched!");
     document.getElementById("st__button_grid__").scrollIntoView();
     // document.getElementById("staccess__linefocus__btn").style.display = "none";
     // document.getElementById("staccess__dyslexiaruler__btn").style.display =
@@ -54,9 +54,20 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function st__loadStyles__() {
+  //console.log("added style22");
+  var style22 = document.createElement("style");
+  style22.innerHTML = `
+    body.ta-a11y-works-widget-grayscale1 {
+      filter: grayscale(1); 
+    }
+  `;
+  style22.id = "ta-a11y-works-widget-monochrome1";
+  document.head.appendChild(style22);
+
   let style = document.createElement("style");
   style.innerHTML = `
     body.ta-a11y-works-widget-link-highlight a {
+     
       text-decoration: underline !important;
       border: 2px red !important;
       border-style: dotted double !important;
@@ -69,16 +80,6 @@ function st__loadStyles__() {
     `;
   style.id = "ta-a11y-works-widget-linkhighlight";
   document.head.appendChild(style);
-
-  var style2 = document.createElement("style");
-  style2.innerHTML = `
-  
-    body.ta-a11y-works-widget-grayscale {
-      filter: grayscale(1);
-    }
-  `;
-  style2.id = "ta-a11y-works-widget-monochrome";
-  document.head.appendChild(style2);
 
   var style3 = document.createElement("style");
   style3.innerHTML = `
@@ -111,7 +112,8 @@ body.ta-a11y-works-widget-heading-highlight h6 font {
   var style4 = document.createElement("style");
   style4.innerHTML = `
   
-  body.ta-a11y-works-disable-animations * {
+  body.ta-a11y-works-disable-animations *{
+
     transition-property: none !important;
     animation: none !important;
     animation-name: none !important;
@@ -179,7 +181,7 @@ function applyDyslexicFont() {
   staccess__dyslexiaFont__flag = true;
 }
 function removeFont() {
-  console.log("in remove font");
+  ////console.log("in remove font");
   document.head
     .querySelectorAll("style#staccess-widget-font")
     .forEach((item, key) => item.remove());
@@ -391,19 +393,19 @@ function applyLineFocus() {
   var bottomTop;
   var height = 30;
   var cpyMouseY=0;
-  // console.log("--------UPPER DIV---------")
-  // console.log(upperDiv)
-  // console.log(bottomDiv)
+  // //console.log("--------UPPER DIV---------")
+  // //console.log(upperDiv)
+  // //console.log(bottomDiv)
   document.body.addEventListener("mousemove", (event) => {
     var mouseY = event.clientY +
         (document && document.scrollTop  || document.body && document.body.scrollTop  || 0) -
         (document && document.clientTop  || document.body && document.body.clientTop  || 0 );
-    // console.log("-------scroll test-----------")
-    // console.log("mouseY: ", mouseY)
-    // console.log("scroll top:", document.scrollTop);
-    // console.log("body scroll top:", document.body.scrollTop);
-    // console.log("event y:",event.clientY);
-    // console.log("window scrollY:", window.scrollY)
+    // //console.log("-------scroll test-----------")
+    // //console.log("mouseY: ", mouseY)
+    // //console.log("scroll top:", document.scrollTop);
+    // //console.log("body scroll top:", document.body.scrollTop);
+    // //console.log("event y:",event.clientY);
+    // //console.log("window scrollY:", window.scrollY)
     let half = ((mouseY+height)-mouseY)/2;
     upperDiv.style.height = mouseY - half +"px";
     upperHeight = mouseY-half;
@@ -622,7 +624,7 @@ function applyScreenOverlay() {
     //   });
     var checkExist = setInterval(function () {
       if (document.body) {
-        // console.log("body tag loaded");
+        // //console.log("body tag loaded");
         var style = document.createElement("style");
         style.id = "ta-a11y-widget-screen-overlay";
         style.innerHTML = `.ta-a11y-widget-screen-overlay {  
@@ -847,7 +849,7 @@ function applyReadText() {
     document.getElementById("staccess__readtext__img").src =
       cdnLink + "src/icons/pause.svg";
     // "../icons/pause.svg";
-    console.log("state", "start");
+    //console.log("state", "start");
     let style = document.createElement("style");
     style.innerHTML = `
   .ta-a11y-widget-text-reader-hlight{background-color:#ffcc00;}
@@ -875,11 +877,11 @@ var compText="";
 var compWords=[]
 var compTextArr=[]
 var comp   = document.querySelectorAll("p,h1, h2, h3, h4, h5, h6,li,blockquote,dd,dl,dt,figcaption,figure,hr,menu,ol,ul,pre");
-console.log("comp",comp)
+//console.log("comp",comp)
 
 for(ix90=0;ix90<comp.length;ix90++){
   
-  //console.log("ix90",comp[ix90].innerHTML)
+  ////console.log("ix90",comp[ix90].innerHTML)
   try{
     if( !comp[ix90].classList.contains("staccess")){
       text+= comp[ix90].innerText;
@@ -897,11 +899,11 @@ for(ix90=0;ix90<comp.length;ix90++){
 
  }
 }
-console.log("text",text)
+//console.log("text",text)
 var words   = text.trim().split(" ");
-console.log("words",words)
+//console.log("words",words)
  words=words.filter(item => item.length !== 0) 
- console.log("words2",words)
+ //console.log("words2",words)
 global_words = words;
 // Draw the text in a div
 drawTextInPanel(comp,compWords);
@@ -917,7 +919,7 @@ utterance.onboundary = function(event){
  // document.getElementById("word").innerText = word;
   //Increase index of span to highlight
   console.info(global_words[wordIndex]);
-  console.log("wordIndex",wordIndex)
+  //console.log("wordIndex",wordIndex)
   try{
     document.getElementById("word_span_"+wordIndex).style.background = "#ffcc00";
     document.getElementById("word_span_"+(wordIndex-1)).style.background = "";
@@ -954,13 +956,13 @@ function drawTextInPanel(comp,words_array){
 var c=-1;
   for(var jx90=0;jx90<comp.length;jx90++){
     if( !comp[jx90].classList.contains("staccess")){
-      console.log("words array "+[jx90],words_array[jx90]);
+      //console.log("words array "+[jx90],words_array[jx90]);
       // var panel = document.getElementById("panel");
       comp[jx90].innerText ='';
        for(var i = 0;i < words_array[jx90].length;i++){
          var html = '<span class="sta__span__" id="word_span_'+c+'">'+words_array[jx90][i]+'</span>&nbsp;';
          comp[jx90].innerHTML += html;
-         console.log("comp["+jx90+"].innerText",comp[jx90].innerText)
+         //console.log("comp["+jx90+"].innerText",comp[jx90].innerText)
          c++;
        }
   }
@@ -1017,12 +1019,12 @@ function clearSpace(arr){
     if (speechSynthesis) {
       speechSynthesis.pause();
     }
-    console.log("state", "pause");
+    //console.log("state", "pause");
   } else if (read_text_flag == 2) {
     if (speechSynthesis) {
       speechSynthesis.resume();
     }
-    console.log("state", "resume");
+    //console.log("state", "resume");
     read_text_flag = 1;
   }
 }
@@ -1116,7 +1118,7 @@ function clickReader(e){
           wordIndex=0;
       }
       utterance.onend = function(event){
-        console.log(current_comp,endCount)
+        //console.log(current_comp,endCount)
        
           current_comp[endCount].style.background = "";
           endCount--;
@@ -1127,7 +1129,7 @@ function clickReader(e){
       }
 
       // utterance.onboundary = function(event){
-      //   console.log(event.charIndex)
+      //   //console.log(event.charIndex)
       //   var text = current_comp.textContent || current_comp.innerText; 
       //   var newLetter='I';
       //   var position=event.charIndex
@@ -1200,12 +1202,21 @@ function applyMonochrome() {
     document.getElementById("staccess__monochrome__btn").style.background =
       selected__;
     monochrome_flag = true;
-    document.body.classList.add("ta-a11y-works-widget-monochrome");
+    var style22 = document.createElement("style");
+    style22.innerHTML = `
+      body.ta-a11y-works-widget-grayscale1 {
+        filter: grayscale(1); 
+      }
+    `;
+    style22.id = "ta-a11y-works-widget-monochrome1";
+    document.head.appendChild(style22);
+
+    document.body.classList.add("ta-a11y-works-widget-grayscale1");
   } else {
     document.getElementById("staccess__monochrome__btn").style.background =
       primary__;
     monochrome_flag = false;
-    document.body.classList.remove("ta-a11y-works-widget-monochrome");
+    document.body.classList.remove("ta-a11y-works-widget-grayscale1");
   }
 }
 
@@ -1243,18 +1254,31 @@ function applyDisableAnimations() {
       "staccess__disableanimations__btn"
     ).style.background = selected__;
     disable_animations_flag = true;
-    document.body.classList.add("ta-a11y-works-widget-disable-animations");
+    var style4 = document.createElement("style");
+    style4.innerHTML = `
+    
+    body.ta-a11y-works-disable-animations *{
+  
+      transition-property: none !important;
+      animation: none !important;
+      animation-name: none !important;
+    }
+    
+    `;
+    style4.id = "ta-a11y-works-widget-disable-animations";
+    document.head.appendChild(style4);
+    document.body.classList.add("ta-a11y-works-disable-animations");
   } else {
     document.getElementById(
       "staccess__disableanimations__btn"
     ).style.background = primary__;
     disable_animations_flag = false;
-    document.body.classList.remove("ta-a11y-works-widget-disable-animations");
+    document.body.classList.remove("ta-a11y-works-disable-animations");
   }
 }
 
 function openSidebar() {
-  console.log("button clicked");
+  //console.log("button clicked");
   if (
     document.getElementsByClassName("st_sidebar__")[0].style.visibility ==
     "visible"
@@ -1302,14 +1326,14 @@ function openSidebar() {
 //     var textarea =document.querySelector("textarea");
 //     var value = textarea.value;
 //     var index = event.charIndex;
-//     // console.log("value",value);
-//     console.log("index",index);
+//     // //console.log("value",value);
+//     //console.log("index",index);
 //     var word = getWordAt(value, index);
-//     console.log("word",word);
+//     //console.log("word",word);
 //     var anchorPosition = getWordStart(value, index);
 //     var activePosition = anchorPosition + word.length;
-// console.log("anchorPosition",anchorPosition)
-// console.log("activePosition",activePosition)
+// //console.log("anchorPosition",anchorPosition)
+// //console.log("activePosition",activePosition)
 
 //     textarea.focus();
 //     textarea.setSelectionRange(anchorPosition, activePosition);
