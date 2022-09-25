@@ -204,15 +204,70 @@ function removeFont() {
 
   document.getElementsByTagName("head")[0].appendChild(style);
 }
+// function changeFontSize() {
+//   if (font_size_count < 4 && font_size_direction == 1) {
+//     font_size_count++;
+//     document.getElementById("staccess__fontsize__btn").style.background =
+//       "linear-gradient(0deg, var(--selected__) " +
+//       font_size_count * 25 +
+//       "%, var(--primary__) " +
+//       font_size_count * 25 +
+//       "%)";
+//     if (font_size_count == 4) font_size_direction = 0;
+//     let items = document.querySelectorAll("*");
+//     var tagsToRemove = ["IMG", "SCRIPT", "STYLE", "IFRAME"];
+//     items.forEach((item, key) => {
+//       if (!tagsToRemove.includes(item.tagName) && item.innerText != "") {
+//         let itemFont = window
+//           .getComputedStyle(item)
+//           .getPropertyValue("font-size");
+//         item.style.setProperty(
+//           "font-size",
+//           `${parseFloat(itemFont) + 3}px`,
+//           "important"
+//         );
+//       }
+//     });
+//   } else {
+//     if (font_size_direction == 0) {
+//       font_size_count--;
+//       document.getElementById("staccess__fontsize__btn").style.background =
+//         "linear-gradient(0deg, var(--selected__)" +
+//         font_size_count * 25 +
+//         "%, var(--primary__)  " +
+//         font_size_count * 25 +
+//         "%)";
+//       if (font_size_count == 0) {
+//         font_size_direction = 1;
+//       }
+//       let items = document.querySelectorAll("*");
+//       var tagsToRemove = ["IMG", "SCRIPT", "STYLE", "IFRAME"];
+//       items.forEach((item, key) => {
+//         if (!tagsToRemove.includes(item.tagName) && item.innerText != "") {
+//           let itemFont = window
+//             .getComputedStyle(item)
+//             .getPropertyValue("font-size");
+//           item.style.setProperty(
+//             "font-size",
+//             `${parseFloat(itemFont) - 3}px`,
+//             "important"
+//           );
+//         }
+//       });
+//     }
+//   }
+// }
+
 function changeFontSize() {
   if (font_size_count < 4 && font_size_direction == 1) {
     font_size_count++;
-    document.getElementById("staccess__fontsize__btn").style.background =
-      "linear-gradient(0deg, var(--selected__) " +
-      font_size_count * 25 +
-      "%, var(--primary__) " +
-      font_size_count * 25 +
-      "%)";
+    tile_fill(
+      font_size_count,
+      font_size_direction,
+      document.getElementById("staccess__fontsize__btn"),
+      document.getElementById("staccess__fontsize__perc"),
+      document.getElementById("staccess__fontsize__icon")
+    );
     if (font_size_count == 4) font_size_direction = 0;
     let items = document.querySelectorAll("*");
     var tagsToRemove = ["IMG", "SCRIPT", "STYLE", "IFRAME"];
@@ -231,15 +286,14 @@ function changeFontSize() {
   } else {
     if (font_size_direction == 0) {
       font_size_count--;
-      document.getElementById("staccess__fontsize__btn").style.background =
-        "linear-gradient(0deg, var(--selected__)" +
-        font_size_count * 25 +
-        "%, var(--primary__)  " +
-        font_size_count * 25 +
-        "%)";
-      if (font_size_count == 0) {
-        font_size_direction = 1;
-      }
+      tile_fill(
+        font_size_count,
+        font_size_direction,
+        document.getElementById("staccess__fontsize__btn"),
+        document.getElementById("staccess__fontsize__perc"),
+        document.getElementById("staccess__fontsize__icon")
+      );
+      if (font_size_count == 0) font_size_direction = 1;
       let items = document.querySelectorAll("*");
       var tagsToRemove = ["IMG", "SCRIPT", "STYLE", "IFRAME"];
       items.forEach((item, key) => {
@@ -258,53 +312,180 @@ function changeFontSize() {
   }
 }
 
+// function changeLetterSpacing() {
+//   if (letter_spacing_count < 4 && letter_spacing_direction == 1) {
+//     letter_spacing_count++;
+//     document.getElementById("staccess__letterspacing__btn").style.background =
+//       "linear-gradient(0deg, var(--selected__)" +
+//       letter_spacing_count * 25 +
+//       "%, var(--primary__)  " +
+//       letter_spacing_count * 25 +
+//       "%)";
+
+//     if (letter_spacing_count == 4) letter_spacing_direction = 0;
+//     var style = document.createElement("style");
+//     style.id = "staccess-widget-letter-spacing";
+//     style.innerHTML =
+//       `body *{letter-spacing:` + (letter_spacing_count + 1) + `px !important;}`;
+//     document.head.appendChild(style);
+//   } else {
+//     if (letter_spacing_direction == 0) {
+//       letter_spacing_count--;
+//       document.getElementById("staccess__letterspacing__btn").style.background =
+//         "linear-gradient(0deg, var(--selected__)" +
+//         letter_spacing_count * 25 +
+//         "%, var(--primary__)  " +
+//         letter_spacing_count * 25 +
+//         "%)";
+//       if (letter_spacing_count == 0) {
+//         letter_spacing_direction = 1;
+//       }
+//       var style = document.createElement("style");
+//       style.id = "staccess-widget-letter-spacing";
+//       style.innerHTML =
+//         `body *{letter-spacing:` +
+//         (letter_spacing_count + 1) +
+//         `px !important;}`;
+//       document.head.appendChild(style);
+//     }
+//   }
+// }
 function changeLetterSpacing() {
   if (letter_spacing_count < 4 && letter_spacing_direction == 1) {
     letter_spacing_count++;
-    document.getElementById("staccess__letterspacing__btn").style.background =
-      "linear-gradient(0deg, var(--selected__)" +
-      letter_spacing_count * 25 +
-      "%, var(--primary__)  " +
-      letter_spacing_count * 25 +
-      "%)";
-    if (letter_spacing_count == 4) letter_spacing_direction = 0;
+    tile_fill(
+      letter_spacing_count,
+      letter_spacing_direction,
+      document.getElementById("staccess__letterspacing__btn"),
+      document.getElementById("staccess__letterspacing__perc"),
+      document.getElementById("staccess__letterspacing__icon")
+    );
     var style = document.createElement("style");
     style.id = "staccess-widget-letter-spacing";
     style.innerHTML =
       `body *{letter-spacing:` + (letter_spacing_count + 1) + `px !important;}`;
     document.head.appendChild(style);
+
+    if (letter_spacing_count == 4) letter_spacing_direction = 0;
   } else {
-    if (letter_spacing_direction == 0) {
-      letter_spacing_count--;
-      document.getElementById("staccess__letterspacing__btn").style.background =
+    letter_spacing_count--;
+    tile_fill(
+      letter_spacing_count,
+      letter_spacing_direction,
+      document.getElementById("staccess__letterspacing__btn"),
+      document.getElementById("staccess__letterspacing__perc"),
+      document.getElementById("staccess__letterspacing__icon")
+    );
+    var style = document.createElement("style");
+    style.id = "staccess-widget-letter-spacing";
+    style.innerHTML =
+      `body *{letter-spacing:` + (letter_spacing_count + 1) + `px !important;}`;
+    document.head.appendChild(style);
+
+    if (letter_spacing_count == 0) letter_spacing_direction = 1;
+  }
+}
+
+function tile_fill(cnt, dir, btn, perc, icon) {
+  if (cnt <= 4 && dir == 1) {
+    if (cnt == 0) {
+      perc.style.display = "none";
+    } else {
+      perc.style.display = "inline";
+      icon.style.display = "none";
+    }
+    btn.style.background =
+      "linear-gradient(0deg, var(--selected__)" +
+      cnt * 25 +
+      "%, var(--primary__)  " +
+      cnt * 25 +
+      "%)";
+
+    perc.innerText = 100 + cnt * 25 + "%";
+    if (cnt == 4) dir = 0;
+  } else {
+    if (dir == 0) {
+      btn.style.background =
         "linear-gradient(0deg, var(--selected__)" +
-        letter_spacing_count * 25 +
+        cnt * 25 +
         "%, var(--primary__)  " +
-        letter_spacing_count * 25 +
+        cnt * 25 +
         "%)";
-      if (letter_spacing_count == 0) {
-        letter_spacing_direction = 1;
+      perc.innerText = 100 + cnt * 25 + "%";
+      if (cnt == 0) {
+        dir = 1;
+        perc.style.display = "none";
+        icon.style.display = "inline";
       }
-      var style = document.createElement("style");
-      style.id = "staccess-widget-letter-spacing";
-      style.innerHTML =
-        `body *{letter-spacing:` +
-        (letter_spacing_count + 1) +
-        `px !important;}`;
-      document.head.appendChild(style);
     }
   }
 }
 
+// function changeLineHeight() {
+//   if (line_height_count < 4 && line_height_direction == 1) {
+//     line_height_count++;
+//     if (line_height_count == 0) {
+//       document.getElementById("staccess__lineheight__perc").style.display =
+//         "none";
+//     } else {
+//       document.getElementById("staccess__lineheight__perc").style.display =
+//         "inline";
+//       document.getElementById("staccess__lineheight__icon").style.display =
+//         "none";
+//     }
+//     document.getElementById("staccess__lineheight__btn").style.background =
+//       "linear-gradient(0deg, var(--selected__)" +
+//       line_height_count * 25 +
+//       "%, var(--primary__)  " +
+//       line_height_count * 25 +
+//       "%)";
+
+//     document.getElementById("staccess__lineheight__perc").innerText =
+//       100 + line_height_count * 25 + "%";
+//     if (line_height_count == 4) line_height_direction = 0;
+//     var style = document.createElement("style");
+//     style.id = "staccess-widget-line-height";
+//     style.innerHTML =
+//       `body *{ line-height:1.` + (line_height_count + 3) + ` !important}`;
+//     document.head.appendChild(style);
+//   } else {
+//     if (line_height_direction == 0) {
+//       line_height_count--;
+//       document.getElementById("staccess__lineheight__btn").style.background =
+//         "linear-gradient(0deg, var(--selected__)" +
+//         line_height_count * 25 +
+//         "%, var(--primary__)  " +
+//         line_height_count * 25 +
+//         "%)";
+//       document.getElementById("staccess__lineheight__perc").innerText =
+//         100 + line_height_count * 25 + "%";
+//       if (line_height_count == 0) {
+//         line_height_direction = 1;
+//         document.getElementById("staccess__lineheight__perc").style.display =
+//           "none";
+//         document.getElementById("staccess__lineheight__icon").style.display =
+//           "inline";
+//       }
+//       var style = document.createElement("style");
+//       style.id = "staccess-widget-line-height";
+//       style.innerHTML =
+//         `body *{ line-height:1.` + (line_height_count + 3) + ` !important}`;
+//       document.head.appendChild(style);
+//     }
+//   }
+// }
+
 function changeLineHeight() {
   if (line_height_count < 4 && line_height_direction == 1) {
     line_height_count++;
-    document.getElementById("staccess__lineheight__btn").style.background =
-      "linear-gradient(0deg, var(--selected__)" +
-      line_height_count * 25 +
-      "%, var(--primary__)  " +
-      line_height_count * 25 +
-      "%)";
+
+    tile_fill(
+      line_height_count,
+      line_height_direction,
+      document.getElementById("staccess__lineheight__btn"),
+      document.getElementById("staccess__lineheight__perc"),
+      document.getElementById("staccess__lineheight__icon")
+    );
 
     if (line_height_count == 4) line_height_direction = 0;
     var style = document.createElement("style");
@@ -313,25 +494,29 @@ function changeLineHeight() {
       `body *{ line-height:1.` + (line_height_count + 3) + ` !important}`;
     document.head.appendChild(style);
   } else {
-    if (line_height_direction == 0) {
-      line_height_count--;
-      document.getElementById("staccess__lineheight__btn").style.background =
-        "linear-gradient(0deg, var(--selected__)" +
-        line_height_count * 25 +
-        "%, var(--primary__)  " +
-        line_height_count * 25 +
-        "%)";
-      if (line_height_count == 0) {
-        line_height_direction = 1;
-      }
-      var style = document.createElement("style");
-      style.id = "staccess-widget-line-height";
-      style.innerHTML =
-        `body *{ line-height:1.` + (line_height_count + 3) + ` !important}`;
-      document.head.appendChild(style);
+    line_height_count--;
+    tile_fill(
+      line_height_count,
+      line_height_direction,
+      document.getElementById("staccess__lineheight__btn"),
+      document.getElementById("staccess__lineheight__perc"),
+      document.getElementById("staccess__lineheight__icon")
+    );
+    if (line_height_count == 0) {
+      line_height_direction = 1;
+      document.getElementById("staccess__lineheight__perc").style.display =
+        "none";
+      document.getElementById("staccess__lineheight__icon").style.display =
+        "inline";
     }
+    var style = document.createElement("style");
+    style.id = "staccess-widget-line-height";
+    style.innerHTML =
+      `body *{ line-height:1.` + (line_height_count + 3) + ` !important}`;
+    document.head.appendChild(style);
   }
 }
+
 function applyLineFocus() {
   if (!line_focus_flag) {
     document.getElementById("staccess__linefocus__btn").style.background =

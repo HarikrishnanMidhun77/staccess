@@ -109,6 +109,11 @@ button.tile__:hover {
   display: inline;
 }
 
+p.staccess_perc {
+  font-size: 15px;
+  display: none;
+}
+
 .tile__overlay__ {
   width: 100%;
   height: 100%;
