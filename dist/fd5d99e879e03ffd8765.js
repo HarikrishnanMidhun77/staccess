@@ -28,6 +28,7 @@ var monochrome_flag = false;
 var link_highlight_flag = false;
 var heading_highlight_flag = false;
 var disable_animations_flag = false;
+var original_font_size = [];
 
 document.addEventListener("DOMContentLoaded", function () {
   st__loadStyles__();
@@ -128,129 +129,176 @@ function resetClickAndRead() {
   document.getElementById("staccess__clickandread__img").src =
     cdnLink + "src/icons/audio.svg";
 }
-function resetAll() {
-  document.body.querySelectorAll("button.tile__").forEach((item, key) => {
-    item.style.background = primary__;
-  });
-  // click and read
-  if (read_click_text_flag) {
-    resetClickAndRead();
-    // if (speechSynthesis) {
-    //   speechSynthesis.cancel();
-    // }
-    // document.body
-    //   .querySelectorAll("*.ta-a11y-widget-text-reader-hlight")
-    //   .forEach((item, key) => {
-    //     item.classList.remove("ta-a11y-widget-text-reader-hlight");
-    //   });
-    // var shadow = document.querySelector("#ta-a11y-works-widget-shadow-root");
-    // console.log("shadow", shadow);
-    // if (shadow) {
-    //   var readTextDiv = shadow.shadowRoot.querySelectorAll(
-    //     "#ta-a11y-works-widget-read-text-wrapper"
-    //   );
-    //   // var readTextDiv = document.querySelectorAll(
-    //   //   "*#ta-a11y-works-widget-read-text-wrapper"
-    //   // );
-    //   console.log("readTextDiv", readTextDiv);
-    //   readTextDiv.forEach((item) => item.remove());
-    // }
-    // var comp = document.querySelectorAll(
-    //   "p,h1, h2, h3, h4, h5, h6,li,blockquote,dd,dl,dt,figcaption,figure,hr,menu,ol,ul,pre"
-    // );
-    // for (var i = 0; i < comp.length; i++) {
-    //   if (!comp[i].classList.contains("sta__span__")) {
-    //     comp[i].removeEventListener("click", clickReader, false);
-    //     comp[i].style.cursor = "default";
-    //   }
-    // }
-    // document.getElementById("staccess__clickandread__img").src =
-    //   cdnLink + "src/icons/audio.svg";
-  }
+function resetDyslexiaFont() {
+  document.head
+    .querySelectorAll("style#staccess-widget-font")
+    .forEach((item, key) => item.remove());
+  document.head
+    .querySelectorAll("style#staccess-widget-font2")
+    .forEach((item, key) => item.remove());
 
-  //Dyslexic Font
-  if (dyslexiaFont__flag) {
-    document.head
-      .querySelectorAll("style#staccess-widget-font")
-      .forEach((item, key) => item.remove());
-    document.head
-      .querySelectorAll("style#staccess-widget-font2")
-      .forEach((item, key) => item.remove());
-  }
-
-  // Line Focus
-  if (line_focus_flag) {
-    var shadow = document.querySelector("#staccess-widget-shadow-root");
-    if (shadow) {
-      var lineFocus = shadow.shadowRoot.querySelectorAll(
-        "#staccess-widget-line-focus-wrapper"
-      );
-      if (lineFocus.length > 0) {
-        lineFocus.forEach((item, key) => {
-          item.remove();
-        });
-      }
-    }
-  }
-
-  // Reading Ruler
-  if (reading_ruler_flag) {
-    var shadow = document.querySelector("#ta-a11y-works-widget-shadow-root");
-    if (shadow) {
-      var readingRulerDiv = shadow.shadowRoot.querySelectorAll(
-        "#ta-a11y-works-widget-reading-ruler-wrapper"
-      );
-      readingRulerDiv.forEach((item) => item.remove());
-    }
-  }
-
-  // White Mouse
-  if (white_cursor_flag) {
-    let styleTag = document.head.querySelector(
-      "#ta-a11y-works-widget-white-mouse"
+  dyslexiaFont__flag = false;
+  document.getElementById("staccess__dyslexiaFont__btn").style.background =
+    primary__;
+}
+function resetLineFocus() {
+  var shadow = document.querySelector("#staccess-widget-shadow-root");
+  if (shadow) {
+    var lineFocus = shadow.shadowRoot.querySelectorAll(
+      "#staccess-widget-line-focus-wrapper"
     );
-    if (styleTag) styleTag.remove();
-  }
-
-  // Bluelight filter
-  if (bluelight_filter_flag) {
-    styleTag = document.querySelector("#ta_bluelight");
-    if (styleTag) styleTag.remove();
-  }
-
-  // Scree overlay
-  if (screen_overlay_flag) {
-    var overlays = document.body
-      .querySelector("#ta-a11y-works-widget-shadow-root")
-      .shadowRoot.querySelectorAll("#ta-a11y-widget-screen-overlay-wrapper");
-    if (overlays.length > 0) {
-      overlays.forEach((item, key) => {
+    if (lineFocus.length > 0) {
+      lineFocus.forEach((item, key) => {
         item.remove();
       });
     }
   }
-
-  // dylexia ruler
-  if (dyslexia_ruler_flag) {
-    var shadow = document.body.querySelector(
-      "#ta-a11y-works-widget-shadow-root"
+  line_focus_flag = false;
+  document.getElementById("staccess__linefocus__btn").style.background =
+    primary__;
+}
+function resetReadingRuler() {
+  var shadow = document.querySelector("#ta-a11y-works-widget-shadow-root");
+  if (shadow) {
+    var readingRulerDiv = shadow.shadowRoot.querySelectorAll(
+      "#ta-a11y-works-widget-reading-ruler-wrapper"
     );
-    if (shadow) {
-      let dyslexiaRulerDiv = shadow.shadowRoot.querySelectorAll(
-        "#ta-a11y-works-widget-dyslexia-ruler-wrapper"
-      );
-      dyslexiaRulerDiv.forEach((item) => item.remove());
-    }
+    readingRulerDiv.forEach((item) => item.remove());
   }
+  reading_ruler_flag = false;
+  document.getElementById("staccess__readingruler__btn").style.background =
+    primary__;
+}
+function resetWhiteCursor() {
+  let styleTag = document.head.querySelector(
+    "#ta-a11y-works-widget-white-mouse"
+  );
+  if (styleTag) styleTag.remove();
+  white_cursor_flag = false;
+  document.getElementById("staccess__whitecursor__btn").style.background =
+    primary__;
+}
+function resetBluelightFilter() {
+  let styleTag = document.querySelector("#ta_bluelight");
+  if (styleTag) styleTag.remove();
+  bluelight_filter_flag = false;
+  document.getElementById("staccess__bluelightfilter__btn").style.background =
+    primary__;
+}
+function resetScreenOverlay() {
+  var overlays = document.body
+    .querySelector("#ta-a11y-works-widget-shadow-root")
+    .shadowRoot.querySelectorAll("#ta-a11y-widget-screen-overlay-wrapper");
+  if (overlays.length > 0) {
+    overlays.forEach((item, key) => {
+      item.remove();
+    });
+  }
+  screen_overlay_flag = false;
+  document.getElementById("staccess__screenoverlay__btn").style.background =
+    primary__;
+}
+function resetDyslexiaRuler() {
+  var shadow = document.body.querySelector("#ta-a11y-works-widget-shadow-root");
+  if (shadow) {
+    let dyslexiaRulerDiv = shadow.shadowRoot.querySelectorAll(
+      "#ta-a11y-works-widget-dyslexia-ruler-wrapper"
+    );
+    dyslexiaRulerDiv.forEach((item) => item.remove());
+  }
+  dyslexia_ruler_flag = false;
+  document.getElementById("staccess__dyslexiaruler__btn").style.background =
+    primary__;
+}
+function resetMonochrome() {
+  document.body.classList.remove("ta-a11y-works-widget-grayscale1");
+  monochrome_flag = false;
+  document.getElementById("staccess__monochrome__btn").style.background =
+    primary__;
+}
+function resetLinkHighlight() {
+  document.body.classList.remove("ta-a11y-works-widget-link-highlight");
+  link_highlight_flag = false;
+  document.getElementById("staccess__linkhighlight__btn").style.background =
+    primary__;
+}
+function resetHeadingHighlight() {
+  document.body.classList.remove("ta-a11y-works-widget-heading-highlight");
+  heading_highlight_flag = false;
+  document.getElementById("staccess__headinghighlight__btn").style.background =
+    primary__;
+}
+function resetDisableAnimations() {
+  document.body.classList.remove("ta-a11y-works-disable-animations");
+  disable_animations_flag = false;
+  document.getElementById("staccess__disableanimations__btn").style.background =
+    primary__;
+}
+function resetFontSize() {
+  font_size_count = 0;
+  font_size_direction = 1;
+  console.log("original_font_size", original_font_size);
+  let items = document.querySelectorAll("*");
+  var tagsToRemove = ["IMG", "SCRIPT", "STYLE", "IFRAME"];
+  items.forEach((item, key) => {
+    if (!tagsToRemove.includes(item.tagName) && item.innerText != "") {
+      item.style.setProperty(
+        "font-size",
+        `${parseFloat(original_font_size[key])}px`,
+        "important"
+      );
+    }
+  });
+  document.getElementById("staccess__fontsize__btn").style.background =
+    primary__;
+  document.getElementById("staccess__fontsize__perc").style.display = "none";
+  document.getElementById("staccess__fontsize__icon").style.display = "inline";
+}
+function resetLetterSpacing() {
+  letter_spacing_count = 0;
+  letter_spacing_direction = 1;
+  let styleTag = document.head.querySelectorAll(
+    "#staccess-widget-letter-spacing"
+  );
+  if (styleTag) styleTag.forEach((item) => item.remove());
+  document.getElementById("staccess__letterspacing__btn").style.background =
+    primary__;
+  document.getElementById("staccess__letterspacing__perc").style.display =
+    "none";
+  document.getElementById("staccess__letterspacing__icon").style.display =
+    "inline";
+}
+function resetLineHeight() {
+  line_height_count = 0;
+  line_height_direction = 1;
+  let styleTag = document.head.querySelectorAll("#staccess-widget-line-height");
+  if (styleTag) styleTag.forEach((item) => item.remove());
+  document.getElementById("staccess__lineheight__btn").style.background =
+    primary__;
+  document.getElementById("staccess__lineheight__perc").style.display = "none";
+  document.getElementById("staccess__lineheight__icon").style.display =
+    "inline";
+}
+function resetAll() {
+  // document.body.querySelectorAll("button.tile__").forEach((item, key) => {
+  //   item.style.background = primary__;
+  // });
+  if (read_click_text_flag) resetClickAndRead();
+  if (dyslexiaFont__flag) resetDyslexiaFont();
+  if (line_focus_flag) resetLineFocus();
+  if (reading_ruler_flag) resetReadingRuler();
+  if (white_cursor_flag) resetWhiteCursor();
+  if (bluelight_filter_flag) resetBluelightFilter();
+  if (screen_overlay_flag) resetScreenOverlay();
+  if (dyslexia_ruler_flag) resetDyslexiaRuler();
+  if (monochrome_flag) resetMonochrome();
+  if (link_highlight_flag) resetLinkHighlight();
+  if (heading_highlight_flag) resetHeadingHighlight();
+  if (disable_animations_flag) resetDisableAnimations();
 
-  if (monochrome_flag)
-    document.body.classList.remove("ta-a11y-works-widget-grayscale1");
-  if (link_highlight_flag)
-    document.body.classList.remove("ta-a11y-works-widget-link-highlight");
-  if (heading_highlight_flag)
-    document.body.classList.remove("ta-a11y-works-widget-heading-highlight");
-  if (disable_animations_flag)
-    document.body.classList.remove("ta-a11y-works-disable-animations");
+  if (letter_spacing_count > 0) resetLetterSpacing();
+  if (font_size_count > 0) resetFontSize();
+  if (line_height_count > 0) resetLineHeight();
 }
 
 function applyDyslexicFont() {
@@ -278,18 +326,7 @@ function applyDyslexicFont() {
 
     dyslexiaFont__flag = true;
   } else {
-    document.head
-      .querySelectorAll("style#staccess-widget-font")
-      .forEach((item, key) => item.remove());
-    document.head
-      .querySelectorAll("style#staccess-widget-font2")
-      .forEach((item, key) => item.remove());
-
-    document.cookie = "staccess__dyslexiaFont=false;  path=/";
-    // staccess__dyslexiaFont__flag = false;
-    document.getElementById("staccess__dyslexiaFont__btn").style.background =
-      primary__;
-
+    resetDyslexiaFont();
     var css = "button.tile__:hover{ background-color:" + hover__ + " }";
     var style = document.createElement("style");
     if (style.styleSheet) {
@@ -299,7 +336,6 @@ function applyDyslexicFont() {
     }
 
     document.getElementsByTagName("head")[0].appendChild(style);
-    dyslexiaFont__flag = false;
   }
 }
 
@@ -321,6 +357,7 @@ function changeFontSize() {
         let itemFont = window
           .getComputedStyle(item)
           .getPropertyValue("font-size");
+        original_font_size.push(itemFont);
         item.style.setProperty(
           "font-size",
           `${parseFloat(itemFont) + 3}px`,
@@ -531,19 +568,11 @@ function applyLineFocus() {
   var bottomTop;
   var height = 30;
   var cpyMouseY=0;
-  // //console.log("--------UPPER DIV---------")
-  // //console.log(upperDiv)
-  // //console.log(bottomDiv)
+
   document.body.addEventListener("mousemove", (event) => {
     var mouseY = event.clientY +
         (document && document.scrollTop  || document.body && document.body.scrollTop  || 0) -
         (document && document.clientTop  || document.body && document.body.clientTop  || 0 );
-    // //console.log("-------scroll test-----------")
-    // //console.log("mouseY: ", mouseY)
-    // //console.log("scroll top:", document.scrollTop);
-    // //console.log("body scroll top:", document.body.scrollTop);
-    // //console.log("event y:",event.clientY);
-    // //console.log("window scrollY:", window.scrollY)
     let half = ((mouseY+height)-mouseY)/2;
     upperDiv.style.height = mouseY - half +"px";
     upperHeight = mouseY-half;
@@ -603,20 +632,7 @@ function applyLineFocus() {
       document.body.appendChild(shadowDiv);
     }
   } else {
-    document.getElementById("staccess__linefocus__btn").style.background =
-      primary__;
-    line_focus_flag = false;
-    var shadow = document.querySelector("#staccess-widget-shadow-root");
-    if (shadow) {
-      var lineFocus = shadow.shadowRoot.querySelectorAll(
-        "#staccess-widget-line-focus-wrapper"
-      );
-      if (lineFocus.length > 0) {
-        lineFocus.forEach((item, key) => {
-          item.remove();
-        });
-      }
-    }
+    resetLineFocus();
   }
 }
 function applyReadingRuler() {
@@ -672,16 +688,7 @@ function applyReadingRuler() {
       document.body.appendChild(shadowDiv);
     }
   } else {
-    document.getElementById("staccess__readingruler__btn").style.background =
-      primary__;
-    reading_ruler_flag = false;
-    var shadow = document.querySelector("#ta-a11y-works-widget-shadow-root");
-    if (shadow) {
-      var readingRulerDiv = shadow.shadowRoot.querySelectorAll(
-        "#ta-a11y-works-widget-reading-ruler-wrapper"
-      );
-      readingRulerDiv.forEach((item) => item.remove());
-    }
+    resetReadingRuler();
   }
 }
 function applyWhiteCursor() {
@@ -699,13 +706,7 @@ function applyWhiteCursor() {
     style.innerHTML = `body *{cursor: url(${cursor}), auto !important;} a:hover, button:hover {cursor: url(${hover}), auto !important;}`;
     document.head.appendChild(style);
   } else {
-    document.getElementById("staccess__whitecursor__btn").style.background =
-      primary__;
-    white_cursor_flag = false;
-    let styleTag = document.head.querySelector(
-      "#ta-a11y-works-widget-white-mouse"
-    );
-    if (styleTag) styleTag.remove();
+    resetWhiteCursor();
   }
 }
 function applyBluelightFilter() {
@@ -713,8 +714,6 @@ function applyBluelightFilter() {
     document.getElementById("staccess__bluelightfilter__btn").style.background =
       selected__;
     bluelight_filter_flag = true;
-
-    // let styleTag = document.querySelector("#ta_bluelight");
 
     let style = document.createElement("style");
     style.innerHTML = `
@@ -740,11 +739,7 @@ function applyBluelightFilter() {
     // d.id = "ta_bluelight";
     // document.body.insertBefore(d, document.body.childNodes[0]);
   } else {
-    document.getElementById("staccess__bluelightfilter__btn").style.background =
-      primary__;
-    bluelight_filter_flag = false;
-    let styleTag = document.querySelector("#ta_bluelight");
-    if (styleTag) styleTag.remove();
+    resetBluelightFilter();
   }
 }
 function applyScreenOverlay() {
@@ -806,20 +801,10 @@ function applyScreenOverlay() {
       }
     }, 10);
   } else {
-    document.getElementById("staccess__screenoverlay__btn").style.background =
-      primary__;
-    screen_overlay_flag = false;
-
-    var overlays = document.body
-      .querySelector("#ta-a11y-works-widget-shadow-root")
-      .shadowRoot.querySelectorAll("#ta-a11y-widget-screen-overlay-wrapper");
-    if (overlays.length > 0) {
-      overlays.forEach((item, key) => {
-        item.remove();
-      });
-    }
+    resetScreenOverlay();
   }
 }
+
 function applyDyslexiaRuler() {
   if (!dyslexia_ruler_flag) {
     document.getElementById("staccess__dyslexiaruler__btn").style.background =
@@ -939,10 +924,6 @@ function applyDyslexiaRuler() {
       document.body.appendChild(shadowDiv);
     }
   } else {
-    document.getElementById("staccess__dyslexiaruler__btn").style.background =
-      primary__;
-    dyslexia_ruler_flag = false;
-
     document.body.removeEventListener("mousemove", mouseMoveListener);
     function mouseMoveListener(event) {
       let mouseY =
@@ -964,16 +945,7 @@ function applyDyslexiaRuler() {
           .offsetHeight / 2;
       dyslexiaRuler.style.top = mouseY + "px";
     }
-
-    var shadow = document.body.querySelector(
-      "#ta-a11y-works-widget-shadow-root"
-    );
-    if (shadow) {
-      let dyslexiaRulerDiv = shadow.shadowRoot.querySelectorAll(
-        "#ta-a11y-works-widget-dyslexia-ruler-wrapper"
-      );
-      dyslexiaRulerDiv.forEach((item) => item.remove());
-    }
+    resetDyslexiaRuler();
   }
 }
 function applyReadText() {
@@ -1366,10 +1338,7 @@ function applyMonochrome() {
 
     document.body.classList.add("ta-a11y-works-widget-grayscale1");
   } else {
-    document.getElementById("staccess__monochrome__btn").style.background =
-      primary__;
-    monochrome_flag = false;
-    document.body.classList.remove("ta-a11y-works-widget-grayscale1");
+    resetMonochrome();
   }
 }
 
@@ -1380,10 +1349,7 @@ function applyLinkHighlight() {
     link_highlight_flag = true;
     document.body.classList.add("ta-a11y-works-widget-link-highlight");
   } else {
-    document.getElementById("staccess__linkhighlight__btn").style.background =
-      primary__;
-    link_highlight_flag = false;
-    document.body.classList.remove("ta-a11y-works-widget-link-highlight");
+    resetLinkHighlight();
   }
 }
 function applyHeadingHighlight() {
@@ -1394,11 +1360,7 @@ function applyHeadingHighlight() {
     heading_highlight_flag = true;
     document.body.classList.add("ta-a11y-works-widget-heading-highlight");
   } else {
-    document.getElementById(
-      "staccess__headinghighlight__btn"
-    ).style.background = primary__;
-    heading_highlight_flag = false;
-    document.body.classList.remove("ta-a11y-works-widget-heading-highlight");
+    resetHeadingHighlight();
   }
 }
 function applyDisableAnimations() {
@@ -1422,11 +1384,7 @@ function applyDisableAnimations() {
     document.head.appendChild(style4);
     document.body.classList.add("ta-a11y-works-disable-animations");
   } else {
-    document.getElementById(
-      "staccess__disableanimations__btn"
-    ).style.background = primary__;
-    disable_animations_flag = false;
-    document.body.classList.remove("ta-a11y-works-disable-animations");
+    resetDisableAnimations();
   }
 }
 
