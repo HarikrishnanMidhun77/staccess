@@ -34,16 +34,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function st__loadStyles__() {
-  //console.log("added style22");
-  var style22 = document.createElement("style");
-  style22.innerHTML = `
-    body.ta-a11y-works-widget-grayscale1 {
-      filter: grayscale(1); 
-    }
-  `;
-  style22.id = "ta-a11y-works-widget-monochrome1";
-  document.head.appendChild(style22);
-
   let style = document.createElement("style");
   style.innerHTML = `
     body.ta-a11y-works-widget-link-highlight a {
@@ -104,32 +94,165 @@ body.ta-a11y-works-widget-heading-highlight h6 font {
   document.head.appendChild(style4);
 }
 
-// function getCookie(cname) {
-//   let name = cname + "=";
-//   let decodedCookie = decodeURIComponent(document.cookie);
-//   let ca = decodedCookie.split(";");
-//   for (let i = 0; i < ca.length; i++) {
-//     let c = ca[i];
-//     while (c.charAt(0) == " ") {
-//       c = c.substring(1);
-//     }
-//     if (c.indexOf(name) == 0) {
-//       return c.substring(name.length, c.length);
-//     }
-//   }
-//   return "";
-// }
+function resetClickAndRead() {
+  if (speechSynthesis) {
+    speechSynthesis.cancel();
+  }
+  document.body
+    .querySelectorAll("*.ta-a11y-widget-text-reader-hlight")
+    .forEach((item, key) => {
+      item.classList.remove("ta-a11y-widget-text-reader-hlight");
+    });
+  var shadow = document.querySelector("#ta-a11y-works-widget-shadow-root");
+  console.log("shadow", shadow);
+  if (shadow) {
+    var readTextDiv = shadow.shadowRoot.querySelectorAll(
+      "#ta-a11y-works-widget-read-text-wrapper"
+    );
+    // var readTextDiv = document.querySelectorAll(
+    //   "*#ta-a11y-works-widget-read-text-wrapper"
+    // );
+    console.log("readTextDiv", readTextDiv);
+    readTextDiv.forEach((item) => item.remove());
+    read_click_text_flag = false;
+  }
+  var comp = document.querySelectorAll(
+    "p,h1, h2, h3, h4, h5, h6,li,blockquote,dd,dl,dt,figcaption,figure,hr,menu,ol,ul,pre"
+  );
+  for (var i = 0; i < comp.length; i++) {
+    if (!comp[i].classList.contains("sta__span__")) {
+      comp[i].removeEventListener("click", clickReader, false);
+      comp[i].style.cursor = "default";
+    }
+  }
+  document.getElementById("staccess__clickandread__img").src =
+    cdnLink + "src/icons/audio.svg";
+}
+function resetAll() {
+  document.body.querySelectorAll("button.tile__").forEach((item, key) => {
+    item.style.background = primary__;
+  });
+  // click and read
+  if (read_click_text_flag) {
+    resetClickAndRead();
+    // if (speechSynthesis) {
+    //   speechSynthesis.cancel();
+    // }
+    // document.body
+    //   .querySelectorAll("*.ta-a11y-widget-text-reader-hlight")
+    //   .forEach((item, key) => {
+    //     item.classList.remove("ta-a11y-widget-text-reader-hlight");
+    //   });
+    // var shadow = document.querySelector("#ta-a11y-works-widget-shadow-root");
+    // console.log("shadow", shadow);
+    // if (shadow) {
+    //   var readTextDiv = shadow.shadowRoot.querySelectorAll(
+    //     "#ta-a11y-works-widget-read-text-wrapper"
+    //   );
+    //   // var readTextDiv = document.querySelectorAll(
+    //   //   "*#ta-a11y-works-widget-read-text-wrapper"
+    //   // );
+    //   console.log("readTextDiv", readTextDiv);
+    //   readTextDiv.forEach((item) => item.remove());
+    // }
+    // var comp = document.querySelectorAll(
+    //   "p,h1, h2, h3, h4, h5, h6,li,blockquote,dd,dl,dt,figcaption,figure,hr,menu,ol,ul,pre"
+    // );
+    // for (var i = 0; i < comp.length; i++) {
+    //   if (!comp[i].classList.contains("sta__span__")) {
+    //     comp[i].removeEventListener("click", clickReader, false);
+    //     comp[i].style.cursor = "default";
+    //   }
+    // }
+    // document.getElementById("staccess__clickandread__img").src =
+    //   cdnLink + "src/icons/audio.svg";
+  }
 
-// function dyslexiaFontSwitch() {
-//   if (
-//     getCookie("staccess__dyslexiaFont") == "true" ||
-//     dyslexiaFont__flag == true
-//   ) {
-//     removeFont();
-//   } else {
-//     applyDyslexicFont();
-//   }
-// }
+  //Dyslexic Font
+  if (dyslexiaFont__flag) {
+    document.head
+      .querySelectorAll("style#staccess-widget-font")
+      .forEach((item, key) => item.remove());
+    document.head
+      .querySelectorAll("style#staccess-widget-font2")
+      .forEach((item, key) => item.remove());
+  }
+
+  // Line Focus
+  if (line_focus_flag) {
+    var shadow = document.querySelector("#staccess-widget-shadow-root");
+    if (shadow) {
+      var lineFocus = shadow.shadowRoot.querySelectorAll(
+        "#staccess-widget-line-focus-wrapper"
+      );
+      if (lineFocus.length > 0) {
+        lineFocus.forEach((item, key) => {
+          item.remove();
+        });
+      }
+    }
+  }
+
+  // Reading Ruler
+  if (reading_ruler_flag) {
+    var shadow = document.querySelector("#ta-a11y-works-widget-shadow-root");
+    if (shadow) {
+      var readingRulerDiv = shadow.shadowRoot.querySelectorAll(
+        "#ta-a11y-works-widget-reading-ruler-wrapper"
+      );
+      readingRulerDiv.forEach((item) => item.remove());
+    }
+  }
+
+  // White Mouse
+  if (white_cursor_flag) {
+    let styleTag = document.head.querySelector(
+      "#ta-a11y-works-widget-white-mouse"
+    );
+    if (styleTag) styleTag.remove();
+  }
+
+  // Bluelight filter
+  if (bluelight_filter_flag) {
+    styleTag = document.querySelector("#ta_bluelight");
+    if (styleTag) styleTag.remove();
+  }
+
+  // Scree overlay
+  if (screen_overlay_flag) {
+    var overlays = document.body
+      .querySelector("#ta-a11y-works-widget-shadow-root")
+      .shadowRoot.querySelectorAll("#ta-a11y-widget-screen-overlay-wrapper");
+    if (overlays.length > 0) {
+      overlays.forEach((item, key) => {
+        item.remove();
+      });
+    }
+  }
+
+  // dylexia ruler
+  if (dyslexia_ruler_flag) {
+    var shadow = document.body.querySelector(
+      "#ta-a11y-works-widget-shadow-root"
+    );
+    if (shadow) {
+      let dyslexiaRulerDiv = shadow.shadowRoot.querySelectorAll(
+        "#ta-a11y-works-widget-dyslexia-ruler-wrapper"
+      );
+      dyslexiaRulerDiv.forEach((item) => item.remove());
+    }
+  }
+
+  if (monochrome_flag)
+    document.body.classList.remove("ta-a11y-works-widget-grayscale1");
+  if (link_highlight_flag)
+    document.body.classList.remove("ta-a11y-works-widget-link-highlight");
+  if (heading_highlight_flag)
+    document.body.classList.remove("ta-a11y-works-widget-heading-highlight");
+  if (disable_animations_flag)
+    document.body.classList.remove("ta-a11y-works-disable-animations");
+}
+
 function applyDyslexicFont() {
   if (!dyslexiaFont__flag) {
     var dyslexicRegular = cdnLink + "src/fonts/dyslexic-regular.otf"; //new URL("fonts/dyslexic-regular.otf", document.baseURI).href;
@@ -179,30 +302,6 @@ function applyDyslexicFont() {
     dyslexiaFont__flag = false;
   }
 }
-// function removeFont() {
-//   ////console.log("in remove font");
-//   document.head
-//     .querySelectorAll("style#staccess-widget-font")
-//     .forEach((item, key) => item.remove());
-//   document.head
-//     .querySelectorAll("style#staccess-widget-font2")
-//     .forEach((item, key) => item.remove());
-
-//   document.cookie = "staccess__dyslexiaFont=false;  path=/";
-//   staccess__dyslexiaFont__flag = false;
-//   document.getElementById("staccess__dyslexiaFont__btn").style.background =
-//     primary__;
-
-//   var css = "button.tile__:hover{ background-color:" + hover__ + " }";
-//   var style = document.createElement("style");
-//   if (style.styleSheet) {
-//     style.styleSheet.cssText = css;
-//   } else {
-//     style.appendChild(document.createTextNode(css));
-//   }
-
-//   document.getElementsByTagName("head")[0].appendChild(style);
-// }
 
 function changeFontSize() {
   if (font_size_count < 4 && font_size_direction == 1) {
@@ -1075,14 +1174,21 @@ function applyReadTextStop() {
   read_text_flag = 0;
   // document.getElementById("staccess__readtext_stop__btn").style.visibility =
   //   "hidden";
-  document.getElementById("staccess__readtext__img").src =
-    cdnLink + "src/icons/audio.svg";
-  const spans = document.querySelectorAll(".sta__span__");
+  // document.getElementById("staccess__readtext__img").src =
+  //   cdnLink + "src/icons/audio.svg";
+  // const spans = document.querySelectorAll(".sta__span__");
 
-  spans.forEach((span1) => {
-    span1.remove();
-  });
-  location.reload();
+  // spans.forEach((span1) => {
+  //   span1.remove();
+  // });
+  // location.reload();
+  document.getElementById("staccess__clickandread__img").src =
+    cdnLink + "src/icons/audio.svg";
+  document.body
+    .querySelectorAll("*.ta-a11y-widget-text-reader-hlight")
+    .forEach((item, key) => {
+      item.classList.remove("ta-a11y-widget-text-reader-hlight");
+    });
 }
 function applyClickAndRead() {
   openSidebar();
@@ -1091,13 +1197,20 @@ function applyClickAndRead() {
     document.getElementById("staccess__clickandread__img").src =
       cdnLink + "src/icons/stop.svg";
 
-    document.getElementById("staccess__readtext__btn").style.display = "none";
+    // document.getElementById("staccess__readtext__btn").style.display = "none";
     let shadowDiv = document.createElement("div");
     shadowDiv.id = "ta-a11y-works-widget-shadow-root";
     let shadowRoot = shadowDiv.attachShadow({ mode: "open" });
     let shadowChild = document.createElement("div");
     shadowChild.classList.add("ta-a11y-works-widget-shadow-content");
     let script = document.createElement("script");
+
+    var style5 = document.createElement("style");
+    style5.innerHTML = `
+    .ta-a11y-widget-text-reader-hlight{background-color:#ffcc00;}
+    `;
+    style5.id = "ta-a11y-works-widget-reader-hlight";
+    document.head.appendChild(style5);
 
     script.textContent = `
   var utterance = new SpeechSynthesisUtterance();
@@ -1124,7 +1237,8 @@ function clickReader(e){
   });
  endCount=current_comp.length-1;
 
-      target.style.background = "#ffcc00";
+     // target.style.background = "#ffcc00";
+     target.classList.add("ta-a11y-widget-text-reader-hlight");
      
 
       // var words   = text.trim().split(" ");
@@ -1159,7 +1273,8 @@ function clickReader(e){
       utterance.onend = function(event){
         //console.log(current_comp,endCount)
        
-          current_comp[endCount].style.background = "";
+          // current_comp[endCount].style.background = "";
+          current_comp[endCount].classList.remove("ta-a11y-widget-text-reader-hlight");
           endCount--;
           // if(endCount==0){
           //   current_comp[0].style.background = "";
@@ -1231,8 +1346,7 @@ function clickReader(e){
       document.body.appendChild(shadowDiv);
     }
   } else {
-    read_click_text_flag = false;
-    location.reload();
+    resetClickAndRead();
   }
 }
 
@@ -1331,80 +1445,3 @@ function openSidebar() {
       "visible";
   }
 }
-
-// let speech = new SpeechSynthesisUtterance();
-// speech.lang = "en";
-
-// var inputs = document.querySelectorAll('p');
-
-// inputs.forEach(function(input) {
-//   input.addEventListener('mouseover', function hover() {
-//     input.classList.add('ta-a11y-widget-text-reader-hlight')
-//   });
-
-//   input.addEventListener('mouseleave', function leave() {
-//     input.classList.remove('ta-a11y-widget-text-reader-hlight')
-
-//   });
-// });
-
-// speech.text = document.querySelector("p").textContent;
-// window.speechSynthesis.speak(speech);
-
-// var utterance = new SpeechSynthesisUtterance();
-//   utterance.lang = 'en-UK';
-//   utterance.rate = 1;
-//   var text = document.querySelector("textarea").value;
-
-//   utterance = new SpeechSynthesisUtterance();
-//   utterance.onboundary = onboundaryHandler;
-//   utterance.text = text;
-//   speechSynthesis.speak(utterance);
-
-//   function onboundaryHandler(event){
-//     var textarea =document.querySelector("textarea");
-//     var value = textarea.value;
-//     var index = event.charIndex;
-//     // //console.log("value",value);
-//     //console.log("index",index);
-//     var word = getWordAt(value, index);
-//     //console.log("word",word);
-//     var anchorPosition = getWordStart(value, index);
-//     var activePosition = anchorPosition + word.length;
-// //console.log("anchorPosition",anchorPosition)
-// //console.log("activePosition",activePosition)
-
-//     textarea.focus();
-//     textarea.setSelectionRange(anchorPosition, activePosition);
-//     if (textarea.setSelectionRange) {
-//        textarea.setSelectionRange(anchorPosition, activePosition);
-//     }
-//     else {
-//        var range = textarea.createTextRange();
-//        range.collapse(true);
-//        range.moveEnd('character', activePosition);
-//        range.moveStart('character', anchorPosition);
-//        range.select();
-//     }
-// };
-
-// function getWordAt(str, pos) {
-//   str = String(str);
-//   pos = Number(pos) >>> 0;
-
-//   var left = str.slice(0, pos + 1).search(/\S+$/),
-//       right = str.slice(pos).search(/\s/);
-
-//   if (right < 0) {
-//       return str.slice(left);
-//   }
-//   return str.slice(left, right + pos);
-// }
-
-// function getWordStart(str, pos) {
-//   str = String(str);
-//   pos = Number(pos) >>> 0;
-
-//   var start = str.slice(0, pos + 1).search(/\S+$/);
-//   return start;
-// }
