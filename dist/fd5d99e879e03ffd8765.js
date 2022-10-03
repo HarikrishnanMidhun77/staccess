@@ -30,9 +30,99 @@ var heading_highlight_flag = false;
 var disable_animations_flag = false;
 var original_font_size = [];
 
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(";");
+  for (let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == " ") {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return false;
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   st__loadStyles__();
 });
+
+var french_json = {
+  reset_btn_text: "Réinitialiser",
+  clickandread_text: "Cliquez et Lisez",
+  stopread_btn_text: "Arrêter de lire",
+  dyslexicfont_btn_text: "Police dyslexique",
+  fontsize_btn_text: "Taille de police",
+  letterspacing_btn_text: "l'espacement des lettres",
+  lineheight_btn_text: "Hauteur de la ligne",
+  linefocus_btn_text: "Mise au point de la ligne",
+  readingruler_btn_text: "Règle de lecture",
+  whitecursor_btn_text: "Curseur blanc",
+  bluelightfilter_btn_text: "Filtre lumière bleue",
+  screenoverlay_btn_text: "Superposition d'écran",
+  dyslexiaruler_btn_text: "Règle de la dyslexie",
+  monochrome_btn_text: "Monochrome",
+  linkhighlight_btn_text: "Mise en surbrillance du lien",
+  headinghighlight_btn_text: "En-tête en surbrillance",
+  disableanimation_btn_text: "Désactiver l'animation",
+};
+var english_json = {
+  reset_btn_text: "Reset",
+  clickandread_text: "Click & Read",
+  stopread_btn_text: "Stop Read",
+  dyslexicfont_btn_text: "Dyslexic Font",
+  fontsize_btn_text: "Font Size",
+  letterspacing_btn_text: "Letter Spacing",
+  lineheight_btn_text: "Line Height",
+  linefocus_btn_text: "Line Focus",
+  readingruler_btn_text: "Reading Ruler",
+  whitecursor_btn_text: "White Cursor",
+  bluelightfilter_btn_text: "Bluelight Filter",
+  screenoverlay_btn_text: "Screen Overlay",
+  dyslexiaruler_btn_text: "Dyslexia Ruler",
+  monochrome_btn_text: "Monochrome",
+  linkhighlight_btn_text: "Link Highlight",
+  headinghighlight_btn_text: "Heading Highlight",
+  disableanimation_btn_text: "Disable Animation",
+};
+function st_changeLang() {
+  var sel = document.querySelector("#st_lang_selector__");
+  console.log("sel.selectedIndex", sel.selectedIndex);
+  langSwitch(sel.value);
+  var oneYearFromNow = new Date();
+  oneYearFromNow.setFullYear(oneYearFromNow.getFullYear() + 1);
+  document.cookie =
+    "lang=" +
+    sel.value +
+    ";" +
+    " expires=" +
+    oneYearFromNow.toDateString() +
+    " 12:00:00 UTC";
+}
+function langSwitch(index) {
+  var texts = document.querySelectorAll(".stlc__");
+  console.log("texts", texts);
+  var i = 0;
+  switch (index) {
+    case "en":
+      var en = Object.values(english_json);
+      for (i = 0; i < texts.length; i++) {
+        texts[i].innerHTML = en[i];
+      }
+      break;
+    case "fr":
+      var fr = Object.values(french_json);
+      console.log("fr", fr);
+      for (i = 0; i < texts.length; i++) {
+        texts[i].innerHTML = fr[i];
+      }
+
+      break;
+  }
+}
 
 function st__loadStyles__() {
   let style = document.createElement("style");
@@ -1399,6 +1489,14 @@ function openSidebar() {
     // document.getElementById("staccess__readtext_stop__btn").style.visibility =
     //   "hidden";
   } else {
+    var l = getCookie("lang");
+    console.log("lang", l);
+    if (getCookie("lang")) {
+      langSwitch(l);
+      var sel = document.querySelector("#st_lang_selector__");
+      sel.value = l;
+    }
+
     document.getElementsByClassName("st_sidebar__")[0].style.visibility =
       "visible";
   }

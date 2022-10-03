@@ -75,7 +75,7 @@ export function setParams(params) {
       document.getElementsByClassName("float__access")[0].style.top = "40px";
       break;
   }
-  document.getElementById("access__btn").addEventListener("click", openSidebar);
+  //document.getElementById("access__btn").addEventListener("click", openSidebar);
 
   // TODO: split color param with : and add color and position
 
@@ -87,21 +87,21 @@ export function close() {
   }
   body.removeEventListener("click", close);
 }
-export function openSidebar() {
-  console.log("button clicked");
-  if (
-    document.getElementsByClassName("st_sidebar__")[0].style.visibility ==
-    "visible"
-  ) {
-    document.getElementsByClassName("st_sidebar__")[0].style.visibility =
-      "hidden";
-    document.getElementById("staccess__readtext_stop__btn").style.visibility =
-      "hidden";
-  } else {
-    document.getElementsByClassName("st_sidebar__")[0].style.visibility =
-      "visible";
-  }
-}
+// export function openSidebar() {
+//   console.log("button clicked");
+//   if (
+//     document.getElementsByClassName("st_sidebar__")[0].style.visibility ==
+//     "visible"
+//   ) {
+//     document.getElementsByClassName("st_sidebar__")[0].style.visibility =
+//       "hidden";
+//     document.getElementById("staccess__readtext_stop__btn").style.visibility =
+//       "hidden";
+//   } else {
+//     document.getElementsByClassName("st_sidebar__")[0].style.visibility =
+//       "visible";
+//   }
+// }
 // export function openSidebar() {
 //   console.log("click event in open");
 //   // document

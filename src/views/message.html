@@ -73,7 +73,13 @@
         </svg>
       </svg>
     </button>
-    <button class="reset_btn__" onclick="resetAll()">Reset</button>
+    <div class="st_lang_box__">
+      <select id="st_lang_selector__" onchange="st_changeLang()">
+        <option value="en">English</option>
+        <option value="fr">French</option>
+      </select>
+    </div>
+    <button class="reset_btn__ stlc__" onclick="resetAll()">Reset</button>
     <div id="st__button_grid__" class="grid__">
       <button
         id="staccess__clickandread__btn"
@@ -86,9 +92,9 @@
           class="whitify"
           id="staccess__clickandread__img"
           src="../icons/click.svg"
-          alt="Activate Click and Raed"
+          alt="Activate Click and Read"
         />
-        <p class="staccess">Click & Read</p>
+        <p class="staccess stlc__">Click & Read</p>
       </button>
       <!-- <button
         id="staccess__readtext__btn"
@@ -119,7 +125,7 @@
           src="../icons/stop.svg"
           alt="Stop Reading Text"
         />
-        <p class="staccess">Stop Reading</p>
+        <p class="staccess stlc__">Stop Reading</p>
       </button>
       <button
         id="staccess__dyslexiaFont__btn"
@@ -134,7 +140,7 @@
         />
 
         <!-- <i class="fa-solid fa-glasses fa-2xl"></i> -->
-        <p class="staccess">Dyslexic Font</p>
+        <p class="staccess stlc__">Dyslexic Font</p>
         <!-- <i class="fa-solid fa-glasses"></i> -->
       </button>
 
@@ -151,7 +157,7 @@
           alt="Change font size"
         />
         <p id="staccess__fontsize__perc" class="staccess_perc">100%</p>
-        <p class="staccess">Font Size</p>
+        <p class="staccess stlc__">Font Size</p>
       </button>
 
       <button
@@ -167,7 +173,7 @@
           alt="Change letter space"
         />
         <p id="staccess__letterspacing__perc" class="staccess_perc">100%</p>
-        <p class="staccess">Letter Spacing</p>
+        <p class="staccess stlc__">Letter Spacing</p>
       </button>
 
       <button
@@ -184,7 +190,7 @@
           alt="Change line height"
         />
         <p id="staccess__lineheight__perc" class="staccess_perc">100%</p>
-        <p class="staccess">Line Height</p>
+        <p class="staccess stlc__">Line Height</p>
       </button>
       <button
         id="staccess__linefocus__btn"
@@ -198,7 +204,7 @@
           src="../icons/line-focus2.svg"
           alt="Activate Line Focus"
         />
-        <p class="staccess">Line Focus</p>
+        <p class="staccess stlc__">Line Focus</p>
       </button>
       <button
         id="staccess__readingruler__btn"
@@ -212,7 +218,7 @@
           src="../icons/ruler.svg"
           alt="Activate Reading Ruler"
         />
-        <p class="staccess">Reading Ruler</p>
+        <p class="staccess stlc__">Reading Ruler</p>
       </button>
       <button
         id="staccess__whitecursor__btn"
@@ -226,7 +232,7 @@
           src="../icons/cursor-icon.svg"
           alt="Activate White Cursor"
         />
-        <p class="staccess">White Cursor</p>
+        <p class="staccess stlc__">White Cursor</p>
       </button>
       <button
         id="staccess__bluelightfilter__btn"
@@ -240,7 +246,7 @@
           src="../icons/moon.svg"
           alt="Activate Bluelight Filter"
         />
-        <p class="staccess">Bluelight Filter</p>
+        <p class="staccess stlc__">Bluelight Filter</p>
       </button>
       <button
         id="staccess__screenoverlay__btn"
@@ -254,7 +260,7 @@
           src="../icons/moon2.svg"
           alt="Activate Screen Overlay"
         />
-        <p class="staccess">Screen Overlay</p>
+        <p class="staccess stlc__">Screen Overlay</p>
       </button>
       <button
         id="staccess__dyslexiaruler__btn"
@@ -268,7 +274,7 @@
           src="../icons/dyslexia-ruler.svg"
           alt="Activate Dyslexia Ruler"
         />
-        <p class="staccess">Dyslexia Ruler</p>
+        <p class="staccess stlc__">Dyslexia Ruler</p>
       </button>
       <button
         id="staccess__monochrome__btn"
@@ -282,7 +288,7 @@
           src="../icons/monochrome.svg"
           alt="Apply Monochrome"
         />
-        <p class="staccess">Monochrome</p>
+        <p class="staccess stlc__">Monochrome</p>
       </button>
       <button
         id="staccess__linkhighlight__btn"
@@ -292,7 +298,7 @@
       >
         <i class="fa-solid fa-line-height fa-2xl"></i>
         <img class="whitify" src="../icons/link.svg" alt="Highlight links" />
-        <p class="staccess">Link Highlight</p>
+        <p class="staccess stlc__">Link Highlight</p>
       </button>
       <button
         id="staccess__headinghighlight__btn"
@@ -306,7 +312,7 @@
           src="../icons/heading.svg"
           alt="Highlight Headings"
         />
-        <p class="staccess">Heading Highlight</p>
+        <p class="staccess stlc__">Heading Highlight</p>
       </button>
       <button
         id="staccess__disableanimations__btn"
@@ -320,13 +326,14 @@
           src="../icons/Animation.svg"
           alt="Disable Animations"
         />
-        <p class="staccess">Disable Animations</p>
+        <p class="staccess stlc__">Disable Animations</p>
       </button>
     </div>
   </div>
   <button id="access__btn" class="float__access">
     <!-- <i class="fa fa-low-vision" aria-hidden="true"></i> -->
     <img
+      onclick="openSidebar()"
       class="whitify"
       src="../icons/accessibility.svg"
       alt="Accessibility Widget Icon"

@@ -42,6 +42,7 @@
   padding: 15px 30px;
   display: inline-block;
   margin-left: 80px;
+  margin-top: 50px;
   text-transform: uppercase;
   letter-spacing: 1px;
   font-weight: 400;
@@ -195,6 +196,49 @@ p.staccess_perc {
   #staccess__readtext__btn {
     display: none;
   }
+}
+.st_lang_box__ {
+  position: absolute;
+  top: 2%;
+  right: 2%;
+  /* left: 90%;  */
+}
+
+.st_lang_box__ select {
+  background-color: var(--primary__);
+  color: white;
+  padding: 6px;
+  width: auto;
+  border: none;
+  font-size: 10px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+  -webkit-appearance: button;
+  appearance: button;
+  outline: none;
+}
+
+.st_lang_box__::before {
+  font-family: FontAwesome;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20%;
+  height: 100%;
+  text-align: center;
+  font-size: 15px;
+  line-height: 45px;
+  color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.1);
+  pointer-events: none;
+}
+
+.st_lang_box__:hover::before {
+  color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.st_lang_box__ select option {
+  padding: 30px;
 }
 /* button.tile__:after {
   position: absolute;
