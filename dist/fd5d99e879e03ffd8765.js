@@ -124,8 +124,60 @@ function langSwitch(index) {
   }
 }
 
-function st_toggleProfile(e) {
-  console.log(" e.currentTarget.checked", e.currentTarget.checked);
+function st_toggleProfile(e, prof) {
+  console.log(" e.currentTarget.checked", e.currentTarget.checked, prof);
+  switch (prof) {
+    case "rd":
+      if (e.currentTarget.checked) {
+        applyClickAndRead();
+        applyMonochrome();
+        applyBluelightFilter();
+        applyScreenOverlay();
+        applyReadingRuler();
+      } else {
+        resetClickAndRead();
+        resetMonochrome();
+        resetBluelightFilter();
+        resetScreenOverlay();
+        resetReadingRuler();
+      }
+      break;
+    case "vi":
+      if (e.currentTarget.checked) {
+        //TODO: do activate functions for step buttons
+        applyWhiteCursor();
+      } else {
+        resetWhiteCursor();
+      }
+      break;
+    case "adhd":
+      if (e.currentTarget.checked) {
+        applyLineFocus();
+        applyDisableAnimations();
+      } else {
+        resetLineFocus();
+        resetDisableAnimations();
+      }
+      break;
+    case "cd":
+      if (e.currentTarget.checked) {
+        applyLinkHighlight();
+        applyHeadingHighlight();
+      } else {
+        resetLinkHighlight();
+        resetHeadingHighlight();
+      }
+      break;
+    case "dys":
+      if (e.currentTarget.checked) {
+        applyDyslexicFont();
+        applyDyslexiaRuler();
+      } else {
+        resetDyslexiaFont();
+        resetDyslexiaRuler();
+      }
+      break;
+  }
 }
 
 function st__loadStyles__() {

@@ -2,9 +2,9 @@
   "readingDifficulties": [
     "clickandread_text",
     "stopread_btn_text",
+    "monochrome_btn_text",
     "bluelightfilter_btn_text",
     "screenoverlay_btn_text",
-    "monochrome_btn_text",
     "readingruler_btn_text"
   ],
   "visionImpairment": [

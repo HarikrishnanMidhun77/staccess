@@ -86,13 +86,13 @@
         <input
           id="st_checkbox__"
           type="checkbox"
-          onchange="st_toggleProfile(event)"
+          onchange="st_toggleProfile(event,'rd')"
           class="st_checkbox__"
         />
         <div class="knobs"></div>
         <div class="layer"></div>
       </div>
-      <h3 class="st_toggle-title stlc__">Reading Difficulties</h3>
+      <h3 class="st_toggle-title stlc__">Reading Difficulties Profile</h3>
     </div>
 
     <div id="st__button_grid__" class="grid__">
@@ -199,24 +199,21 @@
         <p class="staccess stlc__">Reading Ruler</p>
       </button>
     </div>
-    <div id="st__button_grid__" class="grid__">
-      <button
-        id="staccess__dyslexiaFont__btn"
-        class="tile__"
-        type="button"
-        onclick="applyDyslexicFont()"
-      >
-        <img
-          class="whitify"
-          src="../icons/dyslexia.svg"
-          alt="Activate dyslexia font"
+
+    <div class="st_toggle-cover">
+      <div class="st_toggle r">
+        <input
+          id="st_checkbox__"
+          type="checkbox"
+          onchange="st_toggleProfile(event,'vi')"
+          class="st_checkbox__"
         />
-
-        <!-- <i class="fa-solid fa-glasses fa-2xl"></i> -->
-        <p class="staccess stlc__">Dyslexic Font</p>
-        <!-- <i class="fa-solid fa-glasses"></i> -->
-      </button>
-
+        <div class="knobs"></div>
+        <div class="layer"></div>
+      </div>
+      <h3 class="st_toggle-title stlc__">Visual Impairments Profile</h3>
+    </div>
+    <div id="st__button_grid__" class="grid__">
       <button
         id="staccess__fontsize__btn"
         class="tile__"
@@ -265,20 +262,6 @@
         <p id="staccess__lineheight__perc" class="staccess_perc">100%</p>
         <p class="staccess stlc__">Line Height</p>
       </button>
-      <button
-        id="staccess__linefocus__btn"
-        class="tile__ mobile_special__"
-        type="button"
-        onclick="applyLineFocus()"
-      >
-        <i class="fa-solid fa-line-height fa-2xl"></i>
-        <img
-          class="whitify"
-          src="../icons/line-focus2.svg"
-          alt="Activate Line Focus"
-        />
-        <p class="staccess stlc__">Line Focus</p>
-      </button>
 
       <button
         id="staccess__whitecursor__btn"
@@ -294,45 +277,36 @@
         />
         <p class="staccess stlc__">White Cursor</p>
       </button>
+    </div>
 
+    <div class="st_toggle-cover">
+      <div class="st_toggle r">
+        <input
+          id="st_checkbox__"
+          type="checkbox"
+          onchange="st_toggleProfile(event,'adhd')"
+          class="st_checkbox__"
+        />
+        <div class="knobs"></div>
+        <div class="layer"></div>
+      </div>
+      <h3 class="st_toggle-title stlc__">ADHD Profile</h3>
+    </div>
+
+    <div id="st__button_grid__" class="grid__">
       <button
-        id="staccess__dyslexiaruler__btn"
+        id="staccess__linefocus__btn"
         class="tile__ mobile_special__"
         type="button"
-        onclick="applyDyslexiaRuler()"
+        onclick="applyLineFocus()"
       >
         <i class="fa-solid fa-line-height fa-2xl"></i>
         <img
           class="whitify"
-          src="../icons/dyslexia-ruler.svg"
-          alt="Activate Dyslexia Ruler"
+          src="../icons/line-focus2.svg"
+          alt="Activate Line Focus"
         />
-        <p class="staccess stlc__">Dyslexia Ruler</p>
-      </button>
-
-      <button
-        id="staccess__linkhighlight__btn"
-        class="tile__"
-        type="button"
-        onclick="applyLinkHighlight()"
-      >
-        <i class="fa-solid fa-line-height fa-2xl"></i>
-        <img class="whitify" src="../icons/link.svg" alt="Highlight links" />
-        <p class="staccess stlc__">Link Highlight</p>
-      </button>
-      <button
-        id="staccess__headinghighlight__btn"
-        class="tile__"
-        type="button"
-        onclick="applyHeadingHighlight()"
-      >
-        <i class="fa-solid fa-line-height fa-2xl"></i>
-        <img
-          class="whitify"
-          src="../icons/heading.svg"
-          alt="Highlight Headings"
-        />
-        <p class="staccess stlc__">Heading Highlight</p>
+        <p class="staccess stlc__">Line Focus</p>
       </button>
       <button
         id="staccess__disableanimations__btn"
@@ -347,6 +321,94 @@
           alt="Disable Animations"
         />
         <p class="staccess stlc__">Disable Animations</p>
+      </button>
+    </div>
+
+    <div class="st_toggle-cover">
+      <div class="st_toggle r">
+        <input
+          id="st_checkbox__"
+          type="checkbox"
+          onchange="st_toggleProfile(event,'cd')"
+          class="st_checkbox__"
+        />
+        <div class="knobs"></div>
+        <div class="layer"></div>
+      </div>
+      <h3 class="st_toggle-title stlc__">Cognitive Disability Profile</h3>
+    </div>
+
+    <div id="st__button_grid__" class="grid__">
+      <button
+        id="staccess__linkhighlight__btn"
+        class="tile__"
+        type="button"
+        onclick="applyLinkHighlight()"
+      >
+        <i class="fa-solid fa-line-height fa-2xl"></i>
+        <img class="whitify" src="../icons/link.svg" alt="Highlight links" />
+        <p class="staccess stlc__">Link Highlight</p>
+      </button>
+
+      <button
+        id="staccess__headinghighlight__btn"
+        class="tile__"
+        type="button"
+        onclick="applyHeadingHighlight()"
+      >
+        <i class="fa-solid fa-line-height fa-2xl"></i>
+        <img
+          class="whitify"
+          src="../icons/heading.svg"
+          alt="Highlight Headings"
+        />
+        <p class="staccess stlc__">Heading Highlight</p>
+      </button>
+    </div>
+
+    <div class="st_toggle-cover">
+      <div class="st_toggle r">
+        <input
+          id="st_checkbox__"
+          type="checkbox"
+          onchange="st_toggleProfile(event,'dys')"
+          class="st_checkbox__"
+        />
+        <div class="knobs"></div>
+        <div class="layer"></div>
+      </div>
+      <h3 class="st_toggle-title stlc__">Dyslexia Profile</h3>
+    </div>
+    <div id="st__button_grid__" class="grid__">
+      <button
+        id="staccess__dyslexiaFont__btn"
+        class="tile__"
+        type="button"
+        onclick="applyDyslexicFont()"
+      >
+        <img
+          class="whitify"
+          src="../icons/dyslexia.svg"
+          alt="Activate dyslexia font"
+        />
+
+        <!-- <i class="fa-solid fa-glasses fa-2xl"></i> -->
+        <p class="staccess stlc__">Dyslexic Font</p>
+        <!-- <i class="fa-solid fa-glasses"></i> -->
+      </button>
+      <button
+        id="staccess__dyslexiaruler__btn"
+        class="tile__ mobile_special__"
+        type="button"
+        onclick="applyDyslexiaRuler()"
+      >
+        <i class="fa-solid fa-line-height fa-2xl"></i>
+        <img
+          class="whitify"
+          src="../icons/dyslexia-ruler.svg"
+          alt="Activate Dyslexia Ruler"
+        />
+        <p class="staccess stlc__">Dyslexia Ruler</p>
       </button>
     </div>
   </div>
