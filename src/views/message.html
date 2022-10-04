@@ -80,6 +80,21 @@
       </select>
     </div>
     <button class="reset_btn__ stlc__" onclick="resetAll()">Reset</button>
+
+    <div class="st_toggle-cover">
+      <div class="st_toggle r">
+        <input
+          id="st_checkbox__"
+          type="checkbox"
+          onchange="st_toggleProfile(event)"
+          class="st_checkbox__"
+        />
+        <div class="knobs"></div>
+        <div class="layer"></div>
+      </div>
+      <h3 class="st_toggle-title stlc__">Reading Difficulties</h3>
+    </div>
+
     <div id="st__button_grid__" class="grid__">
       <button
         id="staccess__clickandread__btn"
@@ -127,6 +142,64 @@
         />
         <p class="staccess stlc__">Stop Reading</p>
       </button>
+      <button
+        id="staccess__monochrome__btn"
+        class="tile__"
+        type="button"
+        onclick="applyMonochrome()"
+      >
+        <i class="fa-solid fa-line-height fa-2xl"></i>
+        <img
+          class="whitify"
+          src="../icons/monochrome.svg"
+          alt="Apply Monochrome"
+        />
+        <p class="staccess stlc__">Monochrome</p>
+      </button>
+      <button
+        id="staccess__bluelightfilter__btn"
+        class="tile__"
+        type="button"
+        onclick="applyBluelightFilter()"
+      >
+        <i class="fa-solid fa-line-height fa-2xl"></i>
+        <img
+          class="whitify"
+          src="../icons/moon.svg"
+          alt="Activate Bluelight Filter"
+        />
+        <p class="staccess stlc__">Bluelight Filter</p>
+      </button>
+      <button
+        id="staccess__screenoverlay__btn"
+        class="tile__"
+        type="button"
+        onclick="applyScreenOverlay()"
+      >
+        <i class="fa-solid fa-line-height fa-2xl"></i>
+        <img
+          class="whitify"
+          src="../icons/moon2.svg"
+          alt="Activate Screen Overlay"
+        />
+        <p class="staccess stlc__">Screen Overlay</p>
+      </button>
+      <button
+        id="staccess__readingruler__btn"
+        class="tile__ mobile_special__"
+        type="button"
+        onclick="applyReadingRuler()"
+      >
+        <i class="fa-solid fa-line-height fa-2xl"></i>
+        <img
+          class="whitify"
+          src="../icons/ruler.svg"
+          alt="Activate Reading Ruler"
+        />
+        <p class="staccess stlc__">Reading Ruler</p>
+      </button>
+    </div>
+    <div id="st__button_grid__" class="grid__">
       <button
         id="staccess__dyslexiaFont__btn"
         class="tile__"
@@ -206,20 +279,7 @@
         />
         <p class="staccess stlc__">Line Focus</p>
       </button>
-      <button
-        id="staccess__readingruler__btn"
-        class="tile__ mobile_special__"
-        type="button"
-        onclick="applyReadingRuler()"
-      >
-        <i class="fa-solid fa-line-height fa-2xl"></i>
-        <img
-          class="whitify"
-          src="../icons/ruler.svg"
-          alt="Activate Reading Ruler"
-        />
-        <p class="staccess stlc__">Reading Ruler</p>
-      </button>
+
       <button
         id="staccess__whitecursor__btn"
         class="tile__"
@@ -234,34 +294,7 @@
         />
         <p class="staccess stlc__">White Cursor</p>
       </button>
-      <button
-        id="staccess__bluelightfilter__btn"
-        class="tile__"
-        type="button"
-        onclick="applyBluelightFilter()"
-      >
-        <i class="fa-solid fa-line-height fa-2xl"></i>
-        <img
-          class="whitify"
-          src="../icons/moon.svg"
-          alt="Activate Bluelight Filter"
-        />
-        <p class="staccess stlc__">Bluelight Filter</p>
-      </button>
-      <button
-        id="staccess__screenoverlay__btn"
-        class="tile__"
-        type="button"
-        onclick="applyScreenOverlay()"
-      >
-        <i class="fa-solid fa-line-height fa-2xl"></i>
-        <img
-          class="whitify"
-          src="../icons/moon2.svg"
-          alt="Activate Screen Overlay"
-        />
-        <p class="staccess stlc__">Screen Overlay</p>
-      </button>
+
       <button
         id="staccess__dyslexiaruler__btn"
         class="tile__ mobile_special__"
@@ -276,20 +309,7 @@
         />
         <p class="staccess stlc__">Dyslexia Ruler</p>
       </button>
-      <button
-        id="staccess__monochrome__btn"
-        class="tile__"
-        type="button"
-        onclick="applyMonochrome()"
-      >
-        <i class="fa-solid fa-line-height fa-2xl"></i>
-        <img
-          class="whitify"
-          src="../icons/monochrome.svg"
-          alt="Apply Monochrome"
-        />
-        <p class="staccess stlc__">Monochrome</p>
-      </button>
+
       <button
         id="staccess__linkhighlight__btn"
         class="tile__"

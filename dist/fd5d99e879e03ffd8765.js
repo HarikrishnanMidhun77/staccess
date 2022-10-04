@@ -124,6 +124,10 @@ function langSwitch(index) {
   }
 }
 
+function st_toggleProfile(e) {
+  console.log(" e.currentTarget.checked", e.currentTarget.checked);
+}
+
 function st__loadStyles__() {
   let style = document.createElement("style");
   style.innerHTML = `

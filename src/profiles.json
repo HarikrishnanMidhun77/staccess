@@ -1,0 +1,22 @@
+{
+  "readingDifficulties": [
+    "clickandread_text",
+    "stopread_btn_text",
+    "bluelightfilter_btn_text",
+    "screenoverlay_btn_text",
+    "monochrome_btn_text",
+    "readingruler_btn_text"
+  ],
+  "visionImpairment": [
+    "fontsize_btn_text",
+    "letterspacing_btn_text",
+    "lineheight_btn_text",
+    "whitecursor_btn_text"
+  ],
+  "adhd": ["linefocus_btn_text", "disableanimation_btn_text"],
+  "cognitiveDisability": [
+    "linkhighlight_btn_text",
+    "headinghighlight_btn_text"
+  ],
+  "dyslexia": ["dyslexicfont_btn_text", "dyslexiaruler_btn_text"]
+}

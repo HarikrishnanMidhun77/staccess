@@ -2,6 +2,7 @@ import html from "./message.html";
 import "./message.css";
 import "./sidebar.css";
 import "./tile.css";
+import "./togglebar.css";
 import "./widgetInject.css";
 import { cdnLink } from "../consts.js";
 
