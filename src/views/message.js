@@ -46,7 +46,7 @@ export function setParams(params) {
   }
   var s = document.createElement("script");
   s.type = "application/javascript";
-  s.src = "http://localhost:8080/fd5d99e879e03ffd8765.js"; // cdnLink + "dist/fd5d99e879e03ffd8765.js"; //cdnLink + "src/functions/fontFunctions.js"; //"http://localhost:8080/fd5d99e879e03ffd8765.js"; //"../functions/fontFunctions.js";
+  s.src = cdnLink + "dist/fd5d99e879e03ffd8765.js"; // cdnLink + "dist/fd5d99e879e03ffd8765.js"; //cdnLink + "src/functions/fontFunctions.js"; //"http://localhost:8080/fd5d99e879e03ffd8765.js"; //"../functions/fontFunctions.js";
   document.body.appendChild(s);
 
   const paramArr = params.split("::");
