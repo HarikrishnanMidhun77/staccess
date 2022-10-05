@@ -52,41 +52,59 @@ document.addEventListener("DOMContentLoaded", function () {
 
 var french_json = {
   reset_btn_text: "Réinitialiser",
+  rd_toggle_text: "Profil des difficultés de lecture",
   clickandread_text: "Cliquez et Lisez",
   stopread_btn_text: "Arrêter de lire",
-  dyslexicfont_btn_text: "Police dyslexique",
+  monochrome_btn_text: "Monochrome",
+  bluelightfilter_btn_text: "Filtre lumière bleue",
+  screenoverlay_btn_text: "Superposition d'écran",
+  readingruler_btn_text: "Règle de lecture",
+
+  vi_toggle_text: "Profil des déficiences visuelles",
   fontsize_btn_text: "Taille de police",
   letterspacing_btn_text: "l'espacement des lettres",
   lineheight_btn_text: "Hauteur de la ligne",
-  linefocus_btn_text: "Mise au point de la ligne",
-  readingruler_btn_text: "Règle de lecture",
   whitecursor_btn_text: "Curseur blanc",
-  bluelightfilter_btn_text: "Filtre lumière bleue",
-  screenoverlay_btn_text: "Superposition d'écran",
-  dyslexiaruler_btn_text: "Règle de la dyslexie",
-  monochrome_btn_text: "Monochrome",
+
+  adhd_toggle_text: "Profil TDAH",
+  linefocus_btn_text: "Mise au point de la ligne",
+  disableanimation_btn_text: "Désactiver l'animation",
+
+  cd_toggle_text: "Profil de déficience cognitive",
   linkhighlight_btn_text: "Mise en surbrillance du lien",
   headinghighlight_btn_text: "En-tête en surbrillance",
-  disableanimation_btn_text: "Désactiver l'animation",
+
+  dys_toggle_text: "Profil dyslexie",
+  dyslexicfont_btn_text: "Police dyslexique",
+  dyslexiaruler_btn_text: "Règle de la dyslexie",
 };
 var english_json = {
   reset_btn_text: "Reset",
+  rd_toggle_text: "Reading Difficulties Profile",
   clickandread_text: "Click & Read",
   stopread_btn_text: "Stop Read",
-  dyslexicfont_btn_text: "Dyslexic Font",
+  monochrome_btn_text: "Monochrome",
+  bluelightfilter_btn_text: "Bluelight Filter",
+  screenoverlay_btn_text: "Screen Overlay",
+  readingruler_btn_text: "Reading Ruler",
+
+  vi_toggle_text: "Visual Impairments Profile",
   fontsize_btn_text: "Font Size",
   letterspacing_btn_text: "Letter Spacing",
   lineheight_btn_text: "Line Height",
-  linefocus_btn_text: "Line Focus",
-  readingruler_btn_text: "Reading Ruler",
   whitecursor_btn_text: "White Cursor",
-  bluelightfilter_btn_text: "Bluelight Filter",
-  screenoverlay_btn_text: "Screen Overlay",
-  dyslexiaruler_btn_text: "Dyslexia Ruler",
-  monochrome_btn_text: "Monochrome",
+
+  adhd_toggle_text: "ADHD Profile",
+  linefocus_btn_text: "Line Focus",
+  disableanimation_btn_text: "Disable Animation",
+
+  cd_toggle_text: "Cognitive Disability Profile",
   linkhighlight_btn_text: "Link Highlight",
   headinghighlight_btn_text: "Heading Highlight",
-  disableanimation_btn_text: "Disable Animation",
+
+  dys_toggle_text: "Dyslexia Profile",
+  dyslexicfont_btn_text: "Dyslexic Font",
+  dyslexiaruler_btn_text: "Dyslexia Ruler",
 };
 function st_changeLang() {
   var sel = document.querySelector("#st_lang_selector__");
@@ -509,25 +527,8 @@ function changeFontSize() {
     var tagsToRemove = ["IMG", "SCRIPT", "STYLE", "IFRAME"];
 
     items.forEach((item, key) => {
-      if (item.classList.contains("st_toggle-title")) {
-        console.log("except item", item);
-      }
-    });
-    // items.forEach((item, key) => {
-    //   if (item.classList.contains("stlc__")) {
-    //     console.log("except item", item);
-    //   }
-    // });
-    items.forEach((item, key) => {
       if (!tagsToRemove.includes(item.tagName) && item.innerText != "") {
-        if (
-          !(
-            item.classList.contains("st_toggle-title")
-            // item.classList.contains("st_toggle-cover") ||
-            // item.classList.contains("st_sidebar__") ||
-            // item.classList.contains("st___")
-          )
-        ) {
+        if (!item.classList.contains("st_toggle-title")) {
           // console.log("all item", item);
           let itemFont = window
             .getComputedStyle(item)
@@ -557,12 +558,7 @@ function changeFontSize() {
       var tagsToRemove = ["IMG", "SCRIPT", "STYLE", "IFRAME"];
       items.forEach((item, key) => {
         if (!tagsToRemove.includes(item.tagName) && item.innerText != "") {
-          if (
-            !(
-              item.classList.contains("st_toggle-title")
-              //item.classList.contains("st_toggle-cover")
-            )
-          ) {
+          if (!item.classList.contains("st_toggle-title")) {
             let itemFont = window
               .getComputedStyle(item)
               .getPropertyValue("font-size");
@@ -591,7 +587,9 @@ function changeLetterSpacing() {
     var style = document.createElement("style");
     style.id = "staccess-widget-letter-spacing";
     style.innerHTML =
-      `body *{letter-spacing:` + (letter_spacing_count + 1) + `px !important;}`;
+      `body  *:not(h3.st_toggle-title){letter-spacing:` +
+      (letter_spacing_count + 1) +
+      `px !important;}`;
     document.head.appendChild(style);
 
     if (letter_spacing_count == 4) letter_spacing_direction = 0;
@@ -607,7 +605,9 @@ function changeLetterSpacing() {
     var style = document.createElement("style");
     style.id = "staccess-widget-letter-spacing";
     style.innerHTML =
-      `body *{letter-spacing:` + (letter_spacing_count + 1) + `px !important;}`;
+      `body *:not(h3.st_toggle-title){letter-spacing:` +
+      (letter_spacing_count + 1) +
+      `px !important;}`;
     document.head.appendChild(style);
 
     if (letter_spacing_count == 0) letter_spacing_direction = 1;
