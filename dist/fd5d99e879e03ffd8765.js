@@ -1347,7 +1347,7 @@ function applyReadTextStop() {
     });
 }
 function applyClickAndRead() {
-  openSidebar();
+  //openSidebar();
   if (!read_click_text_flag) {
     read_click_text_flag = true;
     document.getElementById("staccess__clickandread__img").src =
