@@ -143,7 +143,7 @@ p.staccess_perc {
   height: 100%;
   background-color: #1565c0;
 }
-#st__button_grid__ {
+.st__button_grid__ {
   overflow-y: auto;
   /* max-height: 800px; */
   margin-top: 20px;

@@ -11,7 +11,7 @@
   href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
 /> -->
 <meta content="width=device-width, initial-scale=1" name="viewport" />
-<div>
+<div class="st___">
   <div class="st_sidebar__">
     <!-- <a class="active" href="#home">Home</a>
     <a href="#news">News</a>
@@ -89,13 +89,13 @@
           onchange="st_toggleProfile(event,'rd')"
           class="st_checkbox__"
         />
-        <div class="knobs"></div>
-        <div class="layer"></div>
+        <div class="st_knobs"></div>
+        <div class="st_layer"></div>
       </div>
       <h3 class="st_toggle-title stlc__">Reading Difficulties Profile</h3>
     </div>
 
-    <div id="st__button_grid__" class="grid__">
+    <div class="grid__ st__button_grid__">
       <button
         id="staccess__clickandread__btn"
         class="tile__"
@@ -208,12 +208,12 @@
           onchange="st_toggleProfile(event,'vi')"
           class="st_checkbox__"
         />
-        <div class="knobs"></div>
-        <div class="layer"></div>
+        <div class="st_knobs"></div>
+        <div class="st_layer"></div>
       </div>
       <h3 class="st_toggle-title stlc__">Visual Impairments Profile</h3>
     </div>
-    <div id="st__button_grid__" class="grid__">
+    <div class="grid__ st__button_grid__">
       <button
         id="staccess__fontsize__btn"
         class="tile__"
@@ -287,13 +287,13 @@
           onchange="st_toggleProfile(event,'adhd')"
           class="st_checkbox__"
         />
-        <div class="knobs"></div>
-        <div class="layer"></div>
+        <div class="st_knobs"></div>
+        <div class="st_layer"></div>
       </div>
       <h3 class="st_toggle-title stlc__">ADHD Profile</h3>
     </div>
 
-    <div id="st__button_grid__" class="grid__">
+    <div class="grid__ st__button_grid__">
       <button
         id="staccess__linefocus__btn"
         class="tile__ mobile_special__"
@@ -332,13 +332,13 @@
           onchange="st_toggleProfile(event,'cd')"
           class="st_checkbox__"
         />
-        <div class="knobs"></div>
-        <div class="layer"></div>
+        <div class="st_knobs"></div>
+        <div class="st_layer"></div>
       </div>
       <h3 class="st_toggle-title stlc__">Cognitive Disability Profile</h3>
     </div>
 
-    <div id="st__button_grid__" class="grid__">
+    <div class="grid__ st__button_grid__">
       <button
         id="staccess__linkhighlight__btn"
         class="tile__"
@@ -374,12 +374,12 @@
           onchange="st_toggleProfile(event,'dys')"
           class="st_checkbox__"
         />
-        <div class="knobs"></div>
-        <div class="layer"></div>
+        <div class="st_knobs"></div>
+        <div class="st_layer"></div>
       </div>
       <h3 class="st_toggle-title stlc__">Dyslexia Profile</h3>
     </div>
-    <div id="st__button_grid__" class="grid__">
+    <div class="grid__ st__button_grid__">
       <button
         id="staccess__dyslexiaFont__btn"
         class="tile__"
@@ -412,10 +412,9 @@
       </button>
     </div>
   </div>
-  <button id="access__btn" class="float__access">
+  <button id="access__btn" onclick="openSidebar()" class="float__access">
     <!-- <i class="fa fa-low-vision" aria-hidden="true"></i> -->
     <img
-      onclick="openSidebar()"
       class="whitify"
       src="../icons/accessibility.svg"
       alt="Accessibility Widget Icon"

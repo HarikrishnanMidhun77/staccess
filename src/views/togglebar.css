@@ -22,13 +22,13 @@
   right: 0;
   bottom: 0;
   color: #d7e3e3;
-  font-size: 12px;
+
   line-height: 1;
   padding: 5px;
 }
 
-.knobs,
-.layer {
+.st_knobs,
+.st_layer {
   position: absolute;
   top: 0;
   right: 0;
@@ -47,7 +47,7 @@
 }
 
 .st_toggle.r,
-.st_toggle.r .layer {
+.st_toggle.r .st_layer {
   border-radius: 100px;
 }
 
@@ -66,18 +66,18 @@
   z-index: 3;
 }
 
-.knobs {
+.st_knobs {
   z-index: 2;
 }
 
-.layer {
+.st_layer {
   width: 100%;
   background-color: #ebf7fc;
   transition: 0.3s ease all;
   z-index: 1;
 }
 
-.st_toggle .knobs:before {
+.st_toggle .st_knobs:before {
   content: "OFF";
   position: absolute;
   top: 4px;
@@ -96,23 +96,24 @@
   transition: 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15) all;
 }
 
-.st_toggle .st_checkbox__:checked + .knobs:before {
+.st_toggle .st_checkbox__:checked + .st_knobs:before {
   content: "ON";
   left: 42px;
   color: #fff;
   background-color: var(--primary__);
 }
 
-.st_toggle .st_checkbox__:checked ~ .layer {
+.st_toggle .st_checkbox__:checked ~ .st_layer {
   /* background-color: #fcebeb; */
 }
 
-.st_toggle .knobs,
-.st_toggle .knobs:before,
-.st_toggle .layer {
+.st_toggle .st_knobs,
+.st_toggle .st_knobs:before,
+.st_toggle .st_layer {
   transition: 0.3s ease all;
 }
 
 .st_toggle-title {
   margin-left: 25px;
+  font-size: 18px;
 }

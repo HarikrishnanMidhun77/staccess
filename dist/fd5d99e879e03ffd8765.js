@@ -145,8 +145,16 @@ function st_toggleProfile(e, prof) {
     case "vi":
       if (e.currentTarget.checked) {
         //TODO: do activate functions for step buttons
+        //TODO: change language json
+
+        changeFontSize();
+        changeLetterSpacing();
+        changeLineHeight();
         applyWhiteCursor();
       } else {
+        resetFontSize();
+        resetLetterSpacing();
+        resetLineHeight();
         resetWhiteCursor();
       }
       break;
@@ -496,19 +504,41 @@ function changeFontSize() {
       document.getElementById("staccess__fontsize__icon")
     );
     if (font_size_count == 4) font_size_direction = 0;
+    // let items = document.querySelectorAll("*:not(h3.st_toggle-title)");
     let items = document.querySelectorAll("*");
     var tagsToRemove = ["IMG", "SCRIPT", "STYLE", "IFRAME"];
+
+    items.forEach((item, key) => {
+      if (item.classList.contains("st_toggle-title")) {
+        console.log("except item", item);
+      }
+    });
+    // items.forEach((item, key) => {
+    //   if (item.classList.contains("stlc__")) {
+    //     console.log("except item", item);
+    //   }
+    // });
     items.forEach((item, key) => {
       if (!tagsToRemove.includes(item.tagName) && item.innerText != "") {
-        let itemFont = window
-          .getComputedStyle(item)
-          .getPropertyValue("font-size");
-        original_font_size.push(itemFont);
-        item.style.setProperty(
-          "font-size",
-          `${parseFloat(itemFont) + 3}px`,
-          "important"
-        );
+        if (
+          !(
+            item.classList.contains("st_toggle-title")
+            // item.classList.contains("st_toggle-cover") ||
+            // item.classList.contains("st_sidebar__") ||
+            // item.classList.contains("st___")
+          )
+        ) {
+          // console.log("all item", item);
+          let itemFont = window
+            .getComputedStyle(item)
+            .getPropertyValue("font-size");
+          original_font_size.push(itemFont);
+          item.style.setProperty(
+            "font-size",
+            `${parseFloat(itemFont) + 3}px`,
+            "important"
+          );
+        }
       }
     });
   } else {
@@ -522,18 +552,26 @@ function changeFontSize() {
         document.getElementById("staccess__fontsize__icon")
       );
       if (font_size_count == 0) font_size_direction = 1;
+      // let items = document.querySelectorAll("body> div:not(.st_toggle-cover)");
       let items = document.querySelectorAll("*");
       var tagsToRemove = ["IMG", "SCRIPT", "STYLE", "IFRAME"];
       items.forEach((item, key) => {
         if (!tagsToRemove.includes(item.tagName) && item.innerText != "") {
-          let itemFont = window
-            .getComputedStyle(item)
-            .getPropertyValue("font-size");
-          item.style.setProperty(
-            "font-size",
-            `${parseFloat(itemFont) - 3}px`,
-            "important"
-          );
+          if (
+            !(
+              item.classList.contains("st_toggle-title")
+              //item.classList.contains("st_toggle-cover")
+            )
+          ) {
+            let itemFont = window
+              .getComputedStyle(item)
+              .getPropertyValue("font-size");
+            item.style.setProperty(
+              "font-size",
+              `${parseFloat(itemFont) - 3}px`,
+              "important"
+            );
+          }
         }
       });
     }
