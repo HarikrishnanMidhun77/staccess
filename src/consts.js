@@ -1,2 +1,2 @@
 export const cdnLink =
-  "https://cdn.jsdelivr.net/gh/HarikrishnanMidhun77/staccess@5a415f8d4c053cde4bd2b9831e80d59e67652cb9/";
+  "https://cdn.jsdelivr.net/gh/HarikrishnanMidhun77/staccess@5fcd01a5d511abe7f73c5bcfbd01275ae5f50a81/";
