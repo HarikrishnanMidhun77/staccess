@@ -1,7 +1,7 @@
 import { ping } from "./services";
 import { show, setParams } from "./views/message";
 
-const supportedAPI = ["init", "message1", "custom_params"]; // enlist all methods supported by API (e.g. `mw('event', 'user-login');`)
+const supportedAPI = ["init", "custom_params"]; // enlist all methods supported by API (e.g. `mw('event', 'user-login');`)
 
 /**
     The main entry of the application
@@ -47,9 +47,7 @@ function apiHandler(api, params) {
 
   switch (api) {
     // TODO: add API implementation
-    case "message1":
-      show(params);
-      break;
+
     case "custom_params":
       setParams(params);
       break;

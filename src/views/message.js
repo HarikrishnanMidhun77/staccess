@@ -1,4 +1,5 @@
 import html from "./message.html";
+import exp from "./expired.html";
 import "./message.css";
 import "./sidebar.css";
 import "./tile.css";
@@ -9,76 +10,84 @@ import { cdnLink } from "../consts.js";
 let elements = [];
 let body;
 
-export function show(text) {
-  console.log("in show");
-
-  // // convert plain HTML string into DOM elements
-  // let temporary = document.createElement("div");
-  // temporary.innerHTML = html;
-  // //alert(temporary.innerHTML);
-  // // temporary.getElementsByClassName("float__access")[0].style.backgroundColor =
-  // //   "rgb(345,42,42)";
-
-  // // append elements to body
-  // // body = document.getElementsByTagName("body")[0];
-
-  // while (temporary.children.length > 0) {
-  //   elements.push(temporary.children[0]);
-  //   document.body.appendChild(temporary.children[0]);
-  // }
-  // console.log(" temporary.innerHTML", temporary.innerHTML);
-  // document.body.appendChild(temporary);
-  // body.addEventListener("click", close);
-  // console.log("event added");
-}
 export function setParams(params) {
   console.log("in color");
-  let temporary = document.createElement("div");
-  temporary.innerHTML = html;
-  console.log(" temporary.innerHTML", temporary.innerHTML);
-  // alert(temporary.getElementsByClassName("float__access")[0].innerHTML);
-
-  //document.body.appendChild(temporary);
-  body = document.getElementsByTagName("body")[0];
-  while (temporary.children.length > 0) {
-    document.body.appendChild(temporary.children[0]);
-    elements.push(temporary.children[0]);
-  }
-  var s = document.createElement("script");
-  s.type = "application/javascript";
-  s.src = cdnLink + "dist/fd5d99e879e03ffd8765.js"; // cdnLink + "dist/fd5d99e879e03ffd8765.js"; //cdnLink + "src/functions/fontFunctions.js"; //"http://localhost:8080/fd5d99e879e03ffd8765.js"; //"../functions/fontFunctions.js";
-  document.body.appendChild(s);
-
   const paramArr = params.split("::");
-  document.getElementsByClassName("float__access")[0].style.backgroundColor =
-    paramArr[0];
+  var atkn = paramArr[2];
+  console.log("atkn1", atkn);
+  fetch("https://accessibly-server.herokuapp.com/api/v1/users/validateToken", {
+    //TODO:chnage url
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ token: atkn }),
+  }).then(async (res) => {
+    var r = await res.json();
+    console.log("Request complete! response json:", r);
+    if (!r.isValid) {
+      let temporary = document.createElement("div");
+      temporary.innerHTML = exp;
+      console.log(" temporary.innerHTML exp", temporary.innerHTML);
+      // alert(temporary.getElementsByClassName("float__access")[0].innerHTML);
 
-  switch (paramArr[1]) {
-    case "0":
-      // right bottom
-      break;
-    case "1":
-      //left bottom
+      //document.body.appendChild(temporary);
+      body = document.getElementsByTagName("body")[0];
+      while (temporary.children.length > 0) {
+        document.body.appendChild(temporary.children[0]);
+        elements.push(temporary.children[0]);
+      }
+      var s = document.createElement("script");
+      s.type = "application/javascript";
+      s.src = cdnLink + "dist/fd5d99e879e03ffd8765.js"; // cdnLink + "dist/fd5d99e879e03ffd8765.js"; //cdnLink + "src/functions/fontFunctions.js"; //"http://localhost:8080/fd5d99e879e03ffd8765.js"; //"../functions/fontFunctions.js";
+      document.body.appendChild(s);
+    } else {
+      let temporary = document.createElement("div");
+      temporary.innerHTML = html;
+      // console.log(" temporary.innerHTML", temporary.innerHTML);
+      // alert(temporary.getElementsByClassName("float__access")[0].innerHTML);
 
-      document.getElementsByClassName("float__access")[0].style.left = "40px";
-      document.getElementsByClassName("float__access")[0].style.right = "0px";
-      break;
-    case "2":
-      //left top
-      document.getElementsByClassName("float__access")[0].style.bottom = "0px";
-      document.getElementsByClassName("float__access")[0].style.top = "40px";
-      document.getElementsByClassName("float__access")[0].style.left = "40px";
-      document.getElementsByClassName("float__access")[0].style.right = "0px";
-      break;
-    case "3":
-      // right top
-      document.getElementsByClassName("float__access")[0].style.bottom = "0px";
-      document.getElementsByClassName("float__access")[0].style.top = "40px";
-      break;
-  }
+      //document.body.appendChild(temporary);
+      body = document.getElementsByTagName("body")[0];
+      while (temporary.children.length > 0) {
+        document.body.appendChild(temporary.children[0]);
+        elements.push(temporary.children[0]);
+      }
+      var s = document.createElement("script");
+      s.type = "application/javascript";
+      s.src = cdnLink + "dist/fd5d99e879e03ffd8765.js"; // cdnLink + "dist/fd5d99e879e03ffd8765.js"; //cdnLink + "src/functions/fontFunctions.js"; //"http://localhost:8080/fd5d99e879e03ffd8765.js"; //"../functions/fontFunctions.js";
+      document.body.appendChild(s);
+    }
+
+    document.getElementsByClassName("float__access")[0].style.backgroundColor =
+      paramArr[0];
+
+    switch (paramArr[1]) {
+      case "0":
+        // right bottom
+        break;
+      case "1":
+        //left bottom
+
+        document.getElementsByClassName("float__access")[0].style.left = "40px";
+        document.getElementsByClassName("float__access")[0].style.right = "0px";
+        break;
+      case "2":
+        //left top
+        document.getElementsByClassName("float__access")[0].style.bottom =
+          "0px";
+        document.getElementsByClassName("float__access")[0].style.top = "40px";
+        document.getElementsByClassName("float__access")[0].style.left = "40px";
+        document.getElementsByClassName("float__access")[0].style.right = "0px";
+        break;
+      case "3":
+        // right top
+        document.getElementsByClassName("float__access")[0].style.bottom =
+          "0px";
+        document.getElementsByClassName("float__access")[0].style.top = "40px";
+        break;
+    }
+  });
+
   //document.getElementById("access__btn").addEventListener("click", openSidebar);
-
-  // TODO: split color param with : and add color and position
 
   //  applyAllFunctions();
 }
