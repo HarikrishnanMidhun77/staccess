@@ -1,7 +1,7 @@
 <html>
   <head>
     <title>Demo page of the widget</title>
-    <script>
+    <!-- <script>
       (function (w, d, s, o, f, js, fjs) {
         w["JS-Widget"] = o;
         w[o] =
@@ -20,6 +20,26 @@
       mw(
         "custom_params",
         "rgb(0, 34, 123)::0::3dd5d8f794e8b5cd0e0e5b4f0aa49c00dbbe04bda66c8f95fd160ea32df5e0690"
+      );
+    </script> -->
+
+    <script>
+      (function (w, d, s, o, f, js, fjs) {
+        w["JS-Widget"] = o;
+        w[o] =
+          w[o] ||
+          function () {
+            (w[o].q = w[o].q || []).push(arguments);
+          };
+        (js = d.createElement(s)), (fjs = d.getElementsByTagName(s)[0]);
+        js.id = o;
+        js.src = f;
+        js.async = 1;
+        fjs.parentNode.insertBefore(js, fjs);
+      })(window, document, "script", "mw", "./widget.js");
+      mw(
+        "custom_params",
+        "7968687d63617d6364647d60786b6b616b6b62353564356937666865346933643235613461346433653761303065683261613533333461653335306767326937686437356067613430626335376434616768"
       );
     </script>
   </head>

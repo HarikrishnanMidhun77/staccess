@@ -10,9 +10,26 @@ import { cdnLink } from "../consts.js";
 let elements = [];
 let body;
 
+const decipher = (salt) => {
+  const textToChars = (text) => text.split("").map((c) => c.charCodeAt(0));
+  const applySaltToChar = (code) =>
+    textToChars(salt).reduce((a, b) => a ^ b, code);
+  return (encoded) =>
+    encoded
+      .match(/.{1,2}/g)
+      .map((hex) => parseInt(hex, 16))
+      .map(applySaltToChar)
+      .map((charCode) => String.fromCharCode(charCode))
+      .join("");
+};
+
 export function setParams(params) {
   console.log("in color");
-  const paramArr = params.split("::");
+  const myDecipher = decipher("hari1983@");
+  var decodedParams = myDecipher(params);
+  console.log("decodedParams", decodedParams);
+
+  const paramArr = decodedParams.split("::");
   var atkn = paramArr[2];
   console.log("atkn1", atkn);
   fetch("https://accessibly-server.herokuapp.com/api/v1/users/validateToken", {
