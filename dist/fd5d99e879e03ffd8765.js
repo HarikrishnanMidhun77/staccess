@@ -6,8 +6,8 @@ const primary__ = "#1564bf";
 const hover__ = "#5e91f2";
 const selected__ = "#003b8e";
 //import { cdnLink } from "../consts.js";
-const cdnLink =
-  "https://cdn.jsdelivr.net/gh/HarikrishnanMidhun77/staccess@5fcd01a5d511abe7f73c5bcfbd01275ae5f50a81/";
+const cdnLink = "https://attainabily.com/";
+// "https://cdn.jsdelivr.net/gh/HarikrishnanMidhun77/staccess@5fcd01a5d511abe7f73c5bcfbd01275ae5f50a81/";
 
 var dyslexiaFont__flag = false;
 var font_size_count = 0,

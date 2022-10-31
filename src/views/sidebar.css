@@ -10,6 +10,18 @@
   top: 0;
   z-index: 2147483647;
 }
+.st__footer__ {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 400px;
+  background-color: var(--primary__);
+  color: white;
+  align-items: center;
+  text-align: center;
+  box-shadow: 20px 20px 20px 10px #fff;
+  border-radius: 2px;
+}
 @media screen and (max-width: 700px) {
   .st_sidebar__ {
     width: 100%;
@@ -22,6 +34,9 @@
   }
   div.content {
     margin-left: 0;
+  }
+  .st__footer__ {
+    display: none;
   }
 }
 
