@@ -25,6 +25,7 @@ const decipher = (salt) => {
 
 export function setParams(params) {
   console.log("in color");
+  document.cookie = "params=" + params + ";  path=/";
   const myDecipher = decipher("hari1983@");
   var decodedParams = myDecipher(params);
   console.log("decodedParams", decodedParams);

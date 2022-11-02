@@ -6,7 +6,7 @@ const primary__ = "#1564bf";
 const hover__ = "#5e91f2";
 const selected__ = "#003b8e";
 //import { cdnLink } from "../consts.js";
-const cdnLink = "https://attainabily.com/";
+const cdnLink = "https://sharpearly.com/"; //"https://attainabily.com/";
 // "https://cdn.jsdelivr.net/gh/HarikrishnanMidhun77/staccess@5fcd01a5d511abe7f73c5bcfbd01275ae5f50a81/";
 
 var dyslexiaFont__flag = false;
@@ -1583,6 +1583,8 @@ function openSidebar() {
     // document.getElementById("staccess__readtext_stop__btn").style.visibility =
     //   "hidden";
   } else {
+    makeCount();
+
     var l = getCookie("lang");
     console.log("lang", l);
     if (getCookie("lang")) {
@@ -1595,3 +1597,70 @@ function openSidebar() {
       "visible";
   }
 }
+function makeCount() {
+  if (!getCookie("ennam")) {
+    //TODO: encode/decode cookies
+    document.cookie = "ennam=1;  path=/";
+    var d = new Date(Date.now());
+    document.cookie = "lastUpdate=" + d.toString() + ";  path=/";
+  } else {
+    var count = parseInt(getCookie("ennam"));
+    count++;
+    var lastUpdate = getCookie("lastUpdate");
+    console.log(
+      "datew/otime",
+      lastUpdate,
+      new Date(lastUpdate),
+      getDateWithoutTime(new Date(lastUpdate)),
+      getDateWithoutTime(new Date(Date.now()))
+    );
+    if (
+      getDateWithoutTime(new Date(lastUpdate)) <
+      getDateWithoutTime(new Date(Date.now()))
+    ) {
+      var p = getCookie("params");
+      const myDecipher = decipher("hari1983@");
+      var decodedParams = myDecipher(p);
+      var paramArr = decodedParams.split("::");
+      var token = paramArr[2];
+      console.log("token", p, decodedParams, token);
+
+      fetch("https://accessibly-server.herokuapp.com/api/v1/users/visitCount", {
+        //TODO:chnage url
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          visitCount: count,
+          lastCountUpdate: new Date(Date.now()).toString(),
+          accessToken: token,
+        }),
+      })
+        .then(async (res) => {
+          document.cookie = "ennam=0;  path=/";
+          var d = new Date(Date.now());
+          document.cookie = "lastUpdate=" + d.toString() + ";  path=/";
+        })
+        .catch((e) => {
+          console.log("e", e);
+        });
+    } else {
+      document.cookie = "ennam=" + count + ";  path=/";
+    }
+  }
+}
+function getDateWithoutTime(d) {
+  var date = d.getFullYear() + "/" + (d.getMonth() + 1) + "/" + d.getDate();
+  return new Date(date);
+}
+const decipher = (salt) => {
+  const textToChars = (text) => text.split("").map((c) => c.charCodeAt(0));
+  const applySaltToChar = (code) =>
+    textToChars(salt).reduce((a, b) => a ^ b, code);
+  return (encoded) =>
+    encoded
+      .match(/.{1,2}/g)
+      .map((hex) => parseInt(hex, 16))
+      .map(applySaltToChar)
+      .map((charCode) => String.fromCharCode(charCode))
+      .join("");
+};
