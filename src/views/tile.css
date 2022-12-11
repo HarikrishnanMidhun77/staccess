@@ -217,6 +217,7 @@ p.staccess_perc {
   -webkit-appearance: button;
   appearance: button;
   outline: none;
+  border-radius: 10px;
 }
 
 .st_lang_box__::before {
