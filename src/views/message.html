@@ -22,7 +22,31 @@
       <img src="../icons/back.svg" />
     </button> -->
     <div>
-      <div>
+      <div class="logo-lang-container">
+        <a
+          style="
+            position: absolute;
+            height: 33px;
+            margin-top: 15px;
+            margin-left: 10px;
+          "
+          href="https://accessibly.ca/"
+          target="_blank"
+        >
+          <img
+            style="height: 33px"
+            src="../icons/linear-logo.png"
+            alt="My Happy SVG"
+          />
+        </a>
+        <div class="st_lang_box__">
+          <select id="st_lang_selector__" onchange="st_changeLang()">
+            <option value="en">English</option>
+            <option value="fr">French</option>
+          </select>
+        </div>
+      </div>
+      <div class="back-reset-container">
         <button
           onclick="openSidebar()"
           aria-expanded="false"
@@ -53,8 +77,8 @@
               <g>
                 <path
                   d="M473.475,230.025h-427.4l116-116c5.3-5.3,5.3-13.8,0-19.1c-5.3-5.3-13.8-5.3-19.1,0l-139,139c-5.3,5.3-5.3,13.8,0,19.1
-		l139,139c2.6,2.6,6.1,4,9.5,4s6.9-1.3,9.5-4c5.3-5.3,5.3-13.8,0-19.1l-116-116h427.5c7.5,0,13.5-6,13.5-13.5
-		S480.975,230.025,473.475,230.025z"
+l139,139c2.6,2.6,6.1,4,9.5,4s6.9-1.3,9.5-4c5.3-5.3,5.3-13.8,0-19.1l-116-116h427.5c7.5,0,13.5-6,13.5-13.5
+S480.975,230.025,473.475,230.025z"
                 />
               </g>
               <g></g>
@@ -75,30 +99,8 @@
             </svg>
           </svg>
         </button>
-        <a
-          style="
-            position: absolute;
-            height: 33px;
-            margin-top: 15px;
-            margin-left: 10px;
-          "
-          href="https://accessibly.ca/"
-          target="_blank"
-        >
-          <img
-            style="height: 33px"
-            src="../icons/linear-logo.png"
-            alt="My Happy SVG"
-          />
-        </a>
-        <div class="st_lang_box__">
-          <select id="st_lang_selector__" onchange="st_changeLang()">
-            <option value="en">English</option>
-            <option value="fr">French</option>
-          </select>
-        </div>
+        <button class="reset_btn__ stlc__" onclick="resetAll()">Reset</button>
       </div>
-      <button class="reset_btn__ stlc__" onclick="resetAll()">Reset</button>
     </div>
     <!-- <svg
       viewBox="0 0 32 32"
@@ -455,7 +457,7 @@
     </div>
     <div class="st__footer__">
       <a
-        style="color: #fff; text-decoration: none"
+        style="color: #1564bf; text-decoration: none"
         target="_blank"
         href="https://accessibly.ca/"
         >Powered by Accessibly.

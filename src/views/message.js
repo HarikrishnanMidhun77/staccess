@@ -5,7 +5,7 @@ import "./sidebar.css";
 import "./tile.css";
 import "./togglebar.css";
 import "./widgetInject.css";
-import { cdnLink } from "../consts.js";
+import { cdnLink, serverLink } from "../consts.js";
 
 let elements = [];
 let body;
@@ -33,7 +33,7 @@ export function setParams(params) {
   const paramArr = decodedParams.split("::");
   var atkn = paramArr[2];
   console.log("atkn1", atkn);
-  fetch("https://accessibly-server.herokuapp.com/api/v1/users/validateToken", {
+  fetch(serverLink + "api/v1/users/validateToken", {
     //TODO:chnage url
     method: "POST",
     headers: { "Content-Type": "application/json" },

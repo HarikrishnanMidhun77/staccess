@@ -1,6 +1,8 @@
 // import "./consts/colors";
 // from widgetfunctions.js file
 
+//import { serverLink } from "../src/consts";
+
 // Basic Colors used
 const primary__ = "#1564bf";
 const hover__ = "#5e91f2";
@@ -8,6 +10,7 @@ const selected__ = "#003b8e";
 //import { cdnLink } from "../consts.js";
 const cdnLink = "https://sharpearly.com/"; //"https://attainabily.com/";
 // "https://cdn.jsdelivr.net/gh/HarikrishnanMidhun77/staccess@5fcd01a5d511abe7f73c5bcfbd01275ae5f50a81/";
+const serverLink = "http://localhost:3001/"; //"https://accessibly-server.herokuapp.com/";
 
 var dyslexiaFont__flag = false;
 var font_size_count = 0,
@@ -1625,7 +1628,7 @@ function makeCount() {
       var token = paramArr[2];
       console.log("token", p, decodedParams, token);
 
-      fetch("https://accessibly-server.herokuapp.com/api/v1/users/visitCount", {
+      fetch(serverLink + "api/v1/users/visitCount", {
         //TODO:chnage url
         method: "POST",
         headers: { "Content-Type": "application/json" },
