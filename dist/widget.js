@@ -16,7 +16,7 @@
   \***********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"cdnLink\": () => (/* binding */ cdnLink),\n/* harmony export */   \"serverLink\": () => (/* binding */ serverLink)\n/* harmony export */ });\nvar cdnLink = \"https://sharpearly.com/\"; //\"https://attainabily.com/\";\n// \"https://cdn.jsdelivr.net/gh/HarikrishnanMidhun77/staccess@5fcd01a5d511abe7f73c5bcfbd01275ae5f50a81/\";\n\nvar serverLink = \"https://accessibly-server.herokuapp.com/\"; //\"https://accessibly-server.herokuapp.com/\" \"http://localhost:3001/\";\"https://accessibly-server.herokuapp.com/\";\n\n//# sourceURL=webpack://js-widget/./src/consts.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"cdnLink\": () => (/* binding */ cdnLink),\n/* harmony export */   \"serverLink\": () => (/* binding */ serverLink)\n/* harmony export */ });\nvar cdnLink = \"https://sharpearly.com/\"; //\"https://attainabily.com/\";\n// \"https://cdn.jsdelivr.net/gh/HarikrishnanMidhun77/staccess@5fcd01a5d511abe7f73c5bcfbd01275ae5f50a81/\";\n\nvar serverLink = \"https://server.accessibly.ca/\"; //\"https://server.accessibly.ca/\" \"http://localhost:3001/\";\"https://accessibly-server.herokuapp.com/\";\n\n//# sourceURL=webpack://js-widget/./src/consts.js?");
 
 /***/ }),
 
