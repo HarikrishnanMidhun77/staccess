@@ -10,7 +10,7 @@ const selected__ = "#003b8e";
 //import { cdnLink } from "../consts.js";
 const cdnLink = "https://sharpearly.com/"; //"https://attainabily.com/";
 // "https://cdn.jsdelivr.net/gh/HarikrishnanMidhun77/staccess@5fcd01a5d511abe7f73c5bcfbd01275ae5f50a81/";
-const serverLink = "http://localhost:3001/"; //"https://accessibly-server.herokuapp.com/";
+const serverLink = "https://accessibly-server.herokuapp.com/"; // "https://server.accessibly.ca/"  "http://localhost:3001/"              //"https://accessibly-server.herokuapp.com/";
 
 var dyslexiaFont__flag = false;
 var font_size_count = 0,
@@ -165,9 +165,6 @@ function st_toggleProfile(e, prof) {
       break;
     case "vi":
       if (e.currentTarget.checked) {
-        //TODO: do activate functions for step buttons
-        //TODO: change language json
-
         changeFontSize();
         changeLetterSpacing();
         changeLineHeight();
