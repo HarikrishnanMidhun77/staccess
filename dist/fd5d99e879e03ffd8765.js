@@ -8,7 +8,7 @@ const primary__ = "#1564bf";
 const hover__ = "#5e91f2";
 const selected__ = "#003b8e";
 //import { cdnLink } from "../consts.js";
-const cdnLink = "https://sharpearly.com/"; //"https://attainabily.com/";
+const cdnLink = "https://attainabily.com/"; //"https://attainabily.com/";
 // "https://cdn.jsdelivr.net/gh/HarikrishnanMidhun77/staccess@5fcd01a5d511abe7f73c5bcfbd01275ae5f50a81/";
 const serverLink = "https://server.accessibly.ca/"; // "https://server.accessibly.ca/"  "http://localhost:3001/"              //"https://accessibly-server.herokuapp.com/";
 
@@ -475,7 +475,8 @@ function resetAll() {
 
 function applyDyslexicFont() {
   if (!dyslexiaFont__flag) {
-    var dyslexicRegular = cdnLink + "src/fonts/dyslexic-regular.otf"; //new URL("fonts/dyslexic-regular.otf", document.baseURI).href;
+    var dyslexicRegular =
+      "https://drive.google.com/uc?export=download&id=1kH7FsvEa_0VlLAdrY_IdGxpwzIRree7E"; //cdnLink + "src/fonts/dyslexic-regular.otf"; //new URL("fonts/dyslexic-regular.otf", document.baseURI).href;
     var dyslexicMono = cdnLink + "src/fonts/dyslexic-mono.otf"; //new URL("fonts/dyslexic-mono.otf", document.baseURI).href;
     var style1 = document.createElement("style");
     style1.id = "staccess-widget-font";
