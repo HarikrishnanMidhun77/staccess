@@ -302,6 +302,23 @@ function resetClickAndRead() {
     cdnLink + "src/icons/audio.svg";
 }
 function resetDyslexiaFont() {
+  document.body.style.fontFamily = '"arial"';
+  // fetch(serverLink + "api/v1/users/getFont", {
+  //   //fetch("localhost:3001/api/v1/users/getFont", {
+  //   method: "GET",
+  //   mode: "cors",
+  //   headers: {
+  //     "Access-Control-Allow-Origin": "*",
+  //   },
+  // })
+  //   .then((resp) => {
+  //     return resp.arrayBuffer();
+  //   })
+  //   .then((f) => {
+  //     const fontFace = new FontFace("dyslexic-regular", f);
+  //     document.fonts.delete(fontFace);
+  //   })
+  //   .catch((er) => console.log("er", er));
   document.head
     .querySelectorAll("style#staccess-widget-font")
     .forEach((item, key) => item.remove());
@@ -473,26 +490,97 @@ function resetAll() {
   if (line_height_count > 0) resetLineHeight();
 }
 
-function applyDyslexicFont() {
+async function applyDyslexicFont() {
   if (!dyslexiaFont__flag) {
-    var dyslexicRegular =
-      "https://drive.google.com/uc?export=download&id=1kH7FsvEa_0VlLAdrY_IdGxpwzIRree7E"; //cdnLink + "src/fonts/dyslexic-regular.otf"; //new URL("fonts/dyslexic-regular.otf", document.baseURI).href;
-    var dyslexicMono = cdnLink + "src/fonts/dyslexic-mono.otf"; //new URL("fonts/dyslexic-mono.otf", document.baseURI).href;
-    var style1 = document.createElement("style");
-    style1.id = "staccess-widget-font";
-    style1.innerHTML =
-      "@font-face {\n        font-family: dyslexic-regular;\n        src : url('"
-        .concat(
-          dyslexicRegular,
-          "');\n    }\n    @font-face {\n        font-family: dyslexic-mono;\n        src: url('"
-        )
-        .concat(dyslexicMono, "');\n    }");
-    var style2 = document.createElement("style");
-    style2.id = "staccess-widget-font2";
-    style2.innerHTML =
-      "\n    html {\n        font-family: dyslexic-regular;\n    }\n    p, a, h1, h2, h3, h4, h5, input, ul, span, font, strong, th, td {\n        font-family: dyslexic-regular, FontAwesome !important;\n        line-height: 150%;\n    }\n    *:not(i):not(.fa) {\n        font-family: dyslexic-regular !important;\n    }\n    pre, code, pre *, code * {\n        font-family: dyslexic-mono !important;\n        line-height: 150%;\n    }";
-    document.head.appendChild(style1);
-    document.head.appendChild(style2);
+    var dyslexicRegular;
+    fetch(serverLink + "api/v1/users/getFont", {
+      //fetch("localhost:3001/api/v1/users/getFont", {
+      method: "GET",
+      mode: "cors",
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
+    })
+      .then((resp) => {
+        return resp.arrayBuffer();
+      })
+      .then((f) => {
+        console.log("f", f);
+        dyslexicRegular = f;
+
+        const fontFace = new FontFace("dyslexic-regular", f);
+        document.fonts.add(fontFace);
+        document.body.style.fontFamily = '"dyslexic-regular"';
+
+        // fs.appendFileSync("__dysFont.otf", Buffer.from(arrayBuffer));
+        // fs.appendFile("__dysFont.otf", Buffer.from(chunk), function (err) {
+        //   if (err) {
+        //     fut.throw(err);
+        //   } else {
+        //     fut.return(chunk.length);
+        //   }
+        //});
+
+        var style1 = document.createElement("style");
+        style1.id = "staccess-widget-font";
+        style1.innerHTML =
+          "@font-face {\n        font-family: dyslexic-regular;\n        src : url('"
+            .concat(
+              f,
+              "');\n    }\n    @font-face {\n        font-family: dyslexic-mono;\n        src: url('"
+            )
+            .concat(f, "');\n    }");
+        var style2 = document.createElement("style");
+        style2.id = "staccess-widget-font2";
+        style2.innerHTML =
+          "\n    html {\n        font-family: dyslexic-regular;\n    }\n    p, a, h1, h2, h3, h4, h5, input, ul, span, font, strong, th, td {\n        font-family: dyslexic-regular, FontAwesome !important;\n        line-height: 150%;\n    }\n    *:not(i):not(.fa) {\n        font-family: dyslexic-regular !important;\n    }\n    pre, code, pre *, code * {\n        font-family: dyslexic-mono !important;\n        line-height: 150%;\n    }";
+        document.head.appendChild(style1);
+        document.head.appendChild(style2);
+      })
+      .catch((er) => console.log("er", er));
+
+    // .then((resp) => {
+    //   return resp.arrayBuffer();
+    // })
+    // .then((f) => {
+    //   console.log("f", f);
+    //   dyslexicRegular = f;
+    // })
+    // .catch((er) => console.log("er", er));
+    // fetch(cdnLink + "src/fonts/dyslexic-regular.otf", {
+    //   method: "GET",
+    //   mode: "cors",
+    //   headers: {
+    //     "Access-Control-Allow-Origin": "*",
+    //   },
+    // })
+    //   .then((resp) => {
+    //     resp.arrayBuffer();
+    //   })
+    //   .then((f) => {
+    //     console.log("f", f);
+    //     dyslexicRegular = f;
+    //   })
+    //   .catch((er) => console.log("er", er));
+    //cdnLink + "src/fonts/dyslexic-regular.otf"; //new URL("fonts/dyslexic-regular.otf", document.baseURI).href;
+    // var dyslexicMono =
+    //   "https://github.com/HarikrishnanMidhun77/staccess/blob/main/dist/dyslexic-regular.otf?raw=true"; //cdnLink + "src/fonts/dyslexic-mono.otf"; //new URL("fonts/dyslexic-mono.otf", document.baseURI).href;
+
+    // var style1 = document.createElement("style");
+    // style1.id = "staccess-widget-font";
+    // style1.innerHTML =
+    //   "@font-face {\n        font-family: dyslexic-regular;\n        src : url('"
+    //     .concat(
+    //       dyslexicRegular,
+    //       "');\n    }\n    @font-face {\n        font-family: dyslexic-mono;\n        src: url('"
+    //     )
+    //     .concat(dyslexicMono, "');\n    }");
+    // var style2 = document.createElement("style");
+    // style2.id = "staccess-widget-font2";
+    // style2.innerHTML =
+    //   "\n    html {\n        font-family: dyslexic-regular;\n    }\n    p, a, h1, h2, h3, h4, h5, input, ul, span, font, strong, th, td {\n        font-family: dyslexic-regular, FontAwesome !important;\n        line-height: 150%;\n    }\n    *:not(i):not(.fa) {\n        font-family: dyslexic-regular !important;\n    }\n    pre, code, pre *, code * {\n        font-family: dyslexic-mono !important;\n        line-height: 150%;\n    }";
+    // document.head.appendChild(style1);
+    // document.head.appendChild(style2);
     document.cookie = "staccess__dyslexiaFont=true;  path=/";
     document.getElementById("staccess__dyslexiaFont__btn").style.background =
       selected__;
